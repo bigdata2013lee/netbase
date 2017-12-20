@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+h3.contractContent{
+    border-bottom: 1px solid  #ccc;
+    margin: 35px 10px;
+}
+div.panelContent div.upTip {
+    float: right;
+    margin-right: 10px;
+    text-align: right;
+}
+
+div.upTip p{
+    border:1px solid #005299; padding:0.5em; color:#FFF5EC; 
+    background: #065197; font-size:16px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px #005299;
+}
+div#upLevelWin ul li.half_yv1,
+div#upLevelWin ul li.half_yv2,
+div#upLevelWin ul li.half_yv3, 
+div#upLevelWin ul li.one_yv1,
+div#upLevelWin ul li.one_yv2,
+div#upLevelWin ul li.one_yv3{
+    display: none;
+}
+div#upLevelWin ul li.half_yv1,
+div#upLevelWin ul li.half_yv2,
+div#upLevelWin ul li.half_yv3, 
+div#upLevelWin ul li.one_yv1,
+div#upLevelWin ul li.one_yv2,
+div#upLevelWin ul li.one_yv3{
+    margin:0px 25px;
+    background-color: #ecfdfd;
+    font-size: 14px;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=3; </script>
+<script src="/media/js/operation/contractUpLevel.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="left-menus">
+    <li><a href="/operation/contractCenter/">正在执行的合约</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+        <div class="panelTitle"></div>
+            <div class="panelContent"> 
+<!--                 <div class="upTip">
+                   <a href="javascript:" action="upLevel">我要升级</a>
+                   <p style="display: none;">升级致电公司销售<font style="color: #cf0202;">4006-3525-00</font>，恰谈升级事项</p>
+               </div>
+              <dl class="fields">
+                <dt>合约名称：</dt>
+                <dd>
+                        {{contract.title}}                
+                </dd>
+              </dl>
+            <dl class="fields">
+                <dt>起止时间：</dt>
+                <dd name="startendTime">
+                        {{contract.startTime|formatShortTime}}   ~   {{contract.endTime|formatShortTime}}                 
+                </dd>
+              </dl>
+              <h3 class="contractContent">合约内容</h3>
+              <div>
+                  <dl class="fields">
+                      <dt>服务用户数：</dt>
+                      <dd>{{ contract.serviceCustormerNum }}88</dd>
+                      
+                      <dt>广告投放：</dt>
+                      <dd>{{ contract.advertDays }}88</dd>
+                      
+                      <dt style="width: 150px;">查看/收藏用户信息：</dt>
+                      <dd>{{ contract.oFavoriteCustormerNum }}88</dd>
+                      
+                  </dl> -->
+                   <div class="upTip">
+                       <li>
+                        <a href="javascript:" name="extend_device" style="display: block;margin: 20px;">添加设备</a>
+                        </li>
+                    </div>
+                   <table class="data_table" name="listServiceNotes">
+                    <thead>
+                        <tr>      
+                            <th><span name="item">项目</span></th>
+                             <th><span name="total">总量</span></th>
+                             <th><span name="usedNum">已用数</span></th>
+                               <th><span  name="availableNum">可用数</span></th>                         
+                        </tr>                    
+                    </thead>                
+                    <tbody>
+                            <tr class="data_tr" >
+                                <td><span style="">主机</span></td>
+                                <td><span style="">{{deviceTotal.host}}</span></td>
+                                <td><span style="">{{deviceUsed.host}}</span></td>
+                                <td><span style="">{{deviceAvailable.host}}</span></td>
+                            </tr>
+                            <tr class="data_tr" >
+                                <td><span style="">站点</span></td>
+                                <td><span style="">{{deviceTotal.website}}</span></td>
+                                <td><span style="">{{deviceUsed.website}}</span></td>
+                                <td><span style="">{{deviceAvailable.website}}</span></td>
+                            </tr>
+                            <tr class="data_tr" >
+                                <td><span style="">网络</span></td>
+                                <td><span style="">{{deviceTotal.network}}</span></td>
+                                <td><span style="">{{deviceUsed.network}}</span></td>
+                                <td><span style="">{{deviceAvailable.network}}</span></td>
+                            </tr>
+                    </tbody>
+                </table>       
+        </div>
+  </div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="upLevelWin" class="dialog_win">
+    <h3>您想升级到哪个版本？</h3>
+    <dl class="fields">
+        <dt><label><input type="radio" name="contarctName" value="half_yv1"/>半年V1版</label></dt>
+        <dt><label><input type="radio" name="contarctName" value="half_yv2" />半年V2版</label></dt>
+        <dt><label><input type="radio" name="contarctName" value="half_yv3" />半年V3版</label></dt>
+    </dl>
+    <dl class="fields">
+        <dt><label><input type="radio" name="contarctName" value="one_yv1"/>一年V1版</label></dt>
+        <dt><label><input type="radio" name="contarctName" value="one_yv2"/>一年V2版</label></dt>
+        <dt><label><input type="radio" name="contarctName" value="one_yv3"/>一年V3版</label></dt>
+    </dl>
+    <ul>
+        <li class="half_yv1">服务用户数：5   广告投放：3天   查看/收藏用户信息：20</li>
+        <li class="half_yv2">服务用户数：5   广告投放：3天   查看/收藏用户信息：20</li>
+        <li class="half_yv3">服务用户数：5   广告投放：3天   查看/收藏用户信息：20</li>
+        <li class="one_yv1">服务用户数：5   广告投放：6天   查看/收藏用户信息：20</li>
+        <li class="one_yv2">服务用户数：5   广告投放：6天   查看/收藏用户信息：20</li>
+        <li class="one_yv3">服务用户数：5   广告投放：6天   查看/收藏用户信息：20</li>
+    </ul>
+    
+    <h3>联系信息</h3>
+    <dl class="fields">
+        <dt>联系人：</dt>
+        <dd><input name="originalName"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>联系电话：</dt>
+        <dd><input name="contactPhone"  /></dd>
+    </dl>
+    <h3>您有哪些详细情况需要补充的吗？</h3>
+    <textarea name="description" style="width: 560px;height: 50px;"></textarea>
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok">升级</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+{%  include "operation/extend_device.html" %}
+{% endblock %}
+

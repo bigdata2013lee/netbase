@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/media/customMap/map.css" />
+        <link href="/media/css/alertTip.css" rel="stylesheet" />
+        <style>
+            
+            html,body{}
+
+        </style>
+        <script type="text/javascript" src="/media/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+        <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+        <script type="text/javascript" src="/media/js/alertTip.js"></script>
+        <script type="text/javascript">
+        	var mcUid='{{mcUid}}';
+	        var remoteUrls = [
+	    		{viewName:"customerMapViews",remoteUrl:'/remote/CustomerMapApi/'}
+			];
+			
+			$(document).ready(function(){
+				window.setInterval(function(){
+					//iframe auto fixd;
+					var h = $("#canvas_continer").height();
+					$(window.parent.document).find("#map_iframe").height(h+30)
+				}, 1000*1)
+			})
+        </script>
+        <script type="text/javascript" src="/media/js/nbRemote.js"></script>
+        <script src="/media/customMap/raphael.js"></script>
+        <script src="/media/customMap/core.js"></script>
+        <script src="/media/customMap/model.js"></script>
+        <script src="/media/customMap/utils.js"></script>
+        <script src="/media/customMap/edit.js"></script>
+        <script>
+            $(document).ready(function(){
+                jQuery("#canvas_continer").bind("contextmenu",function(){ return false; });
+            });
+        </script>
+    </head>
+    
+    <body>
+    	
+        <div id="canvas_continer"> </div>
+        
+        <div id="custom_map_cmo_icons">
+            <div class="device">
+            </div>
+            
+            <div class="location">
+            </div>
+            
+            <div class="virtual">
+            </div>
+            
+        </div>
+        
+        <div id="custom_map_menus">
+            <ul class="mainMenu cmodev">
+                <li class="linkTo">连接到...</li>
+                <li class="setSize more">设置尺寸
+                    <ul>
+                        <li>100 * 100</li>
+                        <li>100 * 150</li>
+                        <li>150 * 100</li>
+                        <li class="spt"></li>
+                        <li>150 * 150</li>
+                        <li>150 * 225</li>
+                        <li>225 * 150</li>
+                        <li class="spt"></li>
+                        <li>70 * 70</li>
+                        <li>70 * 105</li>
+                        <li>105 * 70</li>
+                    </ul>
+                </li>
+                <li class="setIcon">更改图标</li>
+                <li class="addInterface more">添加接口...
+                    <ul style="min-width: 150px; min-height:50px;">
+                        loading...
+                    </ul>
+                </li>
+                <li class="spt"></li>
+                <li class="setLabelText">标签重命名...</li>
+                <li class="setLableDir more">设置标签位置
+                    <ul>
+                        <li>
+                            <table>
+                                <tr>
+                                    <td class="dirIcon left_top" dirName="left_top" title="左上角">&nbsp;</td>
+                                    <td class="dirIcon top" dirName="top" title="上方">&nbsp;</td>
+                                    <td class="dirIcon right_top" dirName="right_top" title="右上角">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="dirIcon left" dirName="left" title="左侧">&nbsp;</td>
+                                    <td class="dirIcon center" dirName="center" title="中间">&nbsp;</td>
+                                    <td class="dirIcon right" dirName="right" title="右侧">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="dirIcon left_bottom" dirName="left_bottom" title="左下角">&nbsp;</td>
+                                    <td class="dirIcon bottom" dirName="bottom" title="底部">&nbsp;</td>
+                                    <td class="dirIcon right_bottom" dirName="right_bottom" title="右下角">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+                <li class="setLabelSize more">设置标签尺寸
+                    <ul>
+                        <li labelSize="12px">X</li>
+                        <li labelSize="14px">X+</li>
+                        <li labelSize="18px">X++</li>
+                    </ul>
+                </li>
+                <li class="spt"></li>
+                <li class="removeLines more">删除连接线</li>
+                <li class="spt"></li>
+                <li class="remove"><font color="#AA2525">删除</font></li>
+            </ul>
+            <ul class="mainMenu canvas">
+                <li class="addDevice more">添加设备
+                    <ul style="min-width: 250px; min-height: 50px; left: 110px;">
+                        loading...
+                    </ul>
+                </li>
+
+                <li class="addVirtualNode">添加虚点</li>
+                <li class="spt"></li>
+                <li class="setCanvasSize">设置画布尺寸</li>
+                <!-- 
+                <li class="setBgImg more">设置背景
+                    <ul>
+                        
+                    </ul>
+                </li>
+                -->
+                
+            </ul>
+        </div>
+
+
+        
+    </body>
+</html>

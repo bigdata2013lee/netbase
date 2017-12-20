@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+export NBHOME=/opt/netbase4
+export PYTHONPATH=/opt/netbase4
+exec $NBHOME/bin/python $NBHOME/bin/version.pyc

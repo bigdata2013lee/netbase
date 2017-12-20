@@ -1,0 +1,65 @@
+	/*======================
+        公共样式
+=======================*/
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset,input,div,img{ margin: 0; padding: 0; }
+em, cite, th { font-style: normal; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-size: 1em; font-weight:normal;}
+a{color:#333; text-decoration:none}
+a:hover{color:#f60; text-decoration:none;}
+li{ list-style:none;}
+img{ border:none;}
+input,img{ vertical-align:middle; border:none;}
+.clear{ clear:both}
+.hide{ display:none}
+
+.marginbot15{ margin-bottom:15px;}
+.marginbot12{ margin-bottom:12px;}
+.marginbot20{ margin-bottom:20px;}
+.marginleft10{ margin-left:10px;}
+.margintop10{ margin-top:10px;}
+.marginbot10{ margin-bottom:10px;}
+.marginbot30{ margin-bottom:30px;}
+.marginleft15{ margin-left:15px;}
+.paddingleft25{ padding-left:25px;}
+
+body{ font-family: "微软雅黑",arial;font-size: 12px; color:#333;}
+
+#emailbox{ width:700px; background-color:#eeeeee; margin:20px auto; overflow:hidden;}
+.email_header{ background-color:#2053a7; height:48px; line-height:48px; color:#fff;}
+.email_header .logo{ width:120px; height:37px; padding:6px 10px; float:left;}
+.email_header_right{ float:right; padding-right:10px; overflow:hidden;}
+.email_header_right a{ color:#fff; padding:0 8px;}
+.email_header_right a:hover{ color:#FF6;}
+
+
+.email_main{ padding:15px 12px 15px 18px;}
+.Event_Title{ font-size:18px; height:40px; line-height:40px; font-weight:bold; padding-left:5px;}
+.Event_Title span{ font-size:12px; font-weight:normal; float:right; padding-right:10px;}
+
+.email_main_Content{ width:674px; margin-top:5px; overflow: hidden;}
+.email_main_Content_t01{ background:url(cid:t01) no-repeat; width:674px; height:26px; overflow:hidden;}
+.email_main_Content_t02{ background:url(cid:t02) repeat-y;width:674px; overflow:hidden;}
+.email_main_Content_t03{ background:url(cid:t03) no-repeat; width:674px; height:59px; overflow:hidden;}
+
+.email_main_Content_t02 .ulcontent{ padding:0 15px;}
+.email_main_Content_t02 .ulcontent li{ border-bottom:dashed 1px #ddd; height:32px; line-height:32px;}
+.email_main_Content_t02 .ulcontent li span{ color:#0f4781;}
+
+.email_main_wei{ overflow:hidden;}
+.weixin_bo{ width:435px; height:101px; float:left;  padding:10px 0 0 0;}
+.Phone{ float:right; padding:40px 10px 0 0; text-align:center; line-height:24px; font-size:12px;}
+.Phone a{ color:#03F; text-decoration: underline; font-size:13px;}
+.Phone a:hover{ color:#f30;}
+
+
+
+
+
+
+
+
+
+
+
+
+

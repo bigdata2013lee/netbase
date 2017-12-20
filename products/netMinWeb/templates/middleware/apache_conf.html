@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+.panelContent dl{line-height: 24px;}
+.panelContent dl dt{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	padding-right:1em;
+	color:#1881c5;
+}
+
+.panelContent dl dd{
+	display: inline-block;
+	margin:0;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>var  moUid = '{{moUid}}';</script>
+<script src="/media/js/middleware/apache_conf.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "middleware/middleware_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "middleware/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="editApacheWidget" class="panel">
+	<div class="panelTitle">编辑Apache2服务器配置</div>
+	<div class="panelContent">
+		<div class="op_bar">
+			<a href="javascript:" action="saveConf">保存配置</a>
+		</div>
+		
+		<div class="fields_div">
+			<input name="moUid" type="hidden" value="{{mw.getUid}}" />
+			<dl>
+				<dt>名称:</dt><dd><input name="title" value="{{mw.title}}"/></dd>
+				<dt>收集器:</dt><dd>{{mw.collector.titleOrUid}}({{mw.collector.host}})</dd>
+			</dl>
+			
+			<dl>
+				<dt>域名/IP:</dt><dd>{{mw.host}}</dd>
+				<dt>端口:</dt><dd><input name="port" value="{{mw.port}}"/></dd>
+				<dt>起用Ssl:</dt><dd><select name="ssl">
+					<option value="no" {%if not mw.ssl%}selected="selected"{%endif%}>no</option>
+					<option value="yes" {%if mw.ssl%}selected="selected"{%endif%}>yes</option>
+				</select> </dd>
+			</dl>
+			
+			<dl>
+				<dt>Http用户名:</dt><dd><input name="httpUsername" value="{{mw.httpUsername}}"/></dd>
+				<dt>Http密码:</dt><dd><input name="httpPassword" type="password" placeholder="不修改密码，请勿填写"/></dd>
+			</dl>
+		</div>
+		<div class="validateErrorMsg"> </div>
+	</div>
+</div>
+
+<div id="thresholdConfigWidget" class="panel">
+	
+	<div class="panelTitle">阀值配置</div>
+	<div class="panelContent">
+		<div class="op_bar">
+	        <a href="javascript:" name="save">保存配置</a>
+	    </div>
+		<div class="box thresholdConfig"> </div>
+	</div>
+</div>	
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

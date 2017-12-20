@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+.panelContent dl{line-height: 24px;}
+.panelContent dl dt{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	padding-right:1em;
+	color:#1881c5;
+}
+
+.panelContent dl dd{
+	display: inline-block;
+	margin:0;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/middleware/nginx_add.js"></script>
+<script src="/media/js/fillcollector.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "middleware/middleware_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "middleware/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="addNginxWidget" class="panel">
+	<div class="panelTitle">添加Nginx服务器</div>
+	<div class="panelContent">
+		<div class="op_bar">
+			<a href="javascript:" action="saveConf">保存配置</a>
+		</div>
+		
+		<div class="fields_div">
+			<dl>
+				<dt>名称:</dt><dd><input name="title" /></dd>
+				<dt>收集器:</dt><dd><select id="select_collector" name="collector"><option value="">请选择收集器...</option></select></dd>
+			</dl>
+			
+			<dl>
+				<dt>域名/IP:</dt><dd><input name="host" /></dd>
+				<dt>端口:</dt><dd><input name="port" value="80"/></dd>
+				<dt>起用Ssl:</dt><dd><select name="ssl">
+					<option value="no">no</option>
+					<option value="yes">yes</option>
+				</select> </dd>
+			</dl>
+			
+			<dl>
+				<dt>Http用户名:</dt><dd><input name="httpUsername" /></dd>
+				<dt>Http密码:</dt><dd><input name="httpPassword" type="password" /></dd>
+			</dl>
+		</div>
+		<div class="validateErrorMsg"> </div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

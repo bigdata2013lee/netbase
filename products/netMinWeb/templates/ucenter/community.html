@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/js/ucenter/leftMenus.css" rel="stylesheet" />
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+<link href="/media/js/ucenter/showUser.css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/ucenter/search.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script src="/media/js/ucenter/showUser.js"> </script>
+<script>
+    $(document).ready(function(){
+        $("#search_btn").click();
+    });
+</script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+    {% include "ucenter/left_menu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+<div class="panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="search_box" id="search_box">
+            <dl>
+                <dt>搜索问题：</dt>
+                <dd><input type="text" class="search_txt" name="search_txt"/> <input type="button" id="search_btn" class="try-kendo" value="搜索" /></dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>社区范围：</dt>
+                <dd>
+                    <label><input type="radio" value="question" name="search_field" checked="checked" />求助 </label> 
+                    <label><input type="radio" value="share" name="search_field" class="r_input"/>分享</label>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>区域设定：</dt>
+                <dd>
+                    <select name="province"><option value="广东" >广东</option></select>
+                    <select name="city"><option value="深圳" >深圳</option></select>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>类别设定：</dt>
+                <dd class="input_class">
+                    <div class="autoComplateWidget" id="autoComplateWidget">
+                       
+                        <div class="input_box">
+                            <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list">
+                        </ul>
+                    </div>
+
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+        <div id="search_results">
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

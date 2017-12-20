@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+	
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var orgUid = '{{orgUid}}';</script>
+<script src="/media/js/website/website_list.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "website/left_item_menu.html"%}
+<div class="extend_device_tip">
+    <li>您一共可以添加<label>{{numDic.count}}</label>个站点</li>
+    <li>您已经添加了<label>{{numDic.usedNum}}</label>个站点</li>
+    <li>您还可以添加<label>{{numDic.availableNum}}</label>个站点</li>
+    <li><a href="javascript:" name="extend_device">我要扩充</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="panel">
+	<div class="panelTitle">站点监控列表</div>
+	<div class="panelContent">
+		<table id="data_table_1" class="data_table">
+	        <colgroup>
+	            <col />
+	            <col />
+	            <col style="width:220px" />
+	            <col style="width:80px" />
+	            <col style="width:80px" />
+	            <col style="width:150px" />
+	        </colgroup>			
+			<thead>
+				<tr>
+					<th>名称</th>
+					<th>监控站点</th>
+					<th>监测点状态</th>
+					<th>站点状态</th>
+					<th>响应时间</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+				<tbody>
+					{% for ws in websites %}
+					<tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+						<td>{{ws.titleOrUid}}</td>
+						<td>{{ws.getManageId}}</td>
+						<td>
+							<span>Up:{{ws.getCptsStatusSummary.up}}</span>
+							<span>Down:{{ws.getCptsStatusSummary.down}}</span>
+							<span>Unknown:{{ws.getCptsStatusSummary.unknown}}</span>
+						</td>
+						<td><span class="status-icon-small {{ws.getStatus}}"></span></td>
+						<td>{{ws.getReponseTime}} ms</td>
+						<td>
+							<a href="/website/detail/{{ws.getUid}}">祥情</a>
+							<a href="/website/conf/{{ws.getUid}}">编辑</a>
+							<a href="javascript:" action="delWebsite" websiteuid="{{ws.getUid}}">删除</a>
+						</td>
+					</tr>
+					{%endfor%}
+				</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="coumn first">
+	<div id="responseTimeTop5Widget" class="panel">
+		<div class="panelTitle">平均响应时间Top5</div>
+        <div class="panelActions">
+            <a class="refresh" name="refresh_action" href="javascript:"> </a>
+        </div>
+		<div class="panelContent">
+		    <div class="box" style="height: 300px"> </div>
+		</div>
+	</div>	
+</div><!-- end coumn -->
+
+<div class="coumn sec">
+<div id="recentlyEventsWidget" class="panel">
+	<div class="panelTitle">最近事件</div>
+	<div class="panelContent">
+            <script name="template" type="text/x-kendo-template">
+                <tr>
+                    <td style="vertical-align: top; position: relative;">
+                        <div>
+                        <span class="severity-icon-small #= nb.Render.severitys(severity)#" />
+                        #=title#
+                        </div>
+                        <div title="#=message#" style="color:rgb(69,134,216);padding-left:4em;">#=nb.Render.ellipsisStr(message, 80)#</div>
+                        <div style="position:absolute; right:0; top:0;color:rgb(176,176,176)">#= nb.xutils.getTimeStr(endTime * 1000) #</div>
+                    </td>
+                    
+                </tr>
+            </script>
+           <table style="width: 100%">
+                <tbody> </tbody>
+           </table>	    
+	</div>
+</div>
+</div><!-- end coumn -->
+{% endblock %}
+
+
+{% block other_extend_block %}
+{%  include "monitor/extend_device.html" %}
+{% endblock %}
+

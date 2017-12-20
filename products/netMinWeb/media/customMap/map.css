@@ -1,0 +1,160 @@
+
+#canvas_continer{
+	margin-left:auto;
+	margin-right:auto;
+    width:1000px;
+    border:1px solid #eee;
+    border-radius: 6px;
+    box-shadow: #D9D9D9 0px 0px 8px;
+    background-color: #FFFFFF;
+}
+
+#custom_map_menus{
+    position: absolute;
+    left: 0px; top: 0px;
+    z-index: 100;
+    font-size:12px;
+}
+
+#custom_map_menus .mainMenu{
+    display:none;
+    position: absolute;
+    left: 0px; top: 0px;
+}
+#custom_map_menus ul,#custom_map_menus li{
+    position: relative;
+    list-style: none;
+    padding: 0; margin: 0;
+}
+#custom_map_menus ul{
+    position:absolute;
+    padding: 2px 2px;
+    border: 1px solid #ccc;
+    background-color: #F0F0F0;
+    box-shadow: 2px 2px 2px #CCCCCC;
+}
+
+#custom_map_menus li{
+    
+    padding: 0px 2px 0px 1em;
+    margin-right: 4px;
+    border: 1px solid transparent;
+    width: 100px;
+    min-width:100px;
+    cursor: default;
+}
+
+#custom_map_menus li:hover{
+    border: 1px solid #AECFF7;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #EAEFF6;
+}
+#custom_map_menus li:hover>ul{
+    display:block;
+}
+
+#custom_map_menus li>ul{
+    display:none;
+}
+
+#custom_map_menus li.spt{
+    margin: 1px 0px;
+    height:1px;
+    line-height: 1px;
+    font-size: 1px;
+    border:none;
+    margin-left: 1em;
+    border-top: 1px solid #ccc;
+}
+#custom_map_menus li.spt:hover{
+    border:none;
+    border-top: 1px solid #ccc;
+}
+
+#custom_map_menus .mainMenu ul{
+    left: 115px;
+    top: 0;
+}
+
+#custom_map_menus table td{
+    width:20px;
+    height:20px;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+}
+
+#custom_map_menus table td:hover{
+    background-color: #F7EA5B;
+}
+
+#custom_map_menus li.disable{
+    color: #aaa;
+}
+/**--------------------------------------*/
+#custom_map_cmo_icons{
+    display:none;
+    position: fixed;
+    left: 100px; top: 100px;
+    background-color: #f4f4f4;
+    width:400px;
+    border:1px solid #ccc;
+}
+
+#custom_map_cmo_icons>div>div{float:left;}
+    
+#custom_map_cmo_icons img{
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+}
+#custom_map_cmo_icons img:hover{
+    border: 1px solid #1E74FF;
+}
+
+
+td.dirIcon{
+    padding:0;
+    margin:0;
+    background: url(/media/customMap/skins/icons/dir_icons.png) no-repeat;
+}
+
+td.dirIcon.left_top{
+    background-position: 0 -52px;
+}
+
+td.dirIcon.left_bottom{
+    background-position: 0 -85px;
+}
+
+td.dirIcon.right_top{
+    background-position: 100% 2px;
+}
+
+td.dirIcon.right_bottom{
+    background-position: 100% -30px;
+}
+
+td.dirIcon.top{
+    background-position: 50% -112px;
+}
+td.dirIcon.left{
+    background-position: 0 -68px;
+}
+
+td.dirIcon.right{
+    background-position: 100% -14px;
+}
+td.dirIcon.bottom{
+    background-position: 2px -129px;
+}
+td.dirIcon.center{
+    background-position: 50% -148px;
+}
+
+#location_bar{
+}
+#location_bar>dl{margin: 2px 2px;}
+#location_bar  dt{float:left; margin: 2px 2px;}
+#location_bar  dd{float:left; margin: 2px 2px;}
+#location_bar  dd:last-child{clear:right;}
+
+

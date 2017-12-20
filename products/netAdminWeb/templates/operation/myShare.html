@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+
+{% block extra_css %}
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+div.not_topic_tip{
+    text-align: center;
+    font-size:16px;
+    color:#666666;
+    margin-top:2em;
+}
+
+
+dl.fieldsline {
+	line-height: 24px;
+	border-bottom: 1px solid #CBC6C2;
+	padding-bottom: 4px;
+}
+dl.fieldsline dt {
+	display: inline-block;
+	padding-right: 1em;
+	text-align: center;
+}
+dl.fieldsline dt span{
+    display:inline-block;
+    border:1px solid #559DE0 ;
+    background-color:#DDEEF;
+    color:#F1710E;
+    padding:1px 4px;
+    border-radius: 4px;
+}
+dl.fieldsline dd {
+	display: inline-block;
+	margin: 0;
+}
+dl.fieldsline dd.dtag{
+	float: right;
+	padding-right: 4em;
+}
+dl.fieldsline dd.title{
+	font-size:16px;
+}
+dl.fieldsline dd .tag{
+    display:inline-block;
+    min-width:60px;
+    text-align:center;
+    border:1px solid #559DE0 ;
+    background-color:#1668A5;
+    color:#FFF;
+    padding:1px 4px;
+    border-radius: 10px;
+}
+table.k-editor{width:auto;}
+</style>
+
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=2; </script>
+<script src="/media/js/operation/myShares.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/personalLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+    <div class="panelTitle"></div>
+        <div class="panelContent"> 
+            <div class="op_bar">
+                <a href="javascript:" action="createShare">我要分享</a>
+            </div>
+
+			{%if not myShares%} 
+            	<div class="not_topic_tip">你未发布任何分享</div>
+            {%endif%}
+            
+            {% if myShares %}
+                {% for s in myShares %}
+	            	<dl class="fieldsline">
+	            		<dt>
+	            			<span class="hot" style="width: 50px;">热度:{{s.replyNum}}</span>
+	            			<span class="ctime">时间:{{s.ctime|formatTime}}</span>
+	        			</dt>
+	            		<dd class="title"><a href="/operation/viewShare/{{s.getUid}}">{{s.title|getSureLength:20}}</a></dd>
+	            		<dd class="dtag">
+	                        {% for tag in s.fields %}
+	                        <label class="tag">{{tag}}</label>
+	                        {%endfor%}
+	                    </dd>
+		             </dl>  
+                {% endfor %}
+            {%endif%}
+        </div>
+  </div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="createShare_win" class="dialog_win">
+    <div class="validateErrorMsg"></div>
+    <div>
+        <dl class="fields">
+            <dt>分享标题：</dt>
+            <dd>
+                <input type="text" name="title" placeholder="请输入20字以内..."/>
+            </dd>
+        </dl>
+        <dl class="fields">
+            <dt>服务区域：</dt>
+            <dd>
+                <select name="province" > </select>
+            </dd>
+            <dd>
+                <select name="city" > </select>
+            </dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt>技术类别：</dt>
+            <dd>
+                <div class="autoComplateWidget" id="shareAutoComplateWidget">
+                    <div class="input_box">
+                        <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                    </div>
+                    <ul class="item_list">
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt style="vertical-align: top;">分享描述：</dt>
+            <dd><textarea name="content"></textarea></dd>
+        </dl>
+        
+    </div>
+    <div class="win_opbar">
+        <button class="ok">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+{% endblock %}
+

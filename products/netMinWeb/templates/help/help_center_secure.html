@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心---一键助手使用说明</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+<link href="/media/help/help_content.css" rel="stylesheet" type="text/css" />
+<style>
+    .help_right h1{
+        color: #f60;
+        margin: 0px;
+        padding: 0px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .help_right p{
+        padding-bottom:20px;
+        font-size: 14px;
+        text-indent: 2em;
+        line-height: 24px;
+        color:#555;
+    }
+</style>
+</head>
+
+<body>
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/help_left.html"%}
+    <div class="help_right" style="min-height:580px;">
+         <h1>使用运维通安全吗？</h1>
+         <p> 
+             运维通的使用安装无需任何插件，被监控设备性能数据全部通过snmp协议获得。Snmp协议是简单网管协议，运维通不需
+             要额外的权限，不会对被监控设备造成流量冲击，更不会影响系统上所运行业务系统。在被监控设备性能参数达到设定警界值时
+             ，运维通将给系统管理员发送短信或邮件报警通知，将可能发生的故障扼杀在摇篮。同时运维通的日常监控数据，也可方便用
+             于日后系统升级提供一个重要参考依据。
+         </p>
+         
+        <h1>运维通如何监控数据</h1>
+         <p> 
+             运维通提供丰富的监控数据，主要分三种：设备性能数据、设备在线情况数据和设备服务可用性数据，这三种数据分别通过
+             snmp协议、ICMP报文和tcp端口连接测试完成得到。站点专家，还可模拟不同网络线路的访客，得到对应线路的访问体验。
+         </p>
+         <h1>snmp协议原理</h1>
+         <p> 
+             SNMP(Simple Network Management Protocol,简单网络管理协议)的前身是简单网关监控协议(SGMP)，用来对通信线
+             路进行管理。SNMP的目标是管理互联网Internet上众多厂家生产的软硬件平台，因此也成为监控领域应用最广泛的网管协议。
+             SNMP协议括两部分：网络管理站 (manager) 和被管理的网络单元（被管设备），管理进程和代理进程之间的通信有两种方
+             式，一种是管理进程向代理进程发出请求，询问参数值，另一种方式是代理进程主动向管理进程报告某些重要的事 件。 运维通
+             就是充当一个网络管理站的角色
+         </p>
+         <h1>哪些大企业使用这种协议</h1>
+         <p> 
+             作为互联网应用最广泛的网管协议，得到了几乎所有网络设备生产厂商的大力支持，甚至一些简单传感器也开始支持snmp协
+             议。 IT监控行业最巨影响力的四大厂商HP OpenView、IBM Tivoli、CA Unicenter和BMC Patrol均支持使用snmp协议制
+             定IT监控解决方案。
+         </p>
+         
+       
+    </div>    
+   
+    
+</div>
+
+
+</body>
+</html>

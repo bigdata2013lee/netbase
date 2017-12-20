@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/js/website/add_conf.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var moUid = '{{ws.getUid}}';</script>
+<script src="/media/js/website/website_conf.js"></script>
+
+<script type="text/javascript" src="/media/ui/svgMap/js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/res/chinaMapConfig.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/map.js"></script>
+<script type="text/javascript" src="/media/js/website/mapObjPage.js"></script>
+      
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "website/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="confWebsiteWidget" class="panel">
+	<div class="panelTitle">编辑站点监控配置</div>
+	<div class="panelContent">
+	    <div class="op_bar">
+            <a action="saveConf" href="javascript:">保存配置</a> |
+            <a action="openThresholdConfigWin" href="javascript:">配置阀值</a>
+        </div>
+        
+        <div class="box">
+                <input type="hidden" name="wsUid" value="{{ws.getUid}}" />
+                <dl class="fields">
+                    <dt>名称:</dt><dd><input name="title" value="{{ws.title}}" size="30"></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>域名/IP:</dt><dd><span>{{ws.hostName}}</span> </dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>端口:</dt><dd><input name="port" value="{{ws.port}}" ></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>监测点:</dt>
+                    <dd>
+                        <div class="cpt_item_box">&nbsp;
+                            {%for cpt in ws.collectPoints%}
+                            <span class="cpt_item" cptuid="{{cpt.getUid}}" ss="{{cpt.ss}}">{{cpt.titleOrUid}}</span>
+                            {%endfor%}
+                        </div>
+                        <div class="cpt_item_add_btn">
+                            <a href="javascript:">+选择监测点...</a>
+                        </div>
+                        <br clear="both"/>
+                    </dd>
+                </dl>
+                
+                <div><a href="javascript:(function(){jQuery('#more_conf_div').toggle()})()">+更多配置项</a></div>
+                <div id="more_conf_div" style="display: none;">
+                    <dl class="fields">
+                        <dt>Url:</dt><dd><input name="url" value="{{ws.url}}"></dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>https/ssl:</dt>
+                            <dd>
+                                <select name="useSsl">
+                                    <option value="no" {%if not ws.useSsl%}selected="selected"{%endif%}>no</option>
+                                    <option value="yes" {%if ws.useSsl%}selected="selected"{%endif%}>yes</option>
+                                </select>
+                           </dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>http用户名:</dt><dd><input name="httpUsername" value="{{ws.httpUsername}}"></dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>http密码:</dt><dd><input name="httpPassword" type="password" placeholder="不修改密码，请勿填写"></dd>
+                    </dl>
+                </div>
+                
+                <div class="validateErrorMsg"> </div>
+        </div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+{% include "website/cptSelectWin.html" %}
+
+<div id="thresholdConfigWin" class="dialog_win">
+    <div class="op_bar">
+        <a class="help tool_tip" tipid="thresholdConfig" name="help_action" href="javascript:"> </a>
+        <a name="save" href="javascript:">保存</a>
+    </div>
+    <div class="box thresholdConfig"></div>
+</div>
+
+{% endblock %}
+

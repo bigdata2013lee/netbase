@@ -1,0 +1,13 @@
+#ucenter_left_menus li{
+    height: 30px;
+    line-height: 30px;
+
+}
+
+#ucenter_left_menus li a{
+    display:block;
+    width: 140px;
+    text-align:center;
+    margin:16px auto;
+    border: 1px solid #ccc;
+}

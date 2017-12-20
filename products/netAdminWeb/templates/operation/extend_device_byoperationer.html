@@ -1,0 +1,30 @@
+{%load netbasefilters%}
+{% block extra_js %}
+<script src="/media/js/operation/extend_device_byoperationer.js"></script>
+{% endblock %}
+
+<div id="extendDevicePage" style="display: none" class="dialog_win">
+    <div style="margin: 45px;">
+    	<input type="hidden" id="userid">
+        <dl class="fields">
+            <dt style="width: 60px;">主机:</dt>
+            <dd><input type="text" id="host" value="0"></dd>
+           	 可用：<span id="available_host">{{deviceAvailable.host}}</span>
+        </dl>
+        <dl class="fields">
+            <dt style="width: 60px;">站点:</dt>
+            <dd><input type="text" id="website" value="0"></dd>
+            	可用：<span id="available_website">{{deviceAvailable.website}}</span>
+        </dl>
+        <dl class="fields">
+            <dt style="width: 60px;">网络:</dt>
+            <dd><input type="text" id="network" value="0"></dd>
+            可用：<span id="available_network">{{deviceAvailable.network}}</span>
+        </dl>      
+    </div>
+        
+    <div class="win_opbar">
+        <button class="ok" id="extendDeviceBtk">保存</button>
+        <button class="cancel">退出</button>
+    </div>            
+</div>

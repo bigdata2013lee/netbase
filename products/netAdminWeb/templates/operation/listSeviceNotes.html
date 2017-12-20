@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+dl.fields dd.professional_level li,
+dl.fields dd.response_speed li,
+dl.fields dd.service_attitude li{
+    float:left;
+    display:inline-block;
+    width:15px;
+    height:15px; 
+    padding: 0px;
+    margin: 0px 2px;
+    margin-top: 4px;
+}
+dl.fields span.leve_tip{
+    margin-left: 30px;
+}
+.level_hollow{
+    background:url("/media/images/start.png") -22px 0px  no-repeat;
+}
+.li_hover{
+    background:url("/media/images/start.png") no-repeat;
+ }
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=1; </script>
+<script src="/media/js/operation/serviceNoteDetail.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/engineersLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+
+<div id="servicesWidget" class="panel">
+    <div class="panelTitle">技术服务记录</div>
+    <div class="panelContent">
+
+            <div class="query_tool_bar">
+                <li>
+                    <label>状态:</label>
+                    <select name="status" class="common">
+                        <option value="0" {% if request.REQUEST.status == "0"%} selected {%endif%}>打开</option>
+                        <option value="1" {% if request.REQUEST.status == "1"%} selected {%endif%}>关闭</option>
+                    </select>
+                    <a href="/operation/downloadServiceNotesFile/?status={{request.REQUEST.status}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" action="checkoutAsExcel">导出为EXCEL</a> 
+                </li>
+            </div>
+
+            <table class="data_table" name="listServiceNotes">
+                <thead>
+                    <tr>
+                            {% if  request.REQUEST.sortFiled == "subject"%}
+                                <th name="subject">主题<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>      
+                            {% else %}
+                                <th name="subject">主题<em class="downImg updownImg" sortType="-1"></em></th>                              
+                            {% endif %}
+                            {% if  request.REQUEST.sortFiled == "eventLabel"%}                        
+                                <th name="eventLabel">名称/设备IP<em class="downImg updownImg"  sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="eventLabel">名称/设备IP<em class="downImg updownImg"  sortType="-1"></em></th>  
+                            {% endif %}
+                            {% if  request.REQUEST.sortFiled == "monitorObjName"%}                        
+                                <th name="monitorObjName">监控项目<em class="downImg updownImg"  sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="monitorObjName">监控项目<em class="downImg updownImg"  sortType="-1"></em></th>  
+                            {% endif %}
+                            {% if  request.REQUEST.sortFiled == "engineer"%}                        
+                                <th name="engineer">工程师<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="engineer">工程师<em class="downImg updownImg" sortType="-1"></em></th> 
+                            {% endif %}
+                            {% if  request.REQUEST.sortFiled == "startTime"%}                        
+                                <th name="startTime">开始时间<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="startTime">开始时间<em class="downImg updownImg" sortType="-1"></em></th>                         
+                            {% endif %}
+                        {% if request.REQUEST.status == "1"%}
+                            {% if  request.REQUEST.sortFiled == "startTime"%}           
+                                <th name="endTime">结束时间<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="endTime">结束时间<em class="downImg updownImg" sortType="-1"></em></th>                             
+                            {% endif %}
+                        {% endif %}
+                            {% if  request.REQUEST.sortFiled == "emergencyDegree"%}
+                                <th name="emergencyDegree">紧急程度<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>  
+                            {% else %}
+                                <th name="emergencyDegree">紧急程度<em class="downImg updownImg" sortType="-1"></em></th> 
+                            {% endif %}
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for nt in notes%}
+                        <tr class="data_tr" >
+                            <td>{{nt.subject|getSureLength:20}}</td>
+                            <td>{{nt.event.label|getSureLength:15}}</td>
+                            <td>{{nt.event.componentType|getSureLength:10}}</td>
+                            <td>{{nt.engineer.titleOrUid|getSureLength:10}}</td>
+                            <td>{{nt.startTime|formatShortTime}}</td>
+                                    {% if request.REQUEST.status == "1"%}
+                            <td>{{nt.endTime|formatShortTime}}</td>
+                                     {% endif %}
+                            <td>{{nt.emergencyDegree}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pages_tools">
+                <a href="/operation/listServiceNotes/?pageNum=1&status={{request.REQUEST.status}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/operation/listServiceNotes/?pageNum={{p}}&status={{request.REQUEST.status}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}">{{p}}</a>
+                {%endfor%}
+            </div>
+        <br clear="both" />
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="modifyPwdWin" class="dialog_win">
+    <input type="hidden" name="engineerId" value=""/>
+    <dl class="fields">
+        <dt>新密码：</dt>
+        <dd class="newPWD"><input  name="password"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>确认密码：</dt>
+        <dd><input name="confirmPassword"/></dd>
+    </dl>
+    
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+    
+</div>
+
+<div id="creatEngineerWin" class="dialog_win">
+    <dl class="fields">
+        <dt>姓名：</dt>
+        <dd><input  name="originalName"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>账号：</dt>
+        <dd><input  name="username"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>密码：</dt>
+        <dd><input  name="password" type="password"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>确认密码：</dt>
+        <dd><input name="confirmPassword" type="password"/></dd>
+    </dl>
+    
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+    
+</div>
+
+<div id="listEngServiceCustomers" class="dialog_win">
+    <div class="box">
+        
+    </div>
+</div>
+{% endblock %}
+

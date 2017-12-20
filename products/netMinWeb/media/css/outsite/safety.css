@@ -1,0 +1,11 @@
+/*********运维通安全**********/
+.safe_div{ border-top:1px solid #dadada;}
+.safe_div_top{ border-bottom:1px solid #eeeeee; padding-bottom:20px;}
+.safe_div_top h3{ font-size:23px; color:#d9482e; font-weight:normal; display:block;}
+.safe_div_top span{ font-size:14px; color:#333; line-height:25px; display:block; margin:15px 0px;}
+.safe_div_title{ margin:20px 0px;}
+.safe_div_title a{ font-size:14px; color:#333;}
+.safe_div_Two{ margin:20px 0px;}
+.safe_div_Two h3{ font-size:20px; color:#333; font-weight:normal; background-image:url(./index_images/safe_01.png); background-repeat:no-repeat; background-position:center left; padding-left:30px; height:30px; line-height:30px; display:block;} 
+.safe_div_Two span{font-size:14px; color:#666; line-height:25px; display:block; margin:10px 0px;}
+

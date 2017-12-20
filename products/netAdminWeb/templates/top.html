@@ -1,0 +1,55 @@
+{%load netbasefilters%}
+
+<div class="logo_div"> </div>
+{% if request|userType == "SaleUser" %}
+<div class="navigation">
+    <ul>
+    	<li class="customer"><a href="/sale/customers">我的客户</a></li>
+        <br clear="both"/>
+    </ul>
+</div>
+{% endif %}
+
+
+
+{% if request|userType == "EngineerUser" %}
+<div class="navigation">
+    <ul>
+        <li class="customer"><a prefix="/engineer/customers" href="/engineer/customers">我的客户</a></li>
+        <li class="service"><a prefix="/engineer/services" href="/engineer/services">技术服务</a></li>
+        <br clear="both"/>
+    </ul>
+</div>
+{% endif %}
+
+
+{% if request|userType == "AdminUser" %}
+<div class="navigation">
+    <ul>
+        <li class="customer"><a href="/admin/customers/" prefix="/admin/customers">客户管理</a></li>
+        <li class="customer"><a href="/admin/recharge/" prefix="/admin/recharge">充值管理</a></li>
+        <br clear="both"/>
+    </ul>
+</div>
+{% endif %}
+
+{% if request|userType == "Operationer" %}
+<div class="navigation">
+    <ul>
+        <li class="customer"><a prefix="/operation/serviceUsers" href="/operation/serviceUsers/">客户中心</a></li>
+        <li class="engineerManage"><a prefix="/operation/engineers_management" href="/operation/engineers_management/">工程师管理</a></li>
+        <li class="personalInfo"><a prefix="/operation/operationerPersonal" href="/operation/operationerPersonal/">我的资料</a></li>
+        <li class="serviceContract"><a prefix="/operation/contractCenter" href="/operation/contractCenter/">合约服务</a></li>
+        <br clear="both"/>
+    </ul>
+</div>
+{% endif %}
+
+<div class="tools">
+	<a class="user" href="#">{{ user.titleOrUid }}</a>
+    <a class="logout" href="/{{request|userType|firstPath}}/logout/">退出</a>
+    <a class="help" href="#">帮助</a>
+</div>
+
+
+

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+    .box li {
+        height: 30px;
+        line-height: 30px;
+    }
+    .box li label {
+        display: inline-block;
+        margin-right: 4px;
+        text-align: right;
+        width: 150px;
+    }
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/events/events_config.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "event/event_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+
+{% endblock %}
+
+{% block mright-panel  %}
+<div id="eventSpaceWidget" class="panel">
+    <div class="panelTitle">事件存储空间</div>
+    <div class="panelContent">
+        <div class="op_bar">
+            <a name="upSpace" href="javascript:">升级存储空间</a> | 
+            <a name="downSpace" href="javascript:">降级存储空间</a>
+        </div>
+        <script name="template" type="text/x-kendo-template">
+            <li>
+                <label>事件存储空间:</label> <span>#=spaceCount#份</span>
+            </li>
+        </script>
+        <div class="box"> </div>
+        <div class="messageTip" style="margin-top: 5em; text-align: left;">
+            注:<br/>
+            每份事件存储空间，可存储500条事件信息，<br/>
+            升级存储空间涉及扣费项目，<br/>
+            升级、降级存储空间，系统会立即生效， 建议在月底时进行降级操作
+         </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block other_extend_block %}
+<div id="upSpaceWin" class="dialog_win">
+    <div class="box">
+        <li>
+            <label>把空间升到</label><select id="spaceSelect"></select>
+        </li>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+<div id="downSpaceWin" class="dialog_win">
+    <div class="box">
+        <li>
+            <label>把空间升到</label><select id="spaceSelect"></select>
+        </li>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+{% endblock %}

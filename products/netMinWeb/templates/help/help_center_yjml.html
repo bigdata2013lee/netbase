@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心---一键助手使用说明</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+<link href="/media/help/help_content.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/help_left.html"%}
+    <div class="help_right" style="min-height:580px;">
+         <h1>运维通一键命令</h1>
+         <h2>一、一键命令简介</h2>
+         <p class="content">
+            运维通除了具备良好的监控功能，让用户对自己的关键资源了如指掌外，
+            还具备像一键通这样的简单、实用的运维功能，让网管不必非要到机房现场去开关电脑或重启某个服务、端口，
+            所以运维通团队专门设计了一键通功能，
+            这个功能在网页版和手机APP版上都可以很好地实现。
+         </p>
+        
+        <h2>二、一键命令功能</h2>
+        <p class="content">
+            下面简单介绍一下一键命令功能：<br/>
+        
+            一键命令，顾名思义就是通过一键操作来运行某个预先录制好的命令，
+            这个命令可以是重启某个服务，也可以是针对防火墙来封闭某个ip。
+        </p>
+         
+        <p class="content">
+            首先打开一键命令界面，在一键助手下，点击快捷命令
+        </p>
+        <p class="image"><img src="/media/help/yjml01.jpg"/></p>
+        
+         
+        <p class="content">
+           第二步：配置SSH相关参数，在快捷命令的页面下，可以看到预先录制好的系统命令，
+           该部分命令需要执行还需要一个条件，那就是主机的配置里面，SSH的登陆相关项目设置正确，
+           因为该命令的执行是通过linux或交换机、
+           防火墙等设备SSH登录正常后，调用录制命令的方式来实现的。
+        </p>
+        
+        <p class="image"><img src="/media/help/yjml02.jpg"/></p>
+        
+        <p class="content">
+           第三步：录制命令，这个步骤非常简单，只是写入相关命令（在SSH登录后，控制台下键入的命令），
+           起个名字，选择要执行的设备就好了。
+        </p>
+        <p class="image"><img src="/media/help/yjml03.jpg" /></p>
+        
+        
+         
+    </div>    
+   
+    
+</div>
+
+
+</body>
+</html>

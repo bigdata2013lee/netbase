@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/media/customMap/map.css" />
+        <style>
+            html,body{font:Arial, Helvetica, sans-serif; font-size: 12px;}
+            
+            #mo_tips{
+            	border:1px  solid #dddddd;
+            	width: 140px;
+            	min-height: 50px;
+            	background: #FFFFFF;
+            	box-shadow: 2px 2px 4px #dddddd;
+            	opacity: 0.8;
+            	padding:4px;
+            }
+        </style>
+        <script type="text/javascript" src="/media/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+        <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+        <script type="text/javascript" src="/media/js/alertTip.js"></script>
+        <script type="text/javascript">
+        	var mcUid='{{mcUid}}';
+	        var remoteUrls = [
+	    		{viewName:"customerMapViews",remoteUrl:'/remote/CustomerMapApi/'}
+			];
+			
+			$(document).ready(function(){
+				window.setInterval(function(){
+					//iframe auto fixd;
+					var h = $("#canvas_continer").height();
+					$(window.parent.document).find("#map_iframe").height(h+30)
+				}, 1000*1)
+			})
+			
+        </script>
+        <script type="text/javascript" src="/media/js/nbRemote.js"></script>
+        <script src="/media/customMap/raphael.js"></script>
+        <script src="/media/customMap/core.js"></script>
+        <script src="/media/customMap/model.js"></script>
+        <script src="/media/customMap/utils.js"></script>
+        <script src="/media/customMap/view.js"></script>
+        <script>
+            $(document).ready(function(){
+                jQuery("#canvas_continer").bind("contextmenu",function(){ return false; });
+            });
+        </script>
+    </head>
+    
+    <body>
+    
+        <div id="canvas_continer"> </div>
+        
+        <div id="mo_tips" style="position: absolute;display: none;">0</div>
+        
+
+    </body>
+</html>

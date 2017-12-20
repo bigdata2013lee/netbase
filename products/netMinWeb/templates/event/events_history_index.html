@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/css/event.css" rel="stylesheet" /> 
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    #mleft-panel {
+        display: none;
+        width: 0px;
+    }
+    
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>window.eventConsoleFor="historyEvents";</script>
+<script src="/media/js/events/events_console.js"></script>
+<script src="/media/js/events/events_history_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "event/event_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min">
+    <b>概要:</b>
+    <br/>
+
+</div>
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel">
+    <div class="panelTitle">
+        事件视图
+    </div>
+    <div class="panelContent">
+        <div>
+            {% include "event/queryTable.html" %}
+        </div>
+        <div id="data-grid"> </div>
+    </div>
+</div>
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+	
+
+{% endblock %}
+
+{% block content_block %}
+<div class="blog_div">
+	<div class="indexWidth">
+		blog list
+	</div>
+</div>
+{% endblock %}
+
+
+
+
+{% block bottom_block %}
+{% include "base_include/tyzl.html" %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

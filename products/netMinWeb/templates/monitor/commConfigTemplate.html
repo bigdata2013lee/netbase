@@ -1,0 +1,25 @@
+<li class="for_linux">
+    <label>SSH密钥路径:</label> <input class="common" data-bind="value:netKeyPath" />
+    <label>SSH当前会话数:</label> <input data-role="numerictextbox" min="1" max="20" data-format="#" data-bind="value: netSshConcurrentSessions" />
+</li>
+
+<li class="for_linux">
+    <label>用户名:</label> <input class="common" data-bind="value:netCommandUsername" />
+    <label>密码:</label> <input class="common" type="password" data-bind="value:netCommandPassword" />
+</li>
+
+<li class="for_linux">
+    <label>命令超时:</label> <input data-role="numerictextbox" min="0" max="30" data-format="# 秒" data-bind="value: netCommandCommandTimeout" />
+    <label>登陆超时:</label> <input data-role="numerictextbox" min="0" max="30" data-format="# 秒" data-bind="value: netCommandLoginTimeout" />
+</li>
+
+<li class="for_linux">
+    <label>命令端口:</label> <input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value: netCommandPort" />
+</li>
+<li>
+    <label>健康检测方式:</label><select class="common" data-text-field="text" data-value-field="val"  
+                data-bind="source:hcTypes, value:hcType, events:{change: changehcType}"></select>
+</li>
+<li class="hcPorts">
+    <label>端口选择:</label><input  data-bind="value: hcPorts" /><span style="color: #FF0000; font-weight: bold;">多个端口，请用,号分开</span>
+</li>

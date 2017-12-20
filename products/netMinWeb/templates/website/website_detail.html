@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    
+.noteInfo{
+    padding:0.5em;margin: 4em; text-align: left; color:#0667A4; line-height: 22px;background-color:  #DDEEF5; 
+    box-shadow: 0 0 6px  #ccc;
+}
+
+
+
+
+/* 提示自定义 */
+.stateTip, #StateTip{display:none; position:absolute; z-index: 10008; padding:8px; background:#fff; border:1px solid #ccc; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; font-size:12px; font-family:Tahoma; color:#333;box-shadow: 2px 2px 6px #666;}
+
+.mapInfo i{ display:inline-block; width:15px; height:15px; margin-top:5px; line-height:15px; font-style:normal; background:#aeaeae; color:#fff; font-size:11px; font-family: Tahoma; -webkit-border-radius:15px; border-radius:15px; text-align:center}
+.mapInfo i.active{background:#E27F21;}
+.mapInfo span{ padding:0 5px 0 3px;}
+.mapInfo b{ font-weight:normal; color:#2770B5}
+        
+#my_china_map_box{float:left; border:1px solid #eee; box-shadow: 0 0 4px #eee;}
+
+            
+            
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var moUid = '{{ws.getUid}}';</script>
+<script type="text/javascript" src="/media/ui/svgMap/js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/res/chinaMapConfig.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/map.js"></script>
+
+<script src="/media/js/website/website_detail.js"></script>
+<script>
+   var mapObj = {};
+    var mapObjPage={
+        max:2,
+        __init__:function(){
+            var self = this;
+        
+        }, 
+        
+        setSsColor:function(rts){
+            var colors=["#009900","#01CC00","#FFCC00","#FF7F00","#E20001"];
+            var getColor = function(rtval){
+                if(rtval <= 100) return colors[0];
+                if(rtval <= 300) return colors[1];
+                if(rtval <= 500) return colors[2];
+                if(rtval <= 800) return colors[3];
+                if(rtval > 800) return colors[4];
+                
+            }
+            for(ss in rts){
+                var color = getColor(rts[ss]);
+                mapObj[ss].attr({fill: color});
+            }
+        }
+        
+    };
+    
+    var  avgArray = function(list){
+        var sum=0;
+        for(i=0; i < list.length; i++){
+            sum+=list[i];
+        }
+        return sum/(list.length || 1)
+        
+    }
+    
+    var getSsVagRts = function(){
+      var rts1 = {};
+      
+      $("#data_table_1>tbody>tr").each(function(){
+          var ss = $(this).attr("ss");
+          var rt = $(this).attr("rt");
+          
+          if(!(ss in rts1)){rts1[ss] = [];}
+          if($.isNumeric(rt)){
+                rt = rt*1;
+                rts1[ss].push(rt);
+          }
+
+      });
+      
+      var rts2={};
+      for(ss in rts1){
+          if($.isEmptyObject(rts1[ss])) continue;
+          rts2[ss] = avgArray(rts1[ss]);
+          
+      }
+      
+      console.info(rts2);
+      return rts2;
+      
+
+      
+    };
+    
+    var _stateData={
+    
+        heilongjiang: {'diabled':true},
+        jilin: {'diabled':true}, 
+        liaoning: {'diabled':true}, 
+        hebei: {'diabled':true}, 
+        shandong: {'diabled':true}, 
+        jiangsu: {'diabled':true}, 
+        zhejiang: {'diabled':true}, 
+        anhui: {'diabled':true}, 
+        henan: {'diabled':true}, 
+        shanxi: {'diabled':true}, 
+        shaanxi: {'diabled':true}, 
+        gansu: {'diabled':true}, 
+        jiangxi: {'diabled':true}, 
+        fujian: {'diabled':true}, 
+        hunan: {'diabled':true}, 
+        guizhou: {'diabled':true}, 
+        sichuan: {'diabled':true}, 
+        yunnan: {'diabled':true}, 
+        qinghai: {'diabled':true}, 
+        hainan: {'diabled':true}, 
+        chongqing: {'diabled':true}, 
+        tianjin: {'diabled':true}, 
+        beijing: {'diabled':true}, 
+        ningxia: {'diabled':true}, 
+        neimongol: {'diabled':true}, 
+        guangxi: {'diabled':true}, 
+        xinjiang: {'diabled':true}, 
+        xizang: {'diabled':true}, 
+        taiwan: {'diabled':true}, 
+        macau: {'diabled':true},
+        hubei: {}, 
+        shanghai: {}, 
+        guangdong: {}, 
+        hongkong: {}
+    }
+    $(document).ready(function(){
+        $('#my_china_map_box').SVGMap({
+            external: mapObj,
+            mapName: 'china',
+            showTip: true,
+            mapWidth: 500,
+            mapHeight: 320,
+            stateInitColor: 'AAD5FF',
+            stateHoverColor: 'feb41c',
+            stateSelectedColor: 'AAD5FF',
+
+            stateData:_stateData,
+            clickCallback: function (stateData, obj) {
+                console.info(obj);
+            }
+        });
+        
+        
+        mapObjPage.__init__();
+        
+        var rts = getSsVagRts();
+        mapObjPage.setSsColor(rts);
+
+    })
+    
+    
+</script>
+
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "website/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="baseInfoWebsiteWidget" class="panel">
+    <div class="panelContent">
+        <div class="op_bar">
+            <a href="/website/conf/{{ws.getUid}}/">修改配置</a>
+        </div>
+        
+        <div class="box">
+            
+                <dl class="fields">
+                    <dt>名称:</dt><dd>{{ws.title}}</dd>
+                    <dt>监控对象:</dt><dd>{{ws.getManageId}}</dd>
+                    <dt>状态:</dt><dd><span class="status-icon-small {{ws.getStatus}}"></span></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>当前响应时间:</dt><dd>{{ws.getReponseTime}} ms</dd>
+                    <dt>可用性:</dt><dd>{{ws.getAvailabilityRatio}} %</dd>
+                </dl>
+                
+
+        </div>
+    </div>
+</div>
+
+
+<div id="baseInfoWebsiteWidget" class="panel">
+    <div class="panelContent">
+        <div class="box">
+            <table style="width: 100%;">
+                <tr>
+                    <td width="500px" style="position: relative;">
+                            <div style="position: absolute; top:100px;right:60px;"><img src="/media/js/website/img/fast_slow_label.jpg"/></div>
+                        <div id="my_china_map_box">
+                        </div>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <table id="data_table_1" class="data_table">
+                            <colgroup>
+                                <col />
+                                <col style="width:80px" />
+                                <col style="width:80px" />
+                                <col style="width:80px" />
+                            </colgroup> 
+                            <thead>
+                                <tr>
+                                    <th>监测点</th>
+                                    <th>平均响应</th>
+                                    <th>当前响应</th>
+                                    <th>可用性</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cptInfo in cptsInfos %}
+                                <tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%} ss="{{cptInfo.ss}}" rt="{{cptInfo.currentResponseTime}}">
+                                    <td>{{cptInfo.title}}</td>
+                                    <td>{{cptInfo.avgResponseTime}} ms</td>
+                                    <td>{{cptInfo.currentResponseTime}} ms</td>
+                                    <td>{{cptInfo.availability}} %</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table><!-- end data_table_1 -->
+                        
+                        <p class="noteInfo">
+                            <tt>注:网脊运维通参考业界标准认为网站的响应时间在0~200ms较快，200ms~500ms一般,超过500ms则相对较慢。
+                                平均响应时间是指最近一小时内的响应时间平均值
+                             </tt>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="responseTimePerfsWidget" class="panel">
+    <div class="box" style="height: 300px; width:600px; margin: 0 auto;"> </div>
+</div>      
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

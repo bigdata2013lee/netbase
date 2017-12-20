@@ -1,0 +1,28 @@
+ul.left-menus li{
+    height: 30px;
+    line-height: 30px;
+}
+ul.left-menus li a{
+    display: block;
+    width: 140px;
+    text-align: center;
+    margin: 16px auto;
+    border: 1px solid #ccc;
+}
+#locationsListWidget li{
+    margin: 23px;
+}
+ul.left-menus li.selected a{
+    background-color: #1D96E3;
+    color: #FFF;
+    border: #4FAAEE 1px solid;
+    box-shadow: 0px 0px 6px #26ADFB;
+}
+.selectedMenu{
+    border: 1px solid #0063C8 !important;
+    box-shadow: 0 0 6px #0063C8;
+}
+#left-menus{
+    padding:1em 0 0 1em; 
+    line-height:24px;
+}

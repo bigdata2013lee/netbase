@@ -1,0 +1,6 @@
+export NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+PRGHOME=$NBHOME/products/netPerData
+PRGNAME=netmerger.pyc
+generic "$@"
+

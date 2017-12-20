@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心---主机专家使用说明</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+<link href="/media/help/help_content.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/help_left.html"%}
+    <div class="help_right" style="min-height:580px; line-height:24px;">
+         <h1>开启SNMP服务</h1>
+         <p class="content">
+            SNMP是系统采集数据的主要方式，被监控设备需要正确配置并开启SNMP服务。<br/>
+            1.在 Windows 端安装 SNMP Informant，图形化的安装界面很简单， <a href="http://www.wtcs.org/informant/download.htm"><b>这里</b></a> 提供 SNMP Informant 的下载<br/>
+            2.在 Linux系统中需要安装并配置snmpd。<br/>
+            <br/>
+            请在baidu及google中查找相关的配置说明或参考文档。
+         </p>
+         
+         
+         <h1>主机专家使用说明</h1>
+         <h2>一、主机专家介绍</h2>
+         <p class="content">
+            主机专家可对linux/windows服务器进行监控，监控内容包括服务器运行状态、接口状态、服务和进程运行状态，当监控对象异常时发送邮件提醒服务器管理员。监控主要使用SNMP、WMI和SSH等协议进行监控，方便高效。主机专家部分界面示例如下图 1.1所示:
+         </p>
+         <p class="image"><img src="/media/help/h_zj01.jpg" style="width:auto;"/></p>
+         <p class="image_note">图2.1 主机专家界面部分截图</p><br />
+         
+         <h2>二、使用步骤</h2>
+         <p class="content">
+            <strong>◆ 添加监控主机</strong><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.准备监控设备相关信息：IP和snmp团体名。<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.在"主机专家"中，点击右上角"配置"，选择主机类型linux，出现如下界面，填入IPt和snmp的团体名，并且点击右上角的"保存"，如下图示;
+         </p>
+         <p class="image"><img src="/media/help/zj02.jpg" style="width:auto;"/></p>
+         <p class="image_note">图2.2 添加被监控主机</p><br />
+         
+         <p class="content">
+            3.服务器添加完成，在"主机专家"可查看到服务器信息。
+         </p>
+         
+         <p class="content">
+            <strong>◆ 添加监控进程</strong><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.在主机专家的配置界面，选中服务器，如下图:<br />
+         </p>
+         <p class="image"><img src="/media/help/h_zj04.jpg" style="width:auto;"/></p>
+         <p class="image_note">图2.3 主机专家的配置界面</p><br />
+         
+         <p class="content">
+            2.选择"进程"选项卡，点击"添加进程"，在弹出窗口选择要监控的进程，点击"保存"即可。
+         </p>
+         <p style="text-align:center;"><img src="/media/help/h_zj05.jpg" style="width:auto;"/></p>
+         <p class="image_note">图2.4进程选项卡</p><br />
+         
+         <p class="image"><img src="/media/help/h_zj06.jpg" style="width:auto;"/></p>
+         <p class="image_note">图2.5勾选要监控的进程</p><br />
+         
+         <p style="font-weight:bold; font-size:14px; color:#f00;">注：添加接口、磁盘、服务、CPU、风扇信息步骤跟添加进程同理。</p>
+         
+    </div>    
+    
+</div>
+
+
+</body>
+</html>

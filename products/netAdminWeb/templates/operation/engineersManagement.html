@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+div#listEngServiceCustomers .box li{
+    text-align: left;
+    width:auto;
+    padding-right: 5px;
+}
+div#listEngServiceCustomers .box  .no_result_tip{
+    text-align: center;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: bold;
+    color:#444444;
+}
+div#listEngServiceCustomers .box li.alt{
+    background-color: #F8F8F8;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=1; </script>
+<script src="/media/js/operation/engineersManagement.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/engineersLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">  
+        <div class="query_tool_bar">
+            <li>
+                <a href="javascript:" style="float: right; margin-right: 25px;" name="saveAsExcel" action="creatEngineer">创建工程师</a> 
+            </li>
+        </div>  
+        <table class="data_table">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>帐号</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for eng in engineers%}
+                <tr>
+                    <td>{{eng.originalName}}</td>
+                    <td>{{eng.username}}</td>
+                    <td engineer_id="{{eng.getUid}}">
+                        <a href="javascript:" action="viewServiceCustomers">查看服务客户</a>
+                        <a href="javascript:" action="modifyEngineerPWD">修改密码</a>
+                        <a href="javascript:" action="remove">删除</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="modifyPwdWin" class="dialog_win">
+    <input type="hidden" name="engineerId" value=""/>
+    <dl class="fields">
+        <dt>新密码：</dt>
+        <dd class="newPWD"><input  name="password" type="password"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>确认密码：</dt>
+        <dd><input name="confirmPassword" type="password"/></dd>
+    </dl>
+    
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+    
+</div>
+
+<div id="creatEngineerWin" class="dialog_win">
+    <div class="validateErrorMsg"></div>
+    <dl class="fields">
+        <dt>姓名：</dt>
+        <dd><input  name="originalName"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>账号：</dt>
+        <dd><input  name="username"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>密码：</dt>
+        <dd><input  name="password" type="password"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>确认密码：</dt>
+        <dd><input name="confirmPassword" type="password"/></dd>
+    </dl>    
+    <dl class="fields">
+        <dt>联系邮箱：</dt>
+        <dd><input name="email"/></dd>
+    </dl>    
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+    
+</div>
+
+<div id="listEngServiceCustomers" class="dialog_win">
+    <div class="box">
+        
+    </div>
+</div>
+{% endblock %}
+

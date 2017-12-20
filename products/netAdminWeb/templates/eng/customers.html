@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    thead th{
+        text-align: left;
+        color: #06609C;
+    }
+    
+    #left-menus li{
+        height: 22px;
+        line-height: 22px;
+        padding-left:2em;
+    }
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/eng/customers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="left-menus">
+    <li><a href="/engineer/customers">客户列表</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customersWidget" class="panel">
+    <div class="panelTitle">我的客户</div>
+    <div class="panelContent">
+        <script name="template" type="text/x-kendo-template">
+            <tr>
+                <td>#=username #</td>
+                <td>#=ownCompany #</td>
+                <td>#=email #</td>
+                <td>#=contactPhone #</td>
+                <td><button name="btNewEvent" customerUid="#=_id#">最新事件</button></td>
+            </tr>
+        </script>
+		<table style="width: 100%">
+			<thead>
+				<tr>
+					<th>用户名</th><th>公司</th><th>邮件</th><th>电话</th><th>最新事件</th>
+				</tr>
+			</thead>
+			<tbody> </tbody>
+		</table>
+    </div>
+</div>    
+     
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="showNewEventWin" class="dialog_win">
+    <div class="panelContent">
+		<script name="template" type="text/x-kendo-template">
+			<tr>
+				<td><span class="severity-icon-small #= nb.Render.severitys(severity)#"></span></td>
+				<td>#= title #</td>
+				<td>#=nb.Render.ellipsisStr(message, 80)#</td>
+				<td>#= nb.xutils.getTimeStr(endTime * 1000) #</td>
+			</tr>
+		</script>
+		<table style="width: 100%">
+			<thead><tr><td>事件级别 </td><td>标题</td><td>事件摘要</td><td>最后时间</td></tr></thead>
+			<tbody> </tbody>
+		</table>
+    </div>
+</div>
+
+{% endblock %}
+

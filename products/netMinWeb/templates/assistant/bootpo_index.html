@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#panel_0001 div.panelContent{padding: 0; min-height: 480px;}
+#mleft-panel_td{ display: none; width: 0px; }
+	
+	div.bootpo{
+		padding:0.5em;
+		border-bottom: 1px solid #EEEEEE;
+		position: relative;
+		width: 48%;
+		min-width:500px;
+		min-height:180px;
+		overflow:hidden;
+		float: left;
+		
+	}
+	
+	div.bootpo:hover{
+	    background-color: #F9F9F9;
+	}
+	div.bootpo td{
+	    vertical-align: top;
+	}
+	
+	div.bootpo div.infos{
+	    font-weight: bold;
+	    padding:4px;
+	    clear:both;
+	}
+	
+	div.bootpo div.icon{
+		width:81px; 
+		height:64px; 
+		margin:auto;
+		float:left;
+		background: url(/media/images/monitor.jpg) scroll no-repeat;
+	}
+	
+	div.bootpo.up div.icon{
+		background-position: -81px 0;
+	}
+	div.bootpo.down div.icon{
+		background-position: 0 0;
+	}
+    div.bootpo.unknown div.icon{
+        background-position: -162px 0;
+    }
+    
+    
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/assistant/bootpo_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+   {% include "assistant/assistant_sec_menu.html" %}
+</div>
+{% endblock %}
+
+
+{% block mbottom-panel  %}
+{% include "expired_overlayer.html" %}
+{% endblock %}
+
+
+{% block  mleft-panel %}
+<div class="panel_min">
+    <b>概要:</b>
+    <br/>
+
+</div>
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel">
+     <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="bootpo_index"> </a> 
+        <a href="javascript:" name="refresh_action" class="refresh"> </a>
+    </div>
+	<div class="panelTitle">开机视图</div>
+	<div class="panelContent" style="overflow: auto;">
+		<script name="template" type="text/x-kendo-template">
+			<div class="bootpo #=status#" data-uid="#=uid#">
+				<table style="width: 100%">
+				    <tr>
+				        <td style="">
+            				<div class="icon"></div>
+            			    <div class="infos">
+            			        设备: #=title#  管理IP: #=ipmiConfig.netIpmiIp#
+            			    </div>
+				        </td>
+				        <td style="width:220px;min-width:220px; text-align: right;" class="buttons">
+                            <a href="javascript:" name="powerUpOp"  class="button"><span class="icon x16 power_down"></span>
+                                一键开机
+                           </a>
+                           <a href="javascript:" name="powerDownOp"  class="button"><span class="icon x16 power_up"></span>
+                                一键关机
+                           </a>
+                           
+                            <span class="bp_button">
+                                <a href="javascript:" class="sp">&nbsp;</a>
+                                <div class="inner">
+                                    <ul>
+                                        <li><a name="softDownOp" href="javascript:"><span class="icon x16 power_up"></span>远程软关机</a></li>
+                                        <li><a name="powerResetOp" href="javascript:"><span class="icon x16 power_down"></span>远程硬重启</a></li>
+                                        <li><a name="editBootpo" href="javascript:"><span class="icon x16 power_down"></span>编辑</a></li>
+                                        <li><a name="delBootpo" href="javascript:"><span class="icon x16 power_down"></span>删除</a></li>
+                                    </ul>
+                                </div>
+                            </span> 
+                            &nbsp;&nbsp;
+				        </td>
+				    </tr>
+				    
+				    <tr>
+				        <td>
+				            <ul class="events"> </ul>
+				        </td>
+				        
+				    </tr>
+				</table>
+			</div>
+		</script>
+
+        <div class="op_bar">
+            <a name="create" href="javascript:">创建</a> 
+        </div>
+		<div class="box"> </div>
+    </div>
+</div>
+{% endblock %}
+{% block other_extend_block %}
+<div id="addBootpoWidget" class="dialog_win">
+    <div class="box">
+        <li >
+            <label>标题:</label> 
+            <input  data-bind="value:title"/>
+        </li>
+        
+        <li >
+    		<label>是否开启IPMI:</label>
+    		<select data-bind="source:booleans, value:startUpIPMI" data-value-field="val" data-text-field="text"></select>
+        </li>
+        
+        <li >
+            <label>Ipmi地址:</label><input data-bind="value:ipmiConfig.netIpmiIp"/>
+        </li>
+
+        <li >
+            <label>Ipmi用户名:</label> <input  data-bind="value:ipmiConfig.netIpmiUserName"/>
+        </li>
+        
+        <li >
+            <label>Ipmi密码:</label> <input type="password"  data-bind="value:ipmiConfig.netIpmiPassword"/>
+        </li>
+        
+    </div>
+    <div class="validateErrorMsg"> </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+
+<div id="editBootpoWidget" class="dialog_win">
+    <div class="box">
+        <li>
+            <label>标题:</label> <input data-bind="value:title"/>
+        </li>
+        
+        <li>
+    		<label>是否开启IPMI:</label>
+    		<select data-bind="source:booleans, value:startUpIPMI" data-value-field="val" data-text-field="text"></select>
+        </li>
+        
+        <li>
+            <label>Ipmi地址:</label><input data-bind="value:ipmiConfig.netIpmiIp"/>
+        </li>
+
+        <li>
+            <label>Ipmi用户名:</label> <input  data-bind="value:ipmiConfig.netIpmiUserName"/>
+        </li>
+        
+        <li>
+            <label>Ipmi密码:</label> <input type="password" data-bind="value:ipmiConfig.netIpmiPassword"/>
+        </li>
+    </div>
+    <div class="validateErrorMsg"> </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>    
+</div>    
+{% endblock %}

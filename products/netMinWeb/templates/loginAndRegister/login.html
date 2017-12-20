@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>网脊运维通，全新一代免费SaaS运维监控平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="baidu-site-verification" content="Puzfx6rJiz" />
+<meta name="description" content="" />
+<link href="/media/css/packages.css" rel="stylesheet" type="text/css" />
+<link href="/media/ui/kendo/kendo.common.min.css" rel="stylesheet">
+<link href="/media/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet"> 
+<meta name="keywords" content="运维通,运维监控,运维,网脊,IT运维,IT,IT解决方案,手机监控,SaaS运维监控,在线SaaS运维" />
+<link href="/media/css/logAndRegister.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/media/js/jquery.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/media/js/jquery.jslides.js"></script>
+<script type="text/javascript" src="/media/ui/kendo/kendo.web.min.js"></script>
+<script type="text/javascript" src="/media/js/loginAndRegister1.js"></script>
+<script type="text/javascript">var active_info = '{{ active_info }}';</script>
+<script type="text/javascript" src="/media/js/nbUtils.js"></script>
+<script type="text/javascript" src="/media/js/renderUtils.js"></script>
+<script type="text/javascript" src="/media/js/netbaseRemoteUrls.js"></script>
+<script type="text/javascript" src="/media/js/nbRemote.js"></script>
+<script src="/media/ui/dalert/javascript/zebra_dialog.js" type="text/javascript"></script>
+<link href="/media/ui/dalert/css/default/zebra_dialog.css" rel="stylesheet" />
+<script src="/media/js/nbUiTools.js"></script>
+<script src="/media/js/jquery.json-2.2.min.js"></script>
+</head>
+
+<body>
+<div id="box">
+	{%include "header.html"%}
+     
+     <div id="main">
+            <!-- 代码banner开始 -->
+            <div id="full-screen-slider">
+                <ul id="slides">
+                <li style="background:url('/media/images/banner06.jpg') no-repeat center top"><a href="/help/video_index.html" target="_blank">视频教程</a></li>
+                    <li style="background:url('/media/images/banner05.jpg') no-repeat center top"><a href="/help/features_2.html" target="_blank">网脊运维通内网监控</a></li>
+                	<!--<li style="background:url('/media/images/banner04.jpg') no-repeat center top"><a href="/help/features_3.html" target="_blank">网脊运维通</a></li>-->
+                    <li style="background:url('/media/images/banner01.jpg') no-repeat center top"><a href="/help/features_index.html" target="_blank" >云端监控,随时随地轻松运维</a></li>
+                    <li style="background:url('/media/images/banner02.jpg') no-repeat center top"><a href="/help/features_4.html" target="_blank">远程一键蓝屏重启</a></li>
+                    <li style="background:url('/media/images/banner03.jpg') no-repeat center top"><a href="/help/features_5.html" target="_blank">网脊运维通,更快,更炫,更轻松</a></li>
+                    
+                </ul>
+            </div>
+            <!-- 代码banner结束 -->
+            
+            <!-- login -->
+            <div id="right">
+                 <div class="login01">
+                      <div class="Slogan">网脊运维通<p>轻松运维，监控无忧</p></div>
+                      <div class="login_button"><a href="#" name="login">登 录</a></div>
+                 </div> 
+                 <div class="login02 hide">
+                      <div class="longin02_top">会员登录</div> 
+                      <div class="login02_bot">
+                           <dl class="login02_bot_Mail">
+                              <dt>账号：</dt>
+                              <dd><input id="id_username" name="username" value="" type="text" /></dd>
+                           </dl>
+                           <dl class="login02_bot_Mail">
+                              <dt>密码：</dt>
+                              <dd><input id="id_password" name="password" value="" type="password" /></dd>
+                           </dl>
+                           <dl class="login02_bot_Captcha">
+                              <dt>验证码：</dt>
+                              <dd style="width: 180px;"><input style="float: left;width: 60px" id="id_verifyCode" name="verifyCode" type="text" /><span style="right;width:30px; padding-left: 5px;"><img style="width: 100px;" id="verifyCodeImg" src="/getVerifyCode" />
+                	<a href="javascript:changeVerifyCode()" style="font-size: 12px;">看不清楚？换张图片</a></span></dd>
+                           </dl>
+                      </div>
+                      <div class="login_buttom"><input name="toLogin"  value="点击登录" type="button" /></div> 
+                      <div class="Forgot_Password"><span><a href="/accounts/forgetPwd/">忘记密码？</a></span><!--<input name="" type="checkbox" value="" />&nbsp;在本电脑上保持登录--></div>  
+                      <div class="error_message">{{ message_info }}</div> 
+                      <div class="Remember0905" style="overflow:hidden; width: 300px; padding-top: 10px;">
+                            
+                               演示账号：demo@safedragon.com.cn<br />
+                               演示密码：demo
+                              
+
+                   </div>
+                 </div>
+            </div>
+            <!-- login -->
+     </div>
+     <a name="registerBox"></a>
+     <div id="main02">
+             <span>一键注册，免费试用</span>
+             <dl class="dlRegistration">
+                  <dt><input name="email" type="text" style="color: #888; font-size: 20px"/></dt>
+                  <dd><input name="register" value="免费注册" type="button" /></dd>
+                  <div class="error_message" style="clear: both; padding-top: 10px; font-size: 14px;"></div> 
+             </dl>
+     </div>
+     
+{%include "footer.html" %}
+     
+</div>
+
+
+<div id="regist_success_win" style="display: none;">
+    <h3>注册成功</h3>
+    <p>恭喜你成功注册了Netbae监控系统帐号<br/>你的登陆帐号：<span class="reg_name">user name</span></p>
+    <p>我们已经向你的邮箱中发送了激活邮件，<font color="#254497">请在24小时内，激活您申请的帐号！</font></p>
+</div>
+
+<div id="regist_success_win2" style="display: none;">
+    <h3>注册成功</h3>
+    <p>恭喜你成功注册了Netbae监控系统帐号<br/>你的登陆帐号：<span class="reg_name">user name</span></p>
+    <p><font color="#254497">由于你是企业用户，需要超级管理员激活！可以需要一段时间才可以激活，请查看你的邮箱！</font></p>
+</div>
+
+<div id="active_info_ok_win" style="display: none;">
+    <h3>激活成功</h3>
+    <p class="active_info">恭喜你成功激活了Netbae监控系统帐号，<br/>你现在可以使用你注册的帐号登陆本系统了。</p>
+</div>
+
+<div id="active_info_fail_win" style="display: none;">
+    <h3>激活失败</h3>
+    <p class="active_info">对不起，激活失败，可能你激活的帐号不存在，或已经激活过，请勿重复激活。</p>
+</div>
+<script type="text/javascript" >
+	function Show2(){
+		var msg="<img src='/media/images/weixing.jpg' width='200' height='200'/><br/>请使用微信二维码扫描并关注";
+		 var zdialog = $.Zebra_Dialog(msg,{
+                'type':     'information',
+                'title':    '网脊运维通官网微信',
+                'overlay_close':false,
+                'overlay_opacity':0.1,
+                'width':420,
+        });
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="map.css" />
+        <style>
+            h3{
+                font-size:30px;
+                text-shadow:0 0 6px #8BACEA, -1px -1px  #ccc, 1px -1px  #444;
+            }
+            #canvas_continer{
+                width:800px;/**height:500px;*/
+                border:1px solid #eee;
+                border-radius: 6px;
+                box-shadow: #D9D9D9 0px 0px 8px;
+            }
+        </style>
+        <script src="jquery.min.js"></script>
+        <script src="raphael.js"></script>
+        <script src="core.js"></script>
+        <script src="model.js"></script>
+        <script src="utils.js"></script>
+        <script src="edit.js"></script>
+        <script>
+            $(document).ready(function(){
+                jQuery("#canvas_continer").bind("contextmenu",function(){ return false; });
+            });
+        </script>
+    </head>
+    
+    <body>
+    
+        <h3>The Customer Net View Editor.</h3>
+        <div id="location_bar">
+            <dl>
+                <dt>Location:</dt>
+                <dd>/root</dd>
+                <dd>/shenzheng</dd>
+                <dd>/louhu</dd>
+                <br clear="both"/>
+            </dl>
+        </div>
+        <div id="canvas_continer"></div>
+        
+        <div id="custom_map_cmo_icons">
+            <div class="device">
+            </div>
+            
+            <div class="location">
+            </div>
+            
+            <div class="virtual">
+            </div>
+            
+        </div>
+        
+        <div id="custom_map_menus">
+            <ul class="mainMenu cmodev">
+                <li class="linkTo">连接到...</li>
+                <li class="setSize more">设置尺寸
+                    <ul>
+                        <li>100 * 100</li>
+                        <li>100 * 150</li>
+                        <li>150 * 100</li>
+                        <li class="spt"></li>
+                        <li>150 * 150</li>
+                        <li>150 * 225</li>
+                        <li>225 * 150</li>
+                        <li class="spt"></li>
+                        <li>70 * 70</li>
+                        <li>70 * 105</li>
+                        <li>105 * 70</li>
+                    </ul>
+                </li>
+                <li class="setIcon">更改图标</li>
+                <li class="addInterface more">添加接口...
+                    <ul style="min-width: 150px; min-height:50px;">
+                        loading...
+                    </ul>
+                </li>
+                <li class="spt"></li>
+                <li class="setLabelText">标签重命名...</li>
+                <li class="setLableDir more">设置标签位置
+                    <ul>
+                        <li>
+                            <table>
+                                <tr>
+                                    <td class="dirIcon left_top" dirName="left_top" title="左上角">&nbsp;</td>
+                                    <td class="dirIcon top" dirName="top" title="上方">&nbsp;</td>
+                                    <td class="dirIcon right_top" dirName="right_top" title="右上角">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="dirIcon left" dirName="left" title="左侧">&nbsp;</td>
+                                    <td class="dirIcon center" dirName="center" title="中间">&nbsp;</td>
+                                    <td class="dirIcon right" dirName="right" title="右侧">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="dirIcon left_bottom" dirName="left_bottom" title="左下角">&nbsp;</td>
+                                    <td class="dirIcon bottom" dirName="bottom" title="底部">&nbsp;</td>
+                                    <td class="dirIcon right_bottom" dirName="right_bottom" title="右下角">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+                <li class="setLabelSize more">设置标签尺寸
+                    <ul>
+                        <li labelSize="12px">X</li>
+                        <li labelSize="14px">X+</li>
+                        <li labelSize="18px">X++</li>
+                    </ul>
+                </li>
+                <li class="spt"></li>
+                <li class="removeLines more">删除连接线</li>
+                <li class="spt"></li>
+                <li class="remove"><font color="#AA2525">删除</font></li>
+            </ul>
+            <ul class="mainMenu canvas">
+                <li class="addDevice more">添加设备
+                    <ul style="min-width: 250px; min-height: 50px; left: 110px;">
+                        loading...
+                    </ul>
+                </li>
+                <li class="addLocation">添加位置
+                    <ul>
+                        loading...
+                    </ul>
+                </li>
+                <li class="addVirtualNode">添加虚点</li>
+                <li class="spt"></li>
+                <li class="setCanvasSize">设置画布尺寸</li>
+                <!-- 
+                <li class="setBgImg more">设置背景
+                    <ul>
+                        
+                    </ul>
+                </li>
+                -->
+                <li class="spt"></li>
+                
+                <li class="delCanvas"><font color="#AA2525">删除Map图</font></li>
+            </ul>
+        </div>
+
+
+        
+    </body>
+</html>

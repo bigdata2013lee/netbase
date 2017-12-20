@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#mright-panel{background:url(/media/images/tisi.jpg) 20px 0px no-repeat;}
+#mright-panel div.panel{background-color: #FFFFFF;}
+
+
+.box li{
+    height: 30px;
+    line-height: 30px;
+}
+.box li label{
+    display: inline-block;
+    width:150px;
+    text-align: right;
+    margin-right: 4px;
+}
+.panelContent .op_bar{
+    text-align: right;
+    border-bottom: 1px solid #F4F4F4;
+    padding-right: 1em;
+}
+
+#panel_0002, #panel_0003, #panel_0004{
+    display: none;
+}
+
+.panelContent label{
+    color: #08297C;
+}
+.report_title{font-family:Arial;font-size:36px;font-weight:bold;font-style:normal;text-decoration:none;color:#3333FF;}
+.report_mtitle{font-family:Arial;font-size:18px;font-weight:bold;font-style:normal;text-decoration:none;color:#3333FF;}
+.report_ztitle{margin-left:80px;font-family:Arial;font-size:16px;font-weight:normal;font-style:normal;text-decoration:underline;color:#0000FF;}
+/*<![CDATA[*/
+.treediv{margin:1px; width:30%; height:250px; display:inline-block;display:-moz-inline-stack; *zoom:1; *display:inline;}
+ /*]]>*/
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";</script>
+<script src="/media/js/report/reportListTree.js"></script>
+<script src="/media/js/report/default.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "report/report_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+
+<div class="panel_min psbar" style="max-height: 400px;">
+	<div id="report_tree"> </div>
+	<br/>
+</div>
+<hr>
+　　<button type="button" onclick="window.location.href='/report/addreport'" class="btn">添加报表</button>
+<br/>
+{% endblock %}
+{% block mright-panel  %} 
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

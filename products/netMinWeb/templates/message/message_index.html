@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<link type="text/css" rel="stylesheet" href="/media/css/message.css">
+{% endblock %}
+
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";
+var rUid = '{{moUid}}';
+var datalist = [];
+</script>
+<!-- <script src="/media/js/message/index.js"></script> -->
+{% endblock %}
+
+{% block  mleft-panel %}
+
+{% endblock %}
+{% block mright-panel  %}
+<div class="index_coumns">
+<div id="Dialongue_main">
+     <div class="Dialongue_left2">
+           <div class="Dialongue_left_top">
+                 <ul class="uldialongueLeft">
+                      <li><a href="#" class="hover">通知中心</a></li>
+                      <!-- <li><a href="#">通知中心</a></li> -->
+                 </ul>
+                   <div class="uldialongue_fai">
+                       <li><a href="#" class="clearmessage">清空信息</a></li>
+                       <li><a href="#" class="refreshmessage">刷新</a></li>
+                   </div>
+           </div>           
+           <div class="Dialongue_left_bot2">
+                 <!--<a href="#" class="detail">-->
+                     <!--<dl class="dlPrivate">-->
+                     <!--<dt><img src="/media/images/notifications.png"/></dt>-->
+                     <!--<dd>-->
+                          <!--<p class="priv_01"><span> Admin:</span> 请部如何使用站点监控功能请部如何使用站点监控功能？<font color='blue'>[查看全部内容]</font>-->
+                         <!--<div class="zpriv_01">-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                             <!--请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能请部如何使用站点监控功能-->
+                         <!--</div>-->
+                          <!--</p>-->
+                          <!--<p class="priv_time">2014.3.19 11:07:15 　　　　　　　　<a href="#">删除</a></p>-->
+                     <!--</dd>-->
+                 <!--</dl>-->
+                 <!--</a>-->
+                <a href="javascript:void(0);" id="amore"><dl class="dlPrivate">
+                     <div class="more">加载更多信息</div>
+                </dl></a>
+                
+           </div>
+     </div>
+      </div>    
+</div>
+
+<script>
+
+$(document).ready(function () {
+	var datalist = [];
+    var start = 0;
+    var num = 6;
+	function run(){
+        if($(".more").html()=="信息加载完毕"){return;}
+        nb.rpc.messageApi.c("getmessagelist",{start:start,num:num}).success(function(list){
+            if(start==0&&list.length==0){
+                $(".more").html("您没有新的信息");
+            }
+            start = start + list.length;
+            if(list.length < num){
+                $(".more").html("信息加载完毕");
+            }
+            var html =[];
+            for(var i=0;i<list.length;i++){
+                html.push('<dl class="dlPrivate" id="p_'+list[i]._id+'">');
+                html.push('<dt><img src="/media/images/notifications.png"/></dt>');
+                html.push('<dd><p class="priv_01"><span>');
+                html.push(list[i].mSender);
+                html.push('</span>'+list[i].mTitle+'<a href="javascript:void(0)" class="detail" data-id="'+list[i]._id+'" read="'+list[i].mRead+'"> <span class="showherf">[查看全部内容]</span>');
+                if(list[i].mRead==0){html.push('<span class="newmessage">[新]</span>');}
+                html.push('</a> <div id="d_'+list[i]._id+'" class="zpriv_01">'+list[i].mContent+'</div></p><p class="priv_time">');
+                html.push(''+list[i].infoTime+' 　　　　　　　　<a href="javascript:void(0)" class="del" data-id="'+list[i]._id+'">删除</a></p></dd></dl>');
+            }
+            $("#amore").before(html.join(''));
+            $(".detail").unbind("click");
+            $(".del").unbind("click");
+            $(".detail").bind("click", function(){
+                var id = $(this).attr("data-id");
+                var read = $(this).attr("read");
+                if($("#d_"+id).is(":hidden")){
+                    $("#d_"+id).show();
+                    $(this).find(".showherf").html("[收起]");
+                    if(read == 0){
+                        nb.rpc.messageApi.c("readmessage",{mid:id}).success(function(data){ });
+                    }
+                }
+                else{
+                    $("#d_"+id).hide();
+                    $(this).find(".showherf").html("[查看全部内容]");
+                }
+            });
+            $(".del").bind("click",function(){
+                var id = $(this).attr("data-id");
+                nb.rpc.messageApi.c("delmessage",{mid:id}).success(function(data){
+                    if(data == "fail"){
+                        nb.AlertTip.info("删除失败");
+                    }else{
+                        nb.AlertTip.info(data);
+                        $("#p_"+id).hide();
+                    }
+                });
+            });
+        });
+	}
+
+	run();
+	$("#amore").bind("click", run);
+    $(".refreshmessage").bind("click",function(){top.location.reload(); });
+    $(".clearmessage").bind("click", function(){
+        nb.rpc.messageApi.c("clearmessage",{}).success(function(data){
+            $(".Dialongue_left_bot2").html("您没有新的信息");
+            nb.AlertTip.info("清空成功");
+        });
+    });
+});
+</script>
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

@@ -1,0 +1,55 @@
+ <div class="panel_min">
+    <br/><br/>
+    <ul id="ucenter_left_menus">
+        <li class="{%if pageName == 'myDynamic' %}selected{%endif%}"><a href="/ucenter/index/" >我的动态</a></li>
+        <li class="{%if pageName == 'aboutMe' %}selected{%endif%}"><a href="/ucenter/aboutme/" >与我相关<em class="new_comment_num"></em></a></li>
+        <li class="{%if pageName == 'deviceDynamic' %}selected{%endif%}"><a href="/ucenter/deviceDynamic/">设备动态</a></li>
+        <li class="{%if pageName == 'community' %}selected{%endif%}"><a href="/ucenter/community/" >搜索话题</a></li>
+        <li class="{%if pageName == 'operationerList' %}selected{%endif%}"><a href="/ucenter/operationerList/" >运维商</a></li>
+    </ul>
+</div>
+
+<style>
+    #ucenter_left_menus li.selected a{
+        background-color: #1D96E3;
+        color:#FFF;
+        border:#4FAAEE 1px solid;
+        box-shadow: 0px 0px 6px #26ADFB;
+    }
+    #ucenter_left_menus li.about_me a{
+        position: relative;
+    }
+    em.new_comment_num{
+        display:none;
+        position: absolute;
+        padding:0 8px;
+        right:40px;
+        border: 1px solid #D70C19;
+        border-radius: 20px;
+        font-size:10px;
+        text-align: center;
+        background-color: #D74B02;
+        box-shadow: 0 0 6px #EA7F0E;
+        
+        color:#fff;
+    }
+</style>
+<script>
+	//前台用户中心的运维社区，获取并显示用户分享的最新动态数
+    var showNewCommentNum=function(){
+        var params={};
+        nb.rpc.topicViews.c("getNewMessageNum",params)
+        .success(function(num){
+            if(num<=0 || num == "noUser"){
+                $("em.new_comment_num").hide();
+            }
+            else{
+                $("em.new_comment_num").html("+"+num).show();
+            }
+        });       
+    }
+    $(document).ready(function(){
+        showNewCommentNum();
+    })
+
+</script>

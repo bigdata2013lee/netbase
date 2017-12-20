@@ -1,0 +1,7 @@
+export NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+PRGHOME=$NBHOME/libexec/redis
+PRGNAME=redis-server
+CFGFILE=$NBHOME/libexec/redis/redis.conf
+generic "$@"
+

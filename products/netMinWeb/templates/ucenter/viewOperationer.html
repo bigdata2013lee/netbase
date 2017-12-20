@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{%if not user%}
+    {%load netbasefilters%}
+{%endif%}
+{% block extra_css %}
+<link href="/media/js/ucenter/leftMenus.css" rel="stylesheet" />
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+h3.info_header{
+    padding-left:1em;
+    border-bottom: 1px  solid  #DDDDDD;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+    {% include "ucenter/left_menu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+
+
+<div class="panel">
+	<div class="panelContent">
+		<h3 class="info_header">基本信息</h3>
+		<dl class="fields">
+			<dt>公司名称：</dt>
+			<dd name="companyName">{{operationer.baseInfo.companyName}}  </dd>
+		</dl>
+		  
+		<dl class="fields">
+			<dt>营业执照：</dt>
+			<dd name="bussinessLicenseNum">{{operationer.baseInfo.bussinessLicenseNum}}</dd>
+		</dl>
+		  
+		<dl class="fields">
+			<dt>联系电话：</dt>
+			<dd name="phoneNum">{{operationer.baseInfo.phoneNum}}</dd>
+		</dl>
+		  
+		<dl class="fields">
+			<dt>地址：</dt>
+			<dd name="address">{{operationer.baseInfo.address}}</dd>
+		</dl>
+            
+        <h3 class="info_header">服务领域\地域</h3>
+        <dl class="fields">
+            <dt>技术领域：</dt>
+            <dd>
+                {% for technologyFiled in operationer.serviceInfo.technologyFileds%}
+                    <span>{{technologyFiled}}</span>
+                 {% endfor %}                
+            </dd>
+        </dl>
+        <dl class="fields">
+            <dt>技术特长：</dt>
+            <dd>{{operationer.serviceInfo.technologyForte}}</dd>
+        </dl>
+        <dl class="fields">
+            <dt>服务地域：</dt>
+            <dd>
+                {% for serviceArea in operationer.serviceInfo.serviceAreas%}     
+                    <span>{{serviceArea}}</span>
+                {% endfor %}             
+            </dd>
+        </dl>
+        <h3 class="info_header">公司简介</h3>
+        <div style="padding:2em;">
+            <p>{{operationer.companydescription}}</p>                  
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

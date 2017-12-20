@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/css/devicesList.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+
+div.row label.error{
+    text-align:center;
+    width:auto;
+    min-width:150px;
+    color:#949596;
+    margin-right:2px;
+    padding:1px;
+    padding-left:4px;
+    background-color: #FCF3C2;
+    border: 1px solid #F9E19D;
+    border-radius: 2px;
+}
+#websiteSettingsOtherForm div.row label{
+    width:125px;
+}
+
+label.error{color:#FF7300}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/monitor/devicesList.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "monitor/monitor_sec_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="device_class_list" class="panel_min first" >
+	
+</div>
+
+
+
+<div class="panel_min">
+	<span style="padding-left:1em;font-weight: bold">概要：</span>
+	<div style="padding-left: 2em;">
+		<!-- 你共监控了20台设备，<br />正在运行的设备17台，down机的设备3台,<br />整体状态良好. -->
+	</div>
+	
+</div>
+<div class="panel_min" style="text-align: center">
+	<p> </p><p> </p>
+	<button>+增加新设备...</button>	
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+<div id="content_panel_01" class="panel">
+    <div class="panelTitle">主机监控...</div>
+    <div class="panelContent">
+        <div id="device_grid"> </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

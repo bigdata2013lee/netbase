@@ -1,0 +1,23 @@
+.panel .panelContent li {line-height: 24px;display: inline-block;width: 100%;}
+.data_table{margin-bottom: 20px;}
+.data_table span {display:inline-block;line-height: 20px;}
+.data_table tbody tr:hover {background-color: #E6E6E6;}
+div.query_tool_bar{position: relative;margin: 20px 0px;}
+div.query_tool_bar label{display: inline-block; width: 60px; text-align: right; margin-right: 1em;}
+div.query_tool_bar div.buttons{position: absolute; top:0px;right: 4px;}
+.pages_tools{font-size:14px;}
+.pages_tools a{min-width: 30px;display: inline-block;text-align: center;border: 1px solid rgb(216, 214, 214);}
+.data_table thead tr th:hover{cursor:pointer;} 
+.updownImg{width: 16px;height: 16px;margin-bottom: -2px;margin-left: 5px;background-size: 16px 16px;display: inline-block;}
+.upImg{background-image: url("/media/css/icons/up.png");}
+.downImg{background-image: url("/media/css/icons/down.png");}
+div.groupdiv {float: left;margin-right: 50px;}
+div.query_tool_bar li a{float: right; margin-right: 25px;}
+
+/*前台添加站点、服务、设备数提示div样式*/
+div.extend_device_tip{border: 1px solid rgb(221, 238, 245);line-height: 25px;text-align: left;margin: 30px 18px;box-shadow: 0 0px 30px 0 rgba(175, 215, 234, 1);background-color: rgb(221, 238, 246);text-indent: 2em;}
+div.extend_device_tip li a{margin: 20px 30px;padding: 2px 4px;line-height: 40px;border: 1px solid rgba(162, 216, 249, 0.28);box-shadow: 0 0px 30px 0 rgba(168, 219, 244, 1);background-color: rgba(168, 219, 244, 0.51);border-radius: 10px;}
+div.extend_device_tip li label{font-size: 16px;color: rgb(0, 99, 200);margin: 0px 4px;}
+
+
+

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/css/event.css" rel="stylesheet" /> 
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#mleft-panel_td{ display: none; width: 0px; }
+table.k-editor{width:auto;}
+dd select.emergencyDegree{width:150px;height:24px;}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>var technologyServiceEnable = true;</script>
+<script src="/media/js/events/events_console.js"></script>
+<script src="/media/js/events/events_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "event/event_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min">
+    <b>概要:</b>
+    <br/>
+
+</div>
+{% endblock %}
+{% block mright-panel  %}
+<span id="engineer" style="display: none">{%if user.engineer %}{{user.engineer.username}}{%else%}None{%endif%}</span>
+<div id="panel_0001" class="panel">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="event_index"> </a>
+    </div>
+    <div class="panelTitle"> 事件视图 </div>
+    <div class="panelContent">
+        <div>
+            {% include "event/queryTable.html" %}
+        </div>
+        <div id="data-grid"> </div>
+    </div>
+</div>
+{% endblock %}
+{% block other_extend_block %}
+<div id="createTicket_win" class="dialog_win">
+	<div class="validateErrorMsg"></div>
+    <div>
+        <dl class="fields">
+            <dt>
+               主题：
+            </dt>
+            <dd>
+                <input type="text" class="subject" name="subject" placeholder="请输入20字以内..."/>
+            </dd>
+        </dl>
+        <dl class="fields">
+            <dt>
+                期限：
+            </dt>
+            <dd>
+                <input type="text" class="dueTime" name="dueTime"/>
+                <input type="hidden" class="dueTimeVal" name="dueTimeVal"/>
+            </dd>
+            <dt>
+                紧急度：
+            </dt>
+            <dd>
+                <select name="emergencyDegree"  class="emergencyDegree">
+                    <option value="紧急">紧急</option>                    
+                    <option value="重要">重要</option>                    
+                    <option value="一般">一般</option>                    
+               </select>
+            </dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt style="vertical-align: top;">描述：</dt>
+            <dd><textarea name="content"></textarea></dd>
+        </dl>
+        
+    </div>
+    <div class="win_opbar">
+        <button class="ok">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+{% endblock %}

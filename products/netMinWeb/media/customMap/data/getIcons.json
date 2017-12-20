@@ -1,0 +1,5 @@
+{
+    "device":["default.png", "dev1.png", "dev2.png"],
+    "location":["default.png", "loc1.png", "loc2.png"],
+    "virtual":["default.png", "vir1.png", "vir2.png"]
+}

@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<style>
+  thead th{
+    text-align: left;
+    color: #06609C;
+}
+    
+ #left-menus li{
+ height: 22px;
+ line-height: 22px;
+ padding-left:2em;
+}
+
+.panelContent .box li{
+    height: 30px; line-height: 22px;
+}
+
+.panelContent .box li>label{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 0.5em;
+  color:#06609C;
+}
+
+.opForm {
+    padding:1em;
+}
+
+.opForm li button{
+    float: right;
+    margin-right: 20px;
+}
+
+
+#addCollectorWin li{padding: 4px;} 
+
+#editCollectorWin li{padding: 8px;} 
+
+#editCollectorWin label {
+    float: left;
+    text-align:right;
+    width: 100px;
+}
+    
+#addCollectorWin label{
+    display: inline-block;
+    padding-right: 5px;
+    text-align: right;
+    width: 100px;
+}
+
+div.validateErrorMsg{
+    margin:1em;
+    border:1px solid #FAEBCC;
+    background-color: #FCF8E3;
+    color:#DB2606;
+    padding:1em;
+    border-radius: 5px;
+    display: none;
+}
+
+
+div.win_opbar{
+    margin:1em 0px;
+    padding-right: 2em;
+    text-align: right;
+}
+
+.opForm .messageTip{
+	float: left;
+	width:580px;
+	text-align: left;
+}
+
+.opForm .bottons{
+	float: right;
+}
+
+</style>
+{% endblock %}
+
+{% block extra_style %}
+
+{% endblock %}
+{% block extra_js %}
+<script>var userName="{{ user.getUid }}";</script>
+<script src="/media/js/settings/collector_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "settings/settings_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<ul id="user_left_menus">
+    <!--<li><a href="/settings/collector">收集器列表</a></li>-->
+</ul>
+{% endblock %}
+
+{% block mright-panel  %}
+<div id="collectorWidget" class="panel">
+    <div class="panelTitle">收集器列表</div>
+    <div class="panelContent">
+        <div class="opForm">
+        	<div class="messageTip">
+        		内网收集器，提供收集企业内网设备信息的分布式环境，如何下载及安装内网收集器，请查看<a href="/help/help_center_inner_coll.html"><b>内网收集器帮助文档</b></a>。
+        		内网收集器安装后，须申请认证证书，获取认证证书，请致电运维通客服 <font style="color: #cf0202;">4006-3525-00</font>
+        	</div>
+            <div class="bottons">
+                <button name="delCollector">删除收集器</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button  name="addCollector">添加收集器</button>
+            </div>
+            <br clear="both" />
+        </div>
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+
+{% endblock %}
+{% block other_extend_block %}
+<div id="addCollectorWin" class="dialog_win">
+    <div class="panelContent" style="max-height:480px; overflow:auto;">
+        <li><label>名称</label><input type="text" name="title"  /></li>
+        <li><label>MAC地址</label><input type="text" name="mac"  /></li>     
+        <li><label>远程开关机端口</label><input type="text" name="bootpoPort"  /></li>     
+        <li><label>TCP服务器端口</label><input type="text" name="tcpServerPort"  /></li>     
+    </div>
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok" >保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+
+<div id="editCollectorWin" class="dialog_win">
+    <li><label>名称</label><input   data-bind="value:title" /></li>
+    <li><label>MAC地址</label><input  data-bind="value:mac" /></li>    
+    <li><label>远程开关机端口</label><input data-bind="value:bootpoPort" /></li>
+    <li><label>TCP服务器端口</label><input data-bind="value:tcpServerPort" /></li> 
+    <div class="validateErrorMsg"></div>
+    <div class="win_opbar">
+        <button class="ok"  >保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+
+
+{% endblock %}

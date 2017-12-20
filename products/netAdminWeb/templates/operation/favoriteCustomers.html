@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+.fav_custtomers_search_box{
+    border:1px solid #DDDDDD;
+    padding: 2px 10px;
+    margin: 1em;
+    margin-bottom:2em;
+    box-shadow: 0 0 10px #DDDDDD;
+}
+.customerinfo span{
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    margin: 2px 8px 2px 0;
+    min-width: 100px;
+    display: inline-block;
+}
+
+dl.fields dt{text-align: left;}
+.serviceCustomers_ul{
+    margin:10px 20px;
+}
+
+.favoriteCustomers_ul li{
+    position: relative;
+    border-bottom:1px solid #EBEBEB;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.favoriteCustomers_ul li:last-child{
+    border-bottom:none;
+}
+.favoriteCustomers_opbar {
+    text-align: right;
+    position: absolute;
+    top:0px; 
+    right:0em;
+}
+.favoriteCustomers_opbar a{
+    margin: 4px;
+}
+/**-----------------------------查询分页样式------------------------------------*/
+
+.pages_tools a{
+    min-width:30px;
+    display:inline-block;
+    padding:4px auto;
+    border:1px solid #CBC6C2;
+    line-height: 24px;
+    font-size: 14px;
+    margin: 2px 2px;
+    text-align:center;
+}
+
+.pages_tools{
+    margin-bottom: 10px;
+    float:right;
+    margin-right: 2em;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/operation/favoriteCustomers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/customerLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="fav_custtomers_search_box">
+            <dl class="fields">
+                <dt>邮箱：</dt>
+                <dd><input name="email" value="{{request.REQUEST.email}}"/><button class="searh_btn">搜索</button></dd>
+            </dl>
+        </div>
+        
+        <ul class="favoriteCustomers_ul">
+           {% if not favoriteCustomers %}
+            <h3 style="text-align: center;color: #333333;">找不到任何用户！</h3>
+           {% endif %}
+          {% for cus in favoriteCustomers %}
+            <li favorite_customer_id="{{cus.getUid}}">
+                <div class="customerinfo">
+                    <span class="ownCompanyTitle">{{ cus.customer.ownCompany.title}}</span>
+                    <span>{{ cus.customer.username }}</span>
+                    <span>{{ cus.customer.contactPhone }}</span>
+                    <span>{{ cus.customer.originalName }}</span>
+                </div>
+                <div>
+                    <dl class="fields">
+                        <dt>备注:</dt>
+                        <dd name="remark">{{cus.remark}}</dd>
+                    </dl>
+                </div>
+                <div class="favoriteCustomers_opbar">
+                    <a href="javascript:" action="edit">编辑</a>
+                    <a href="javascript:" action="remove">移除</a>
+                </div>
+            </li>
+            {% endfor  %}
+            
+        </ul>
+        
+        <div class="pages_tools">
+                <a href="/operation/favoriteCustomers/?pageNum=1&companyName={{request.REQUEST.companyName}}" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/operation/favoriteCustomers/?pageNum={{p}}&companyName={{request.REQUEST.companyName}}">{{p}}</a>
+                {%endfor%}
+        </div>
+        <br clear="both" />
+        
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="editServiceCustomerWin" class="dialog_win">
+    <input type="hidden" name="favoriteCustomerId" value="" />
+ 
+    <dl class="fields">
+        <dt style="vertical-align: top;">备注:</dt>
+        <dd>
+            <textarea name="remark"></textarea>
+        </dd>
+    </dl>
+    
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+    
+</div>
+
+{% endblock %}
+

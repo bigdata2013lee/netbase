@@ -1,0 +1,27 @@
+{%load netbasefilters%}
+{%if userType == "User"%}
+<div class="goup1">
+    <img src="{{xuser.icon|defaultIcon}}" style="width:48px;height: 48px;"/>
+    <div>{{xuser.username}}</div>
+    <div>公司:{{xuser.ownCompany.title}}</div>
+</div>
+<div class="group2">签名:{{xuser.sign}}</div>
+{%endif%}
+
+{%if userType == "Operationer"%}
+<div class="goup1">
+    <img src="{{xuser.icon|defaultIcon}}" style="width:48px;height: 48px;"/>
+    <div>{{xuser.username}}(运维商)</div>
+    <div>公司:{{xuser.baseInfo.companyName}}</div>
+</div>
+<div class="group2">技术特长:{{xuser.serviceInfo.technologyForte}}</div>
+{%endif%}
+
+{%if userType == "Enginner"%}
+<div class="goup1">
+    <img src="{{xuser.icon|defaultIcon}}" style="width:48px;height: 48px;"/>
+    <div>{{xuser.username}}(工程师)</div>
+    <div>隶属运维商:{{xuser.operationer.username}}</div>
+</div>
+<div class="group2">技术特长:{{xuser.operationer.serviceInfo.technologyForte}}</div>
+{%endif%}

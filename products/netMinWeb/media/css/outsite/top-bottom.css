@@ -1,0 +1,112 @@
+
+.head{ border-bottom:1px solid #e7e7e7; padding:8px 0px 0px 0px;}
+.head_left{display: block;}
+.head_right { padding-right:30px;}
+
+.top{ padding:20px 0px 15px 0px;}
+.top_l{ width:193px;}
+.top_r{margin-top:10px;}
+.top_r ul li { float:left; padding:0px 30px 0px 10px;}
+.top_r ul li a{ float:left;text-align:center; display:block; font-size:16px;} 
+.top_r ul li span{ display:block; font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+
+
+
+/**-------------------------------------------------------------------------*/
+
+a.icon_link.tel{
+	background-image: url(./index_images/tel.gif);
+}
+
+a.icon_link.denglu{
+	background-image: url(./index_images/denglu.gif);
+}
+
+a.icon_link.zhuche{
+	background-image: url(./index_images/zhuche.gif);
+}
+
+
+
+/**------------------------------------------------------------------*/
+
+a.toggle_link.app_download{
+	background-image: url(./index_images/t_app.gif);
+	width:130px; height:24px;
+}
+a.toggle_link.app_download:hover{
+	background-image: url(./index_images/t_app1.gif);
+}
+
+a.toggle_link.qq{
+	background-image: url(./index_images/bg06_01.png);
+	width:26px; height:24px;
+}
+a.toggle_link.qq:hover{
+	background-image: url(./index_images/bg06_04.png);
+}
+
+a.toggle_link.weixin{
+	background-image: url(./index_images/bg06_02.png);
+	width:26px; height:24px;
+}
+a.toggle_link.weixin:hover{
+	background-image: url(./index_images/bg06_05.png);
+}
+
+a.toggle_link.weibo{
+	background-image: url(./index_images/bg06_03.png);
+	width:26px; height:24px;
+}
+a.toggle_link.weibo:hover{
+	background-image: url(./index_images/bg06_06.png);
+}
+
+
+/**----------------------------------------------------------------------------*/
+	
+#tiyanzilv{
+	background: url(./index_images/footerBannerBg.gif);
+	height: 92px;
+}
+
+#tiyanzilv a.toggle_link.tiyanzilv_btn{
+	background-image: url(./index_images/fBanrbottom.gif);
+	width:234px; height:59px;
+}
+#tiyanzilv a.toggle_link.tiyanzilv_btn:hover{
+	opacity: 0.9;
+}
+
+
+/**-------------------------------------------------------------------*/
+
+#website_map{
+	line-height: 24px;	
+	margin-top:20px;
+}
+
+#website_map h4{font-size:14px;margin-top:1em;margin-bottom:1em;}
+#website_map li{
+	float:left;
+	border:0px solid #EBEBEB;
+	width:200px; height: 270px;
+}
+
+#website_map li.last{
+	width:300px;
+	clear: right;
+}
+
+
+
+
+#copyright{
+	text-align: center;
+	color:#EEEEEE;
+	padding:1em;
+	background-color: #2C2C2C;
+}
+
+
+

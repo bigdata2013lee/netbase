@@ -1,0 +1,8 @@
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/left_item_menu.css" />
+{% endblock %}
+
+<ul class="left-menus">
+	<li class="{%if pageName == 'website_list' %}selected{%endif%} "><a href="/website/index/">监控概览</a></li>
+	<li class="{%if pageName == 'website_add' %}selected{%endif%} "><a href="/website/add/">添加监控</a></li>
+</ul>

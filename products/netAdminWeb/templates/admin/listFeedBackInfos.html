@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    #listFeedBackInfosWidget div.panelContent{ border-radius: 4px;}
+    #query_conditions{position: relative;padding:10px 0;}
+    #query_conditions .op_bar{
+        position: absolute;
+        top:8px;
+        right: 1em;
+    }
+    
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/listFeedBackInfos.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_0.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="listFeedBackInfosWidget" class="panel">
+    <div class="panelTitle">客户反馈信息</div>
+    <div class="panelContent"> 
+<!--         <div id="query_conditions">
+            <li>
+                <label>反馈信息:</label> <input name="feedBackContent" style="width:200px;" />
+            </li>
+            <div class="op_bar">
+                <button class="query">查询</button>
+            </div>
+        </div> -->
+        <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>  
+<!--         <div id="data-grid"> </div> -->
+        <div id="opinionList">
+            {%for opinion in opinions %}
+            <div id="opinion">
+                <div>时间： {{opinion.infoTime}}
+                          用户名：{{opinion.feedBackUser}}
+                          邮箱：{{opinion.feedBackEmail}}
+                </div>
+                <h3>{{opinion.title}}</h3>
+                <p>
+                    {% autoescape off %}
+                    {{opinion.feedBackContent}}
+                    {% endautoescape %}
+               </p>
+            </div>
+            <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>  
+            {% endfor %}
+        </div>
+    <div>
+        
+    </div>
+    </div>
+</div>  
+
+   
+     
+{% endblock %}
+
+{% block other_extend_block %}
+
+
+     
+{% endblock %}
+

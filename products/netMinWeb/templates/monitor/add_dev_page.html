@@ -1,0 +1,59 @@
+{%load netbasefilters%}
+<div id="addDevicePage" style="display: none" class="dialog_win">
+    <div class="box" style="height: 550px; overflow: auto;">
+        <div id="add_dev_panel_001" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_base"> </a>
+            </div>  
+            <div class="panelTitle">基本配置</div>
+            <div class="panelContent">
+                <div class="box">
+                    <li>
+                        <label>管理IP:</label><input class="common" name="manageIp" />*
+                        <label>名称:</label><input class="common" name="title"/> 
+                     </li>
+                      <li> <label>收集器:</label>
+                      	<select name="collector" class="common" component_type="Device" id="select_collector">
+                      		<option value="">请选择收集器</option>
+                      	</select>
+                      </li>
+                     
+                     <li>
+                        <label>说明描述:</label><input class="common" name="description" style="width:420px;"/>
+                     </li>
+                     
+                </div>
+            </div>            
+        </div>
+            
+        <div id="add_dev_panel_002" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_snmp"> </a>
+            </div>
+            <div class="panelTitle">SNMP配置</div>
+            <div class="panelContent">
+                <div class="box snmpConfig">
+                    {% include "monitor/snmpConfigTemplate.html" %}             
+                </div>
+            </div>
+        </div>
+    
+        <div id="add_dev_panel_003" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_comm"> </a>
+            </div>
+            <div class="panelTitle">通用配置</div>
+            <div class="panelContent">
+                <div class="box commConfig">
+                    {% include "monitor/commConfigTemplate.html" %}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="win_opbar" id="addDevicePage_btn">
+		<button class="ok">保存</button>
+		<button class="cancel">退出</button>
+	</div            
+</div>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block extra_style %}
+<style>
+div.row label.error{
+    text-align:center;
+    width:auto;
+    min-width:150px;
+    color:#949596;
+    margin-left:2px;
+    padding:1px;
+    padding-left:4px;
+    background-color: #FCF3C2;
+    border: 1px solid #F9E19D;
+    border-radius: 2px;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/user/register.js"></script>
+{% endblock %}
+{% block mright-panel  %}
+
+<div class="panel">
+    <div class="panelTitle">用户注册</div>
+    <div id="register_info_div" class="panelContent">
+        <form id="register_info_form">
+            <div class="row">
+                <label  class="required">用户名:</label>
+                <input type="text" name="username"  data-bind="value:username" class="k-textbox" />
+            </div>
+            <div class="row">
+                <label>密码:</label>
+                <input type="password" id="password" name="password"  data-bind="value:password" class="k-textbox k-input" />
+            </div>
+            <div class="row">
+                <label>确认密码:</label>
+                <input  type="password" name="password2"  data-bind="value:password2" class="k-textbox" />
+            </div>
+            <div class="row">
+                <label>邮件:</label>
+                <input  name="email"  data-bind="value:email"  class="k-textbox" placeholder="myname@example.com" />
+            </div>
+            <div class="row">
+                <label>联系电话:</label>
+                <input  name="contactPhone"  data-bind="value:contactPhone" class="k-textbox" />
+            </div>
+            <div class="row">
+                <label>公司名称:</label>
+                <input  name="companyName"  data-bind="value:companyName" class="k-textbox" />
+            </div>
+            <div class="row op_bar">
+                <button type="button" class="k-button" data-bind="click:regist">注册...</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

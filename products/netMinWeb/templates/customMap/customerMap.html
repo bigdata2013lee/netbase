@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+a.view_customer_map{font-weight: bold;}
+#map_iframe{width: 100%;height:500px;border: none;}
+#customerMapListWidget li{
+	padding:0px;
+	margin:2px;
+	height: 60px;
+	border:1px  solid #CCCCCC;
+	background-color: #FFFFFF;
+	text-align: center;
+	position: relative;
+}
+
+#customerMapListWidget li div.op{
+	opacity:0.4;
+	display:none; background: #000000;  color: #fff;
+	position: absolute; bottom: 0px;width: 100%;
+}
+#customerMapListWidget li div.op a{color:#fff;}
+#customerMapListWidget li:hover div.op{display:block;}
+
+#customerMapListWidget li.selected{border:1px solid  #0D6FAD; box-shadow: 0 0 4px #0D6FAD;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/customMap/page.js"></script>
+<script>
+	var openMoDetailWin = function(url){
+		console.info(url);
+		
+	}
+</script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "viewer/viewer_sec_menu.html" %}
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<div style="text-align: center;"><a name="add_customer_map" class="try-kendo">+创建新拓朴图</a></div>
+<br/>
+<div class="panel_min psbar" style="max-height: 500px;">
+	<div id="customerMapListWidget">
+		<script name="template" type="text/x-kendo-template">
+                <li mcUid="#=_id#" title="#=title#" zindex="#=zIndex#">
+                	<a href="javascript:" class="view_customer_map" name="view_customer_map">#=title#</a>
+                	<div class="op">
+                		<a href="javascript:" name="del_customer_map">删除</a> | 
+                		<a href="javascript:" name="edit_props">编辑属性</a> | 
+                		<a href="javascript:" name="edit_customer_map">编辑图像</a>
+                	</div>
+                </li>
+            </script>
+            <ul> </ul>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="map_iframe_box" style="height: 600px;">
+	
+<iframe id="map_iframe" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="auto"  src=""> </iframe>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="addCustomerMapWidget" class="dialog_win">
+	<div class="box">
+		<li>
+			<label>名称:</label><input name="title" />
+		</li>
+		<li>
+			<label>排列序号:</label><input name="zIndex" value="0"/>
+		</li>
+		
+		<div class="validateErrorMsg"> </div>
+	</div>
+	<div class="win_opbar">
+		<button class="ok">确定</button>
+		<button class="cancel">取消</button>
+	</div>
+</div>
+
+<div id="editCustomerMapPropsWidget" class="dialog_win">
+	<div class="box">
+		<input name="mcUid" type="hidden" />
+		<li>
+			<label>名称:</label><input name="title" />
+		</li>
+		<li>
+			<label>排列序号:</label><input name="zIndex" value="100"/>
+		</li>
+		
+		<div class="validateErrorMsg"> </div>
+	</div>
+	<div class="win_opbar">
+		<button class="ok">确定</button>
+		<button class="cancel">取消</button>
+	</div>
+</div>
+
+
+{% endblock %}
+

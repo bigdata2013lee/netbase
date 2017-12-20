@@ -1,0 +1,52 @@
+#cpumem-gauge-container {
+    border:0px solid #333;
+    background: transparent url("02.png") no-repeat 50% 50%;
+    width: 183px;
+    height: 141px;
+    padding:0;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+#cpumem-gauge-container.unknown{
+    background: transparent url("01.png") no-repeat 50% 50%;
+ }
+
+#cpumem-gauge-container div.gauge_cpu {
+    border:0px solid #333;
+    width: 95px;
+    height: 95px;
+    margin: 0;
+    padding:0;
+    position: absolute;
+    left:15px; top:20px;
+}
+
+#cpumem-gauge-container div.gauge_mem {
+    border:0px solid #333;
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    padding:0;
+    position: absolute;
+    left:95px; top:-2px;
+}
+
+
+#cpumem-gauge-container div.gauge_cpu_value{
+    position: absolute;
+    left:48px; top:108px;
+    text-align: center;
+    font-size:10px;
+    width:33px;
+    color:#fff;
+}
+
+#cpumem-gauge-container div.gauge_mem_value{
+    position: absolute;
+    left:125px; top:64px;
+    text-align: center;
+    font-size:10px;
+    width:28px;
+    color:#fff;
+} 

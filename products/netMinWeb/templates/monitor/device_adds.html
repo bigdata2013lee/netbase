@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    .divsnmpname{
+        padding-left:82px;
+        padding-bottom: 10px;
+    }
+    .panelContent .op_bar{
+        text-align: right;
+        border-bottom: 1px solid #F4F4F4;
+        padding-right: 1em;
+    }
+
+    #panel_0002, #panel_0003, #panel_0004{
+        display: none;
+    }
+
+    .panelContent label{
+        color: #08297C;
+    }
+    .SelectTd{
+        background-color:#0088CC;
+        color:#EEEEEE;
+    }
+
+    /*<![CDATA[*/
+    .treediv{margin:1px; width:30%; height:250px; display:inline-block;display:-moz-inline-stack; *zoom:1; *display:inline;}
+    /*]]>*/
+
+    /*详细报表*/
+    #Translation{ padding:30px;}
+    .Trans_top,.Trans_top label{ font-size:24px; color:#f60; border-bottom:solid 2px #d4e3ea; padding-bottom:10px;}
+    .Trans_top span{ width:104px; height:30px; line-height:30px; float:right;}
+    .Trans_top span a{ width:104px; height:28px; line-height:28px; text-align:center; display:block; background-color:#ff8600; font-size:16px; color:#fff;border-radius:4px; border:solid 1px #f76e00; }
+    .Trans_top span a:hover{ background-color:#1081db; border:solid 1px #0063b1;}
+    .Trans_02{ font-size:14px; color:#333; border-bottom:solid 2px #d4e3ea; padding:10px 0 20px 0;}
+    .dltrans01{ overflow:hidden; margin-top:10px;}
+    .dltrans01 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9;}
+    .dltrans01 dd{ color:#555;}
+    .dltrans02{ overflow:hidden; margin-top:15px;}
+    .dltrans02 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9; padding-top:15px;}
+    .dltrans02 dd{   overflow:hidden;}
+    .dltrans02 dd a{ float:left; display:block; padding:5px 10px; background-color:#2671c2;border-radius:4px; margin:10px 15px 0 0; color:#fff;}
+    .dltrans02 dd a:hover{ background-color:#f60;}
+
+    .dltrans03{ overflow:hidden; margin-top:10px;}
+    .dltrans03 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9; padding-top:15px;}
+    .dltrans03 dd{ padding-top:12px; line-height:24px; color:#555; font-size:12px;   overflow:hidden;}
+    .dltrans03 dd p{ color:#f30; padding:5px 0;}
+
+
+    .Chart_01{ padding:20px 0; overflow:hidden;}
+    .Chart_01_top{ line-height:24px; color:#555; overflow:hidden;}
+    .Chart_01_top span{ font-size:15px; font-weight:bold;color:#0064b9; padding-right:10px; border-left: solid 4px #f60; padding-left:8px;}
+    .Chart_tp{ padding:10px 20px; overflow:hidden;} .downfile{ background-color:rgb(255,134,0);
+
+     border-bottom-color: #f76e00;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;
+     border-bottom-style:solid;border-bottom-width: 1px;color:#ffffff;display: block;height: 28px;width: 150px;text-align: center;font-size: 15px;line-height: 28px;text-decoration: none;
+ }
+    .Chart_table{ padding:10px 20px;overflow:hidden;}
+    .Chart_table .tabChart{  border-left:solid 1px #c7d3de; }
+    .Chart_table .tabChart tr .tb01{ background-color:#216dad; border-right:solid 1px #157ed7; text-align:center;  line-height:24px; padding:4px 6px; color:#fff; font-size:14px; font-weight:bold;}
+    .Chart_table .tabChart tr .tb02{ text-align:center; line-height:24px; padding:4px 6px; border-bottom:solid 1px #c7d3de; border-right:solid 1px #c7d3de;}
+
+    .Chart_table .tabChart tr .tb03{ background-color:#f7f8f9; text-align:center; line-height:24px; padding:4px 6px; border-bottom:solid 1px #c7d3de; border-right:solid 1px #c7d3de;}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";
+var rUid = '{{moUid}}';
+var datalist = [];
+</script>
+<!-- <script src="/media/js/monitor/hostTree.js"></script> -->
+<script src="/media/js/monitor/device_adds.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "monitor/monitor_sec_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<!-- <div class="panel_min psbar" style="max-height: 500px;">
+    <div id="device_class_tree"> </div>
+    <br/>
+</div> -->
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel swich" actionName="CommDeviceReport">
+    <div class="panelActions">
+         </div>
+    <div class="panelTitle">
+
+    </div>
+    <div id="tabstrip">
+        <ul>
+            <li class="k-state-active">批量添加设备（网段方式）</li>
+            <li> 批量添加设备（文件方式）</li>
+        </ul>
+        <div>
+            <div id="addipWidget" class="panelContent">
+                <div id="div_addip">
+                <div class="op_bar"><input type="button" name="save" value="保存添加"/></div>
+                <div class="validateErrorMsg"> sdfsdf</div>
+                <p><label>IP网段：　　</label>　
+                    <input type="text" name="ips" id="ips" />  输入格式：192.168.2.0/32
+                </p>
+                <p><label>设备类型：　　</label>
+                    <input type="radio" value="linux" checked="checked" name="deviceclass1"/>  Linux
+                    <input type="radio" value="windows" name="deviceclass1"/>  Windows
+                </p>
+                <p><label>收集器：　　　</label>
+                    <select name="collector" id="collector">
+                        <option value="0">请选择收集器</option>
+                    </select>
+                </p>
+                <p><label>Snmp团体名：</label>
+                    <input type="text" name="snmpname" id="snmpname" /> <input type="button" id="btnAddName" value="添加更多团体名"/>  最多允许三个团体名
+                    <div class="addname"></div>
+                </p>
+                </div>
+                <div id="div_addipResult" class="Chart_01" style="display: none">
+                    <div class="Chart_01_top"><span><a>批量添加结果：</a><label  class="info"></label></span></div>
+                    <div class="Chart_table">
+                        <table class="tabChart" style="width: 500px">
+                            <tr>
+                                <td class='tb01'>IP</td>
+                                <td class='tb01'>执行结果</td>
+                            </tr>
+                            <tr class="endtable"><td></td><td></td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="box">
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="addfileWidget" class="panelContent">
+                <div class="div_addfile">
+                <form action="/monitor/upload/" method="post" enctype="multipart/form-data" accept-charset="utf-8" onsubmit="return check()">
+                <div class="op_bar"><input type="submit" name="up" value="上传文件"/> </div>
+                <div class="validateErrorMsg"> </div>
+                <p><label>设备类型：　　</label>
+                    <input type="radio" value="linux" checked="checked" name="deviceclass"/>  Linux
+                    <input type="radio" value="windows" name="deviceclass"/>  Windows
+                </p>
+                    <p><label>收集器：　　　</label>
+                        <select name="collector2" id="collector2">
+                            <option value="0">请选择收集器</option>
+                        </select>
+                    </p>
+                <p><label>导入文件：　　</label>
+                    <input type="file" name="file" id="file"/>
+                </p>
+                <p><label>请先下载标准文件后，填入相关设备信息再导入批量添加</label>
+                </p>
+                <p>
+                    <a href="/media/help/device.xls" class="downfile" target="_blank">点击下载标准文件</a>
+                </p>
+                <div class="box"> </div>
+                </form>
+                </div>
+                <div id="div_addfileResult" class="Chart_01" style="display: none">
+                    <div class="Chart_01_top"><span><a>批量添加结果：</a><label  class="info"></label></span></div>
+                    <div>
+                    	<span style="margin-left: 40px;">
+                    		<a href="javascript:;" onclick='$("#div_addip").show();$("#div_addipResult").hide();'>点击返回批量添加设备</a>
+                    	</span>
+                    </div>
+                    <div class="Chart_table">
+                        <table class="tabChart" style="width: 500px">
+                            <tr>
+                                <td class='tb01'>IP</td>
+                                <td class='tb01'>执行结果</td>
+                            </tr>
+                            <tr class="endtable"><td></td><td></td></tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tree_op_bar">
+    <div class="box DeviceClass">
+        <a href="javascript:" name="add"><span class="icon addDevice x16"></span>添加设备</a>
+        <a href="/monitor/device_adds" ><span class="icon addDevice x16"></span>批量添加设备</a>
+    </div>
+
+    <div class="box Device">
+        <a href="javascript:" name="del"><span class="icon delete x16"></span>删除设备</a>
+    </div>
+</div>
+<script>
+    function check(){
+        var errmsg = $("#addfileWidget .validateErrorMsg");
+        errmsg.html("");
+        errmsg.hide();
+        var file=$("#file").val();
+        if(file==""){
+            errmsg.html("请选择要上传的文件");
+            errmsg.show();
+            return false;
+        }
+        var tconllector =  $("#collector2").val();
+        if(!tconllector||tconllector == "0"){
+            errmsg.html("请选择收集器");
+            errmsg.show();
+            return false;
+        }
+        var loading = nb.uiTools.commLoading.insertTo("body");
+            loading.css({"position":"fixed"});
+            loading.find("span:first").css({"margin-top":"105px"});
+            loading.find("span:first").html("正在批量添加设备，所需时间较长，请不要进行其他操作，耐心等待。");
+
+        return true;
+    }
+</script>
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

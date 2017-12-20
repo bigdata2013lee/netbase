@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/middleware/tomcat_list.js"></script>
+
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "middleware/middleware_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "middleware/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="op_bar" style="text-align: right; padding-right: 4em;">
+	<a href="/middleware/tomcat_add/">+添加监控</a>
+</div>
+<div class="panel">
+	<div class="panelTitle">Tomcat服务器监控列表</div>
+	<div class="panelContent">
+		<table id="data_table_1" class="data_table">
+	        <colgroup>
+	            <col />
+	            <col />
+	            <col style="width:80px" />
+	            <col style="width:80px" />
+	            <col style="width:80px" />
+	            <col style="width:80px" />
+	            <col style="width:120px" />
+	        </colgroup>
+			<thead>
+				<tr>
+					<th data-field="title">名称</th>
+					<th data-field="host">域名/IP</th>
+					<th data-field="port">端口</th>
+					<th data-field="status">状态</th>
+					<th data-field="version">版本</th>
+					<th data-field="conn">连接数</th>
+					<th data-field="op">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for mw in wms %}
+				<tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+					<td>{{mw.title}}</td>
+					<td>{{mw.host}}</td>
+					<td>{{mw.port}}</td>
+					<td><span class="status-icon-small {{mw.getStatus}}"> </span></td>
+					<td>{{mw.getCurrentPerfs.mwVersion}}</td>
+					<td>{{mw.getCurrentPerfs.cThreadCount}}</td>
+					<td>
+						<a href="#" action="detail" mwuid="{{mw.getUid}}">祥细</a>
+						<a href="/middleware/tomcat_edit/{{mw.getUid}}/">配置</a>
+						<a href="javascript:" action="delMw" mwuid="{{mw.getUid}}">删除</a>
+					</td>
+				</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="detail_win" class="dialog_win">
+	<iframe src="#" frameborder="no" style="width: 100%; height: 100%; border: none;overflow: hidden;"></iframe>
+</div>
+{% endblock %}
+

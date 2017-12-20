@@ -1,0 +1,48 @@
+
+/*套餐介绍*/
+#packages_main{overflow: hidden;}
+
+.packages_top{ width:976px; margin:0 auto; padding-bottom:10px; padding-top:10px; padding-left:10px; color:#666;}
+.packages_top .pa01{ font-size:22px; padding-right:10px; color:#f60;}
+.packages_top .pa02{ color:#f00; font-weight:bold; font-size:14px; padding-left:10px;}
+.packages{ width:1000px; margin:0 auto; overflow:hidden; padding-bottom:20px;}
+
+.packages_01{width:976px; margin-left:10px;height:550px;}
+.Ordinary{ background:url(/media/images/pack_tb.jpg) repeat-x;  width:25%; float:left; height:530px;}
+.Ordinary:hover{
+    background:url(/media/images/pack_tb_hover.jpg) repeat-x; width:25%;
+    border-bottom:solid 1px #eaeaea;z-index: 2;position: relative;-moz-transition:-moz-box-shadow 0.4s ease-out 0s;box-shadow:0 0 10px rgba(0, 0, 0, 0.4);  color:#fff; 
+}
+
+.Free01{text-align:center; height:45px; line-height:45px; font-size:18px;}
+.Free02{text-align:center; height:45px; line-height:45px; font-size:22px; }
+.uljiexao{ overflow:hidden; padding-top:1px; border-left:solid 1px #eaeaea;border-bottom:solid 1px #eaeaea; background: #FFFFFF;}
+.uljiexao.last{border-right:solid 1px #eaeaea;border-bottom:solid 1px #eaeaea;}
+
+.uljiexao li{ text-align:center; padding:10px 0; font-size:13px; color:#333;}
+.uljiexao li span{ color:#f60; font-size:16px; font-weight:bold; padding:0 3px;}
+.uljiexao li.item_odd{background-color: #f6f6f6;}
+
+
+
+.packages_02{ padding-bottom:30px; overflow:hidden;}
+.packages_02_top{ padding:0 0 10px 10px; font-size:18px; overflow:hidden;}
+.packages_02_top span{ font-size:26px; color:#f30; padding-right:5px;}
+.packages_02 .pa01{ font-size:22px; padding-right:10px; color:#f60;}
+.packages_02 .pa02{ color:#f00; font-weight:bold; font-size:14px; padding-left:10px;}
+.tab_pack .td04 span{ color:#f60; font-size:16px; font-weight:bold; padding:0 3px;}
+.packages_02_show{ width:976px; margin:0px 10px;}
+.tab_pack{ border:solid 1px #eaeaea; border-bottom:none;}
+.tab_pack tr{ overflow:hidden;}
+.tab_pack tr td{}
+.tab_pack tr td.td01{ text-align:center; padding:10px; background-color:#fafafa; width:16%; font-size:14px; font-weight:bold; border-bottom:solid 1px #eaeaea; border-right:solid 1px #eaeaea;  }
+.tab_pack tr td.td02{ text-align:center; padding:10px; background-color:#fafafa; width:25%; font-size:14px; color:#222; border-bottom:solid 1px #eaeaea;border-right:solid 1px #eaeaea;font-weight:bold;}
+.tab_pack tr td.td02_02{ text-align:center; padding:10px; background-color:#fafafa; width:59%; font-size:14px; color:#222; border-bottom:solid 1px #eaeaea;border-right:solid 1px #eaeaea;font-weight:bold;}
+
+.tab_pack tr td.td03{ line-height:22px; padding:0px 15px; color:#666;border-bottom:solid 1px #eaeaea; border-right:solid 1px #eaeaea; text-align:center; line-height:24px;padding:10px 15px; }
+.tab_pack tr td .gesu{ color:#f30; padding:0 5px;}
+.tab_pack tr td.td04{ line-height:22px; padding:10px 15px; color:#666;border-right:solid 1px #eaeaea; border-bottom:solid 1px #eaeaea;}
+
+/*套餐介绍*/
+
+

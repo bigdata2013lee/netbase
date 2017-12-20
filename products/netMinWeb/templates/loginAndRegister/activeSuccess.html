@@ -1,0 +1,25 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+	<link href="media/css/logAndRegister.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+{% include "base_include/index/banner.html" %}
+{% endblock %}
+
+{% block content_block %}
+
+	
+     <div id="main" style="height:430px;min-height:430px; padding-top: 4em;">
+		<div class="Registration_Ntop"><img src="/media/images/success_icon.gif" />&nbsp;&nbsp;恭喜您，您的帐号已经成功激活</div>
+		<div class="tishi">恭喜你成功注册了Netbase运维通系统，你现在可以登陆本系统了，<a href="/login.html">点击这,进行登陆</a></div>
+          
+     </div>
+{% endblock %}
+
+{% block bottom_block %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

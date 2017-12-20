@@ -1,0 +1,30 @@
+{% load netbasefilters %}
+<div class="logo_div"> </div>
+<div class="logo_div2"> </div>
+<div class="navigation">
+    <ul>
+        <li class="assistant"><a href="/assistant/index/">一键助手</a></li>
+        <li class="viewer"><a href="/viewer/index/">视图</a></li>
+        <li class="monitor"><a href="/monitor/index/">监控专家</a></li>
+        <li class="reports"><a href="/report/index/">报表管理</a></li>
+        <li class="events"><a href="/events/index/">事件</a></li>
+        {% if user.engineer %}
+        <li class="settings"><a href="/settings/services/">技术服务</a></li>
+        {% endif %}
+        <li class="ucenter"><a href="/ucenter/index/">运维社区</a></li>
+        <br clear="both" />
+    </ul>
+</div>
+
+<div class="tools">
+	<a class="user" href="/settings/index/">{{ user.titleOrUid|getName }}</a>
+    <!-- <span>欢迎 {{ user.ownCompany }}->用户: {{ user.getUid }}</span>&nbsp;&nbsp; -->
+    <a class="money" href="/settings/index/" title="版本信息">{{user.awardNum}}</a>
+     <!--<a href="#" id="trigger" class="feedback">消息</a> -->
+    <a class="logout" href="/accounts/logout/">退出</a>
+    <a  href="/help/help_center.html" class="help" target="_blank">帮助</a>
+    <a class="settings" href="/settings/index/">设置/管理</a>
+</div>
+
+
+

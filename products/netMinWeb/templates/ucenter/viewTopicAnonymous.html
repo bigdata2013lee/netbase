@@ -1,0 +1,389 @@
+{% extends "public_base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/css/outsite/base.css" rel="stylesheet" />
+<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/media/css/base.css"/>
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+<link href="/media/ui/kendo/kendo.common.min.css" rel="stylesheet" />
+<link href="/media/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet" /> 
+<link href="/media/css/alertTip.css" rel="stylesheet" />
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#error_msg{ display:none; border:1px solid #F1710E; color:#CC1C0D; padding:0px  1em; margin-top:2em; 
+background-color: #FCE296; text-align: center;}
+#ucenter_left_menus{}
+#ucenter_left_menus li{
+    height: 30px;
+    line-height: 30px;
+
+}
+
+#ucenter_left_menus li a{
+    display:block;
+    width: 140px;
+    text-align:center;
+    margin:16px auto;
+    border: 1px solid #ccc;
+}
+
+
+div.topicBrief div.topic_header{
+    height:30px;
+    line-height:30px;
+}
+div.topicBrief div.topic_header .tags {
+    float: left;
+}
+
+div.topicBrief pre.ref_evt_msg{
+    border:1px #EBEBEB dashed ;
+}
+
+div.topicBrief div.topic_header .tags label.tag{
+    border: 1px solid  #ccc;
+    padding:2px 10px;
+    margin-right: 10px;
+}
+
+
+div.topicBrief div.topic_header .header_right {
+    float: right;
+    margin-right:1em;
+}
+
+div.topicBrief div.topic_bottom{
+    text-align: right;
+}
+
+div.topicBrief h3{
+    text-indent: 2em;
+}
+
+
+div.topicBrief  p.topic_content{
+    margin-left:2em;
+    text-indent: 2em;
+}
+
+
+.comment_user{
+    font: 16px;
+    color: #000000;
+    padding-right: 25px;
+}
+.comment_time{
+    font-size:12px;
+    color: #BBBBBB;
+}
+.comment_actions{
+    float:right;
+    margin-right:2em;
+    top: 0;
+}
+.comment_actions span{
+    padding:4px;
+    border:1px solid #ccc;    
+}
+div.comment_content{
+    text-indent: 2em;
+    max-width:800px;
+}
+
+div.comment_content img{
+    max-width: 800px;
+}
+.comment_list{
+    display:block;
+}
+
+.comment_header{
+    position:relative;
+}
+.comment_bottom{
+    float: right;
+    margin-right:2em;
+}
+#login_dilog li input{ border: 1px solid #CCCCCC; width: 280px; height: 30px; line-height: 30px; font-size:16px; }
+</style>
+{% endblock %}
+{% block extra_js %}
+ <script type="text/javascript" src="/media/ui/kendo/messages.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.min.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+ <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+ <script type="text/javascript" src="/media/js/validator.js"></script>
+ 
+ <script type="text/javascript" src="/media/ui/kendo/kendo.dataviz.min.js"></script>
+ <script type="text/javascript" src="/media/ui/kendo/kendo.web.min.js"></script>
+ <script type="text/javascript" src="/media/ui/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+ <script>kendo.culture("zh-CN");</script>
+         
+         
+<script src="/media/js/nbUiTools.js"></script>
+<script type="text/javascript" src="/media/js/netbaseRemoteUrls.js"></script>
+<script type="text/javascript" src="/media/js/nbRemote.js"></script>
+ <script type="text/javascript" src="/media/js/alertTip.js"></script>
+ <script type="text/javascript" src="/media/js/renderUtils.js"></script>
+ <script src="/media/js/baseWidget.js"></script>
+   
+<script src="/media/js/ucenter/viewTopic.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script src="/media/js/ucenter/search.js"></script>
+<script>
+    var checkInfo=function(){
+        var userInfo={};
+        $("#login_dilog input").each(function(){
+            var name = $(this).attr("name");
+            var val = $.trim($(this).val());
+            userInfo[name] = val;
+        })   
+        if(userInfo.username == "" ){
+                setErrorMsg("请填写用户名，您注册时使用的邮箱"); return false;
+        }else if(userInfo.password == "" ){
+                setErrorMsg("请填写密码"); return false;
+        }else if(userInfo.verifyCode==""){
+                setErrorMsg("请填写验证码");return false;
+        }else{
+                $("#error_msg").hide();return userInfo;
+        }
+    }
+    var login=function(){
+        userInfo=checkInfo();
+        $.post("/accounts/login/", {userInfo:$.toJSON(userInfo)}).success(function(msg){
+            if(msg=='0'){
+                nb.uiTools.closeEditDialogWin("#login_dilog");
+                window.location.reload(true); return;
+            }
+            setErrorMsg(msg);
+            changeVerifyCode();
+        })
+    };
+    
+    var changeVerifyCode=function(){
+        $("#verifyCodeImg").attr("src", "/getVerifyCode?xtime=" + new Date().valueOf());
+        $("input[name=verifyCode]").val("");
+    }
+    
+    var  setErrorMsg = function(msg){
+        $("#error_msg").html(msg).show();
+    }
+            
+    var __initPage__ = function(){
+        $("a[name=changeVerifyCode]").bind("click", function(){ changeVerifyCode(); });
+        $("#loginBtn").bind("click", function(){ if(checkInfo()) login(); });
+        $("#login_dilog input").bind("click", function(){ checkInfo()});
+        $("#login_dilog input").bind("keyup", function(evt){
+            if(evt.keyCode == 9) {
+                checkInfo();
+                return;
+            }
+            if(evt.keyCode==13){
+                if(checkInfo()) login();
+            }
+        });
+        
+    }
+    $(document).ready(function(){
+        __initPage__();
+        changeVerifyCode();
+    });
+</script>
+{% endblock %}
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+{% endblock %}}
+
+
+{% block content_block %}
+<div class="indexWidth">
+<div class="panel" id="search_panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="search_box" id="search_box">
+            <dl>
+                <dt>搜索问题：</dt>
+                <dd><input type="text" class="search_txt" name="search_txt"/> <input type="button" id="search_btn" class="try-kendo" value="搜索" /></dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>社区范围：</dt>
+                <dd>
+                    <label><input type="radio" value="question" name="search_field" checked="checked" />求助 </label> 
+                    <label><input type="radio" value="share" name="search_field" class="r_input"/>分享</label>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>区域设定：</dt>
+                <dd>
+                    <select name="province"></select>
+                    <select name="city"></select>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>类别设定：</dt>
+                <dd class="input_class">
+                    <div class="autoComplateWidget" id="autoComplateWidget">
+                       
+                        <div class="input_box">
+                            <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list">
+                        </ul>
+                    </div>
+
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div class="panel" id="search_results_panel" style="display:none;">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+        <div id="search_results"> </div>
+    </div>
+</div>
+
+<div class="panel" id="question_detail_panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+        <div class="topicBrief">
+            <div class="topic_header">
+                <div class="tags">
+                	{% if topic.fields %}
+	                    {% for tag in topic.fields %}
+	                        <label class="tag">{{ tag }}</label>
+	                    {% endfor %}
+                    {% endif %}
+                    {%if  topic.award.aType == "积分" or  topic.award.aType == "人民币" %}
+                        <label>悬赏：{{ topic.award.value }}{{ topic.award.aType }}</label>
+                    {%endif%}
+                </div>
+                <div class="header_right">
+                    {{topic.replyNum}}条评论 
+                    发表时间:{{topic.ctime|formatTime}} 
+                </div>
+            </div>
+            <h3>
+                {{topic.title}}
+            </h3>
+            <p class="topic_content">{% autoescape off %}{{topic.content}}{% endautoescape %}</p>
+            <div class="topic_bottom">
+                <a href="#" action="openCommentWin" topic_id="{{topic.getUid}}"  visiter_id="{{visiter}}">
+                    <button type="button" class="btn btn-info">评论</button>    
+                </a>
+                发布者:{{topic.publisher.username}} 
+            </div>
+            
+            <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        </div>
+         <div class="comment_actions">
+            <span class="approveNum"><a href="/ucenter/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=approveNum">支持度^</a></span>
+            <span class="ctime"><a href="/ucenter/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=ctime">最新时间^</a></span>
+       </div>
+       <br clear="both"/>
+        <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        
+        
+        <div class="commentList">
+            
+            {% for comment in commentList%}
+                <div class="comment_list">
+                    <div class="comment_header">
+                       <span class="comment_user">用户：{{comment.publisher.username}}</span>
+                       <span class="comment_time">时间：{{comment.ctime|formatTime}}</span>
+                       <div class="comment_actions">
+                            <span class="approve"><a href="javascript:" name="approve" action="approve" 
+                                comment_id="{{comment.getUid}}" topic_type="{{topicType}}">{{comment.approveNum}}  给力</a></span>
+                                {% if topicType == "Question" and not accetpComment %}
+                                    <span class="accept"><a href="javascript:" action="accept"  comment_id="{{comment.getUid}}" qid="{{topic.getUid}}">采纳</a></span>
+                                {%endif%}
+                                {% if topicType == "Question" and comment == accetpComment %}
+                                    <span class="accept">已采纳</span>
+                                {%endif%}
+                                <span class="report"><a href="javascript:" action="report" topic_type="{{topicType}}" 
+                                    comment_id="{{comment.getUid}}" topic_type="{{topicType}}">举报</a></span>
+                       </div>
+                    
+                    </div>
+                    <div class="comment_content">{% autoescape off %}{{comment.content}}{% endautoescape %}</div>
+                   
+                    <br clear="both"/>
+                </div>   
+                <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>                 
+             {% endfor %}
+             
+        </div> 
+        
+        <div class="pages_tools">
+            <a href="/ucenter/view{{topicType}}/{{topic.getUid}}/?pageNum=1&sort={{request.REQUEST.sort}}">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+            {%for p in pageInfos.plist%}
+            <a href="/ucenter/view{{topicType}}/{{topic.getUid}}/?pageNum={{p}}&sort={{request.REQUEST.sort}}">{{p}}</a>
+            {%endfor%}
+        </div>
+        <br clear="both"/>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="createComment_win" class="dialog_win">
+    <div>
+        <input type="hidden" name="topicType" value="{{topicType}}" />
+        <input type="hidden" name="topicId" value="{{topic.getUid}}" />
+        <textarea name="content" style="height:350px"></textarea>
+    </div>
+    <div class="win_opbar">
+        <button class="ok" name="topicTypeBtn">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+
+<div id="login_dilog" class="dialog_win">
+
+        <ul style="width: 600px; margin: 10px  auto;font-size:16px;">
+            
+            <li><label>用户名:</label><input name="username" class="inp" size="30"   placeholder="your email"/>
+                   
+            </li>
+            <li><label>密码:</label><input name="password" class="inp" size="30" type="password" /></li>
+            <li><label>验证码:</label><input name="verifyCode" class="inp" size="30" /></li>
+            <li>
+                <label>&nbsp;</label><img src="/getVerifyCode" id="verifyCodeImg"/>
+                <a href="#"  name="changeVerifyCode">看不清,换一张</a>
+            </li>
+            <li style="text-align: center;margin-top: 1em;"><button id="loginBtn" type="button" class="btn">
+                立即登陆</button>
+            </li>
+             <li style="text-align: center;margin-top: 1em;"><a href="/accounts/register.html/" name="registerLink">还无账号？猛击这里注册</a></li>            
+            <li >
+                <div id="error_msg">用户名或密码有误，请重新输入</div>
+            </li>
+            
+        </ul>
+
+</div>  
+{% endblock %}
+
+{% block bottom_block %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

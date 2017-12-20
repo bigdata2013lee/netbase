@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+<link href="/media/js/ucenter/showUser.css" rel="stylesheet" />
+<link href="/media/css/topic.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=0; var nb_secNav =2;</script>
+<script>
+    window.prefixName="/operation";
+    window.topicType="Question";
+</script>
+<script src="/media/js/ucenter/viewTopic.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script src="/media/js/ucenter/search.js"></script>
+
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/customerLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+    
+<div class="panel" id="search_panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="search_box" id="search_box">
+            <input type="radio" value="question" name="search_field" checked="checked" style="display: none;" />
+            <dl>
+                <dt>搜索问题：</dt>
+                <dd><input type="text" class="search_txt" name="search_txt"/> <input type="button" id="search_btn" class="try-kendo" value="搜索" /></dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>区域设定：</dt>
+                <dd>
+                    <select name="province"></select>
+                    <select name="city"></select>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl>
+                <dt>类别设定：</dt>
+                <dd class="input_class">
+                    <div class="autoComplateWidget" id="autoComplateWidget">
+                       
+                        <div class="input_box">
+                            <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list">
+                        </ul>
+                    </div>
+
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div class="panel" id="search_results_panel" style="display:none;">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+        <div id="search_results"> </div>
+    </div>
+</div>
+
+<div class="panel" id="question_detail_panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+    	    	
+        <div class="topicBrief">
+            <div class="topic_header">
+                <div class="user" style="float:left; margin-right:2em; ">
+                    <img name="user_icon" user_id="{{topic.publisher.getUid}}"  src="{{topic.publisher.icon|defaultIcon}}" user_type="User" style="width: 60px;height: 60px;"/>
+                </div>
+                
+                <div class="tags">
+                	{% if topic.fields %}
+	                    {% for tag in topic.fields %}
+	                        <label class="tag"><a href="/ucenter/abouteFiled/?filed={{tag|urlencode}}&topicType={{topicType}}">{{ tag }}</a></label>
+	                    {% endfor %}
+                    {% endif %}
+                    {%if  topic.award.aType == "积分" or  topic.award.aType == "人民币" %}
+                        <label>悬赏：{{ topic.award.value }}{{ topic.award.aType }}</label>
+                    {%endif%}
+                </div>
+                <div class="header_right">
+                    {{topic.replyNum}}条评论  
+                    发表时间:{{topic.ctime|formatTime}} 
+                </div>
+                <div style="margin: 40px 0px 0px 80px;"><h3>
+                    {{topic.title}}
+                </h3></div>
+            </div>
+            <div class="topic_content"><p>{{topic.content}}</p></div>
+            <div class="topic_bottom">
+               	 发布者:{{topic.publisher.titleOrUid|getName}}
+                <span class="reply"><a href="#" action="openCommentWin" topic_id="{{topic.getUid}}">评论</a></span> | 
+                <span><a href="javascript:" action="addFavoriteCustomer" customer_id="{{topic.publisher.getUid}}">收藏用户信息</a></span>
+            </div>
+            
+            <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        </div>
+		
+		<div class="comment_actions">
+			<span class="approveNum"><a href="/operation/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=approveNum">支持度^</a></span>
+			<span class="ctime"><a href="/operation/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=ctime">最新时间^</a></span>
+		</div>		
+		<br clear="both"/>
+		<div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        
+        <div class="commentList">
+            {% for comment in commentList%}
+                <div class="comment_list">
+                    <div class="comment_header">
+                       <img name="user_icon" user_id="{{comment.publisher.getUid}}" user_type="User"  src="{{comment.publisher.icon|defaultIcon}}" style="width: 36px;height: 36px;"/>
+                       <span class="comment_user">{{comment.publisher.titleOrUid|getName}}</span>
+                       <span class="comment_time">时间：{{comment.ctime|formatTime}}</span>
+                       <div class="comment_actions">
+	                        <span class="approve"><a href="javascript:" name="approve" action="approve" comment_id="{{comment.getUid}}">{{comment.approveNum}}  给力</a></span>
+	                        <span class="report"><a href="javascript:" action="report" comment_id="{{comment.getUid}}">举报</a></span>
+                       </div>                    
+                    </div>
+                    <div class="comment_content"><p>{% autoescape off %}{{comment.content}}{% endautoescape %}</p></div>                   
+                    <br clear="both"/>
+                </div>                                   
+             {% endfor %}             
+        </div> 
+        
+        <div class="pages_tools">
+            <a href="/operation/viewQuestion/{{topic.getUid}}/?pageNum=1&sort={{request.REQUEST.sort}}">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+            {%for p in pageInfos.plist%}
+            <a href="/operation/viewQuestion/{{topic.getUid}}/?pageNum={{p}}&sort={{request.REQUEST.sort}}">{{p}}</a>
+            {%endfor%}
+        </div>
+        <br clear="both"/>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="createComment_win" class="dialog_win">
+    <div>
+        <input type="hidden" name="topicId" value="{{topic.getUid}}" />
+        <textarea name="content" style="height:350px" ></textarea>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+        
+</div>
+{% endblock %}
+

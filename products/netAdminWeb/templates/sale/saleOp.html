@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+  
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/sale/saleOp.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="left-menus">
+    <li><a href="/sale/customers">客户清单</a></li>
+    <li><a href="/sale/rechargeRecord">充值记录</a></li>
+    <li><a href="/sale/saleOp">销售操作记录</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="saleOpRecordWidget" class="panel">
+    <div class="panelTitle">操作记录</div>
+    <div class="panelContent">
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+{% endblock %}
+
+{% block other_extend_block %}
+
+{% endblock %}
+

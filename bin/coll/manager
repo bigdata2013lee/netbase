@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+C=
+C="$C redis"
+C="$C netAnalysis"
+C="$C netping"
+C="$C netperfsnmp"
+C="$C netboot"
+C="$C netprocess"
+C="$C netTcpServer"
+C="$C netcommand"
+C="$C netstatus"
+C="$C netcollect"
+C="$C netcptserver"
+C="$C netperfwmi"
+
+CMDS=$C
+reverse() {
+    args=
+    for i
+    do
+       args="$i $args"
+       shift
+    done
+    echo $args
+}
+
+FUNC=$CMD
+
+issue() {
+    HUBCODE=4
+    for cmd in $CMDS
+    do
+        echo -n "Daemon: $cmd "
+        $NBHOME/bin/coll/$cmd "$FUNC"
+	sleep 2
+    done
+    return $HUBCODE
+}
+
+case "$FUNC" in
+  start)
+        issue
+        ;;
+  stop)
+        CMDS=`reverse $CMDS`
+        issue
+        ;;
+  restart)
+        CMDS=`reverse $CMDS`
+	FUNC=stop
+	issue
+        CMDS=`reverse $CMDS`
+	FUNC=start
+        issue
+        ;;
+  status)
+        issue
+        ;;
+  list)
+	for i in $CMDS
+	do
+	    echo $i
+	done
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|status|list}"
+        exit 1
+esac
+exit $?

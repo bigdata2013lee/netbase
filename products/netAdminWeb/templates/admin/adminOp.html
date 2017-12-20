@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+  
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/adminOp.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="left-menus">
+    <li><a href="/admin/recharge">代审核的充值记录</a></li>
+    <li><a href="/admin/allRecharge">所有的充值记录</a></li>
+    <li><a href="/admin/adminOp">管理员操作记录</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="adminOpRecordWidget" class="panel">
+    <div class="panelTitle">操作记录</div>
+    <div class="panelContent">
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+{% endblock %}
+
+{% block other_extend_block %}
+
+{% endblock %}
+

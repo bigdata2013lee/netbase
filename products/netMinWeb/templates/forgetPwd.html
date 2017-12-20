@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>网脊运维通，全新一代免费SaaS运维监控平台</title>
+    <link href="/media/css/login.css" rel="stylesheet" type="text/css" />
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+    <style>
+     
+        div.error_message{
+            border:1px solid #FFD1A4;
+            border-radius:4px;
+            background-color:#FFF5EC;
+            height: 30px; line-height: 30px;
+            display: none;
+        }
+        
+        #forgetPwdSuccessWin{
+            width: 560px;
+            margin: 10px auto;
+        }
+        
+        #toEmailFindPwdWin {
+            width: 560px;
+            margin: 10px auto;
+        }
+        #expireTimeWin {
+            width: 560px;
+            margin: 10px auto;
+        }
+        
+       
+        #fromEmailPageWin {
+            width: 560px;
+            margin: 10px auto;
+        }
+       
+        #forgetPwdSuccessWin h3{
+            background: url(/media/images/confirmation.png) no-repeat;
+            height: 48px; line-height: 48px;
+            padding: 0 0 0 68px;
+            font-size: 24px;
+        }
+        
+        
+          #expireTimeWin h3{
+            background: url(/media/images/confirmation.png) no-repeat;
+            height: 48px; line-height: 48px;
+            padding: 0 0 0 68px;
+            font-size: 24px;
+        }
+        
+        #toEmailFindPwdWin h3{
+            background: url(/media/images/confirmation.png) no-repeat;
+            height: 48px; line-height: 48px;
+            padding: 0 0 0 68px;
+            font-size: 24px;
+        }
+        
+        #main0905 {
+            background-color: #FFF;
+        }
+        
+        #main0905 .box{
+            margin: 10px auto;
+            width:980px;
+            height: 300px;
+            border:1px solid #D6D6D6;
+            background: #fff;
+            padding:1em;
+            line-height: 22px;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        
+        #main0905 .box h2{margin:0; padding:8px; font-size: 18px; font-weight: bold;color:#FF6600;}
+        #main0905 .box li{
+            margin: 14px;
+        }
+        
+        #main0905 .box li label{
+            font-size: 14px;
+            display: inline-block;
+            text-align: right;
+            width: 150px;
+            /**height: 30px; line-height: 30px;*/
+        }
+        #main0905 .box .input_x1,#main0905 .box .input_x0{
+             height:30px; line-height: 30px;
+             border: 1px solid #CCCCCC;
+             background-color:#FAFAFA;
+             border-radius: 2px;
+        }
+         #main0905 .box .input_x1{
+             width: 330px; 
+         }
+         #main0905 .box .input_x0{
+             width: 100px; 
+         }
+    </style>
+    <script src="/media/js/jquery.min.js"></script>
+    <script src="/media/js/jquery.json-2.2.min.js"></script>
+    <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+    <script>
+        var changeVerifyCode = function(){$("#verifyCodeImg").attr('src', "/getVerifyCode?stime=" + (new Date()).valueOf());}
+        $(document).ready(function(){
+            var getInputVal = function(name){
+                var input = $("#forgetForm").find("input[name="+name+"]");
+                var val = input.val();
+                val = $.trim(val);
+                input.val(val);
+                return val;
+            };
+            var setErrorMessage = function(msg){
+                $("div.error_message").html(msg).show();
+            };
+            
+            $("#forgetForm").bind("submit", function(){
+                var username = getInputVal("username");
+                var verifyCode = getInputVal("verifyCode");
+                if(username == ""){
+                    setErrorMessage("请输入帐号");
+                    return false;
+                }
+                if(verifyCode == ""){
+                    setErrorMessage("请输入验证码");
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            $("#fromEmailPageWin").bind("submit", function(){
+                var password = $("#fromEmailPageWin input[name=password]").val();
+                var compPassword = $("#fromEmailPageWin input[name=compPassword]").val();
+                if(password == ""){
+                    setErrorMessage("请输入新密码！");
+                    return false;
+                }
+                if(password != compPassword){
+                    setErrorMessage("确认密码与新密码不一致！");
+                    return false;
+                }
+                
+               return true;
+            });
+        });
+    </script>
+</head>
+
+<body>
+{% include "base_include/header.html" %}
+    
+    <div id="main0905">
+          <div class="box">
+              <h2>找回密码</h2>
+              {%if not rs%}
+              <form id="forgetForm" method="post" action="/accounts/forgetPwd/">
+                  <p>
+                      <br/>
+                      如果您忘记了您的帐户密码，请在下面输入您的账号，按照我们的操作提示，我们将把您的密码发送到您注册信息里的邮箱中，<br/>
+                      您可以查收您的邮箱找回密码。如果您忘记了您在注册信息里的邮箱，请电话联系：400-6352-500 核对注册信息。
+                  </p>
+                  <ul>
+                      <li>
+                          <label>账号：</label>
+                          <span><input name="username" class="input_x1" /></span>
+                      </li>
+                      <li>
+                          <label>验证码：</label>
+                          <span>
+                                <input name="verifyCode" class="input_x0" /> <img id="verifyCodeImg" src="/getVerifyCode?stime={{stime}}" />
+                                <a href="javascript:changeVerifyCode()">看不清楚？换张图片</a>
+                          </span>
+                      </li>
+                      <li>
+                          <label> </label>
+                          <span><input type="submit" value="找回密码" style="height: 38px; width:120px;" class="btn" /></span>
+                      </li>
+                      <li>
+                          
+                          <div class="error_message" {%if error_message%}style="display: block"{%endif%}>{{error_message}}</div>
+                          
+                      </li>
+                  </ul>
+              </form>
+              {%endif%}
+              
+              {%if rs == "success" %}
+              
+                <div id="forgetPwdSuccessWin">
+                    <h3>成功为你创建新密码，请记住新密码！</h3>
+                    <p>请进入您的收件箱查看新密码，进入系统后，我们建议你重新修改密码！</p>
+                    <img id="verifyCodeImg" src="/getVerifyCode?stime={{stime}}"  style="display: none" />
+                </div>
+              {%endif%}
+              
+              {%if rs == "toEmailFindPwd" %}
+              <div id="toEmailFindPwdWin">
+                   <h3>已成功发送邮件到 <span style="color: #f60;font-size: 16px;font-weight: bold;">{{email}}</span>， 请登陆你的邮箱，接收密码邮件，如果未收到相关邮件，请稍后再试.</h3>
+                    <img id="verifyCodeImg" src="/getVerifyCode?stime={{stime}}"  style="display: none" />
+              </div>
+              
+              {%endif%}
+              
+             {%if rs == "expireTime" %}
+              <div id="expireTimeWin">
+                   <h3>此链接已失效！</h3>
+              </div>
+              
+              {%endif%}
+              
+              
+              {%if rs == "fromEmailPage" %}
+              <form id="fromEmailPageWin" method="post" action="/accounts/forgetPwd/resetPwd/">
+                    <input type="hidden" name="userId" value="{{infos.userId}}"/>
+                    <input type="hidden" name="code" value="{{infos.code}}"/>
+                    
+                    <ul>
+                      <li>
+                          <label>新密码：</label>
+                          <span><input name="password" class="input_x1"  type="password" /></span>
+                      </li>
+                       <li>
+                          <label>确定密码：</label>
+                          <span><input name="compPassword" class="input_x1"  type="password" /></span>
+                      </li>
+                      <li>
+                          <label> </label>
+                          <span><input type="submit" value="提交" style="height: 38px; width:120px;" /></span>
+                      </li>
+                      <li>
+                          
+                          <div class="error_message" {%if error_message%}style="display: block"{%endif%}>{{error_message}}</div>
+                          
+                      </li>
+                  </ul>
+            </form>
+              
+              {%endif%}
+          </div>
+    </div>
+    
+    
+	{% include "base_include/copyright.html" %}
+
+</body>
+</html>

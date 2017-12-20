@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+	tr.odd{background-color: #FAFAFA;}
+	
+
+	
+	#panel_0003 div.box{height: 300px;}
+	#panel_0004 div.box{height: 300px;}
+	
+	#panel_0006 div.box{height:200px;}
+	#panel_0006 div.panelContent{ max-height: 400px; overflow: auto;}
+	
+	.nested_tr table{background: #F3F9FC;}
+	
+	tr.main_tr:hover, tr.main_tr.odd:hover{
+	    background-color: #81C2F3;
+	}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/website/websiteClsTree.js"></script>
+<script src="/media/js/website/website_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min" style="max-height: 600px;overflow: auto;">
+	<div id="website_tree"> </div>
+</div>
+
+<div class="panel_min" id="summaryWidget">
+    <script name="template" type="text/x-kendo-template">
+        你共监控了#=allMosCount#个站点，<br />运行良好的站点#=normalMosCount#个，
+        #=issueMosCount#个站点出现问题,#=unknownMosCount#个站点未知,<br />整体运行状态#=status#. <br/>
+        综合评分:<em style="font-size: 28px; color:#=statusColor# ">#=avgScore#</em>
+    </script>
+    <span style="padding-left:1em;font-weight: bold">概要：</span>
+    <div style="padding-left: 2em;" class="box"> </div>
+    
+</div>
+
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="coumn first">
+	<div id="panel_0001" class="panel">
+	    <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="web_index_webAvail"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+	    <div class="panelTitle">站点可用性</div>
+	    <div class="panelContent">
+            <script name="template" type="text/x-kendo-template">
+                <tr class="main_tr">
+                    <td>#= hostName #</td>
+                    <td title="所有收集点可用性平均值">#= nb.Render.percent(availability, '%')#</td>
+                    <td title="站点状态:\n所有收集点状态未知，则站点状态未知;\n收集点其中之一正常，则站点状态正常;\n收集点存在异常,无一正常，则站点状态异常">
+                    <span class='status-icon-small #=status#'></span></td>
+                </tr>
+                
+                <tr class="nested_tr" style="display:none;">
+                    <td colspan="10" style="padding: 0">
+                        <table style="width: 100%;border-collapse:collapse;font-size: 10px;">
+                        #for(i=0;i<data.details.length;i++){#
+                                #var cpt = data.details[i];#
+                            <tr>
+                               <td style="padding-left:2em;">#=cpt.cptTitle#</td>
+                               <td style="width:100px;" title="收集点可用性">#= nb.Render.percent(cpt.cptAvailability, '%')#</td>
+                               <td style="width:40px;" title="收集点状态"><span class='status-icon-small #=cpt.cptStatus#'></span></td>
+                            </tr>
+                        #}#
+                        </table>
+                    </td>
+                </tr>
+                
+            </script>
+	       <table style="width: 100%;border-collapse:collapse;">
+	       		<thead><tr><td>站点</td><td style="width:100px;">可用性</td><td style="width:40px;">状态</td></tr></thead>
+	       		<tbody> </tbody>
+	       </table>
+	    </div>
+	</div>
+	
+	<div id="panel_0002" class="panel lastEvents">
+	    <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="web_index_newEvent"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+	    <div class="panelTitle">最近事件</div>
+	    <div class="panelContent">
+            <script name="template" type="text/x-kendo-template">
+                <tr>
+                    <td><span class="severity-icon-small #= nb.Render.severitys(severity)#"></span></td>
+                    <td style="vertical-align: top;">#= title #</td>
+                    <td title="#=message#">#=nb.Render.ellipsisStr(message, 80)# </td>
+                    <td width="110px">#= nb.xutils.getTimeStr(endTime * 1000) #</td>
+                </tr>
+            </script>
+	       <table style="width: 100%">
+	           <thead><td> </td><td>标题</td><td>事件摘要</td><td style="width: 110px;">最后时间</td>
+	       	   <tbody> </tbody>
+	       </table>
+	    </div>
+	</div>
+	
+
+
+    <div id="panel_0005" class="panel">
+        <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_ResponesTime"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+        <div class="panelTitle">平均响应时间与当前响应时间</div>
+        <div class="panelContent" style="max-height: 400px;overflow: auto;">
+            <script name="template" type="text/x-kendo-template">
+                <tr class="main_tr">
+                    <td>#= hostName #</td>
+                    <td title="最大的收集点平均响应">#=nb.Render.toNum2(avgValue, 'ms', 1000) #</td>
+                    <td title="最大的收集点平均响应对应的当前响应">#=nb.Render.toNum2(lastValue, 'ms', 1000) #</td>
+                </tr>
+                
+                <tr class="nested_tr" style="display:none;">
+                    <td colspan="10" style="padding: 0">
+                        <table style="width: 100%;border-collapse:collapse;font-size: 10px;">
+                        #for(i=0;i<data.details.length;i++){#
+                                #var cpt = data.details[i];#
+                            <tr>
+                               <td style="padding-left:2em;">#=cpt.cptTitle#</td>
+                               <td style="width: 100px;">#=nb.Render.toNum2(cpt.cptAvgValue, 'ms', 1000) #</td>
+                               <td style="width: 100px;">#=nb.Render.toNum2(cpt.cptLastValue, 'ms', 1000) #</td>
+                            </tr>
+                        #}#
+                        </table>
+                    </td>
+                </tr>
+            </script>
+           <table style="width: 100%;border-collapse:collapse;">
+                <thead><tr><td>站点</td><td style="width: 100px;">平均响应</td><td style="width: 100px;">当前响应</td></tr></thead>
+                <tbody> </tbody>
+           </table>
+        </div>
+    </div>
+    
+    
+</div><!-- end coumn -->
+
+<div class="coumn sec">
+	<div id="panel_0004" class="panel">
+	    <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_webResponesTimeTop10"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+	    <div class="panelTitle">站点响应时间top10<span style="color:#b4b4b4">(一定时间段内响应时间最长的网站前十名)</span></div>
+	    <div class="panelContent">
+	       <div class="timeRangeBar">
+	       		<span value="3600" class="selected">小时</span>
+		       	<span value="86400">天</span>
+		       	<span value="604800">周</span>
+	       	</div>
+	       	<div class="box"> </div>
+	    </div>
+	</div>
+	
+    <div id="panel_0003" class="panel">
+        <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_webAvailMap"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+        <div class="panelTitle">可用性走势图 <span style="color:#b4b4b4">(一定时间段内无法访问次数最多的网站前十名)</span></div>
+        <div class="panelContent">
+           <div class="timeRangeBar">
+                <span value="3600" class="selected">小时</span>
+                <span value="86400">天</span>
+                <span value="604800">周</span>
+            </div>
+            <div class="box"> </div>
+        </div>
+    </div>
+	
+</div><!-- end coumn -->
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

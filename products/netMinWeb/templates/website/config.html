@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+	tr.odd{background-color: #FAFAFA;}
+	#mright-panel{background:url(/media/images/tisi.jpg) 20px 0px no-repeat;}
+	#mright-panel div.panel{background-color: #FFFFFF;}
+
+.box li{
+    height: 30px;
+    line-height: 30px;
+}
+.box li label{
+    display: inline-block;
+    width:150px;
+    text-align: right;
+    margin-right: 4px;
+    color: #0363A0;
+}
+.panelContent .op_bar{
+    text-align: right;
+    border-bottom: 1px solid #F4F4F4;
+    padding-right: 1em;
+}
+
+#editWebsiteWidget select, #addWebsiteWidget select{
+    width:150px;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/website/websiteClsTree.js"></script>
+<script src="/media/js/website/config.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block mbottom-panel  %}
+{% include "expired_overlayer.html" %}
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min psbar" style="max-height: 400px;">
+	<div id="website_tree"> </div>
+	<br/>
+</div>
+
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="addWebsiteWidget" class="panel swich">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="web_config_add"> </a>
+    </div>
+    <div class="panelTitle"> 添加站点组件</div>
+    <div class="panelContent">
+        <div class="op_bar"><a href="javascript:" name="save">保存</a></div>
+        <div class="box">
+            <li>
+                <label>标题:</label><input data-bind="value:title"/>
+                <label>描述:</label><input data-bind="value:description"/>
+            </li>
+            <li>
+                <label>区分大小写:</label><select data-bind="source:booleans,value:caseSensitive" data-text-field="text" data-value-field="val"></select>
+                <label>重定向IP:</label><input data-bind="value:onRedirect" />
+            </li>
+            <li>
+                <label>域名:</label><input data-bind="value:hostName" />
+                <label>主机IP地址:</label><input data-bind="value:ipAddress"/>
+             </li>
+            <li>
+                <label>http用户名:</label><input data-bind="value:httpUsername"/>
+                <label>http密码:</label><input data-bind="value:httpPassword" type="password"/>
+            </li>
+            
+            <li>
+                <label>url:</label><input data-bind="value:url" />
+            </li>
+            <li>
+                <label>端口:</label><input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value:port"/>
+                <label>超时:</label><input data-role="numerictextbox" min="1" max="30" data-format="# 秒" data-bind="value:timeout" />
+            </li>
+            
+            
+            <li>
+                <label>正则:</label><input data-bind="value:regex"/>
+                <label>正则取反:</label><select data-bind="source:booleans,value:invert" data-text-field="text" data-value-field="val"></select>
+            </li>
+            
+            <li>
+                <label>是否使用SSL:</label><select data-bind="source:booleans,value:useSsl" data-text-field="text" data-value-field="val"></select>
+                <label>尝试次数:</label><input data-role="numerictextbox" min="1" max="10" data-format="#" data-bind="value:tryCount"/>
+            </li>
+            
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+<div id="editWebsiteWidget" class="panel swich">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="web_config_edit"> </a>
+    </div>
+    <div class="panelTitle"> 站点信息 </div>
+    <div class="panelContent">
+        <div class="op_bar">
+            <a href="javascript:" name="save">保存</a> | 
+            <a href="javascript:" name="configThreshold">阀值配置</a>
+        </div>
+        <div class="box">
+            <li>
+                <label>标题:</label><input data-bind="value:title"/>
+                <label>描述:</label><input data-bind="value:description"/>
+            </li>
+            <li>
+                <label>区分大小写:</label><select data-bind="source:booleans,value:caseSensitive" data-text-field="text" data-value-field="val"></select>
+                <label>重定向IP:</label><input data-bind="value:onRedirect" />
+            </li>
+            <li>
+                <label>域名:</label><input data-bind="value:hostName" />
+                <label>主机IP地址:</label><input data-bind="value:ipAddress"/>
+             </li>
+            <li>
+                <label>http用户名:</label><input data-bind="value:httpUsername"/>
+                <label>http密码:</label><input data-bind="value:httpPassword" type="password" />
+            </li>
+            
+            <li>
+                <label>url:</label><input data-bind="value:url" />
+            </li>
+            <li>
+                <label>端口:</label><input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value:port"/>
+                <label>超时:</label><input data-role="numerictextbox" min="1" max="30" data-format="# 秒" data-bind="value:timeout" />
+            </li>
+            
+            
+            <li>
+                <label>正则:</label><input data-bind="value:regex"/>
+                <label>正则取反:</label><select data-bind="source:booleans,value:invert" data-text-field="text" data-value-field="val"></select>
+            </li>
+            
+            <li>
+                <label>是否使用SSL:</label><select data-bind="source:booleans,value:useSsl" data-text-field="text" data-value-field="val"></select>
+                <label>尝试次数:</label><input data-role="numerictextbox" min="1" max="10" data-format="#" data-bind="value:tryCount"/>
+            </li>
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+<div id="addWebsiteClsWidget" class="panel swich">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="web_config_webCls"> </a>
+    </div>
+    <div class="panelTitle"> 添加站点类组件 </div>
+    <div class="panelContent">
+        <div class="op_bar"><a href="javascript:" name="save">保存</a></div>
+        <div class="box">
+            <li>
+                <label>名称(英文):</label><input data-bind="value:uname"/>
+            </li>
+            <li>             
+                <label>标题:</label><input data-bind="value:title"/>
+            </li>
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="tree_op_bar">
+    <div class="box" for_type="Website">
+        <a href="javascript:" name="delWebsite"><span class="icon delete x16"></span>删除站点</a>
+    </div>
+    
+   <div class="box" for_type="WebSiteClass">
+        <a href="javascript:" name="addWebsiteCls"  for_root="1" style="display: none;" title="添加站点分类"><span class="icon addDir x16"></span>添加分类</a>
+        <a href="javascript:" name="addWebsite" title="添加站点"><span class="icon addWebsite x16"></span>添加站点</a>
+        <a href="javascript:" name="rename" for_root="0" title="重命名"><span class="icon edit x16"></span>重命名</a>
+        <a href="javascript:" name="deleteCls" for_root="0" title="删除"><span class="icon delete x16"></span>删除</a>
+    </div>
+</div>
+
+<div id="thresholdConfigWin" class="dialog_win">
+    <div class="op_bar">
+        <a class="help tool_tip" tipid="thresholdConfig" name="help_action" href="javascript:"> </a>
+        <a name="save" href="javascript:">保存</a>
+    </div>
+    <div class="box thresholdConfig"></div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,48 @@
+            span.process_bar{
+                padding:0;
+                font-size:10px;
+                width:160px; height:14px; line-height:14px;
+                background:#eee;
+                border:1px solid #ccc;
+                display:inline-block;
+                text-align:center;
+                border-radius: 2px;
+            }
+
+            span.process_bar div.inner{
+                width:120px;height:14px;
+                float:left;
+            }
+            
+            span.process_bar div.inner .p{
+                margin:0px;
+                height:14px;line-height:14px;
+                background-color:#0066cc;
+                float:left;
+            }
+            
+            span.aa.process_bar div.inner .p{
+                background-color:#00cc00;
+            }
+            
+            span.bb.process_bar div.inner .p{
+                background-color:#0066ff;
+            }
+            
+            span.cc.process_bar div.inner .p{
+                background-color:#ffcc00;
+            }
+            
+            span.dd.process_bar div.inner .p{
+                background-color:#FF2F2F;
+            }
+            
+            span.process_bar  div.text{
+                background-color:#fff;
+                width:39px;
+                overflow:hidden;
+                height:14px;line-height:14px;
+                border-left:1px solid #ccc;
+                float:right;
+            }
+            

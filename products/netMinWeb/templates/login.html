@@ -1,0 +1,114 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+	#login_warp{ height: 500px; }
+	#login_warp h3{ font-size: 24px; padding:1em; text-align: center; }
+	#login_warp h3 .cn{ color:#D70C19; }
+	#login_warp li{ line-height: 40px; font-size: 16px; }
+	#login_warp li label{ display: inline-block; width: 100px; text-align: right; margin-right: 1em; color:#0A78DE; }
+	#login_warp li input{ border: 1px solid #CCCCCC; width: 280px; height: 30px; line-height: 30px; font-size:16px; }
+	#login_warp li input.inp{ color:#0A78DE; }
+	#loginBtn{width:380px;}
+	#error_msg{ display:none; border:1px solid #F1710E; color:#CC1C0D; padding:0px  1em; margin-top:2em; 
+	background-color: #FCE296; text-align: center;}
+	
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+<script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+<script>
+	var login=function(){
+		var userInfo={};
+		$("#login_warp input").each(function(){
+			var name = $(this).attr("name");
+			var val = $.trim($(this).val());
+			userInfo[name] = val;
+		})
+		
+		if(userInfo.username == ""){
+				setErrorMsg("请填写用户名，您注册时使用的邮箱"); return;
+		}
+		
+		if(userInfo.password == ""){
+				setErrorMsg("请填写密码"); return;
+		}
+		
+		$.cookie("rememberUsername",userInfo.username, {expires:7}); 
+		$.post("/accounts/login/", {userInfo:$.toJSON(userInfo)}).success(function(msg){
+			if(msg=='0'){
+				window.location.href="/monitor/index/"; return;
+			}
+			setErrorMsg(msg);
+			changeVerifyCode();
+		})
+	};
+	
+    var changeVerifyCode=function(){
+        $("#verifyCodeImg").attr("src", "/getVerifyCode/?xtime=" + new Date().valueOf());
+        $("input[name=verifyCode]").val("");
+    }
+    
+    var  setErrorMsg = function(msg){
+        $("#error_msg").html(msg).show();
+    }
+        	
+    var __initPage__ = function(){
+		$("a[name=changeVerifyCode]").bind("click", function(){ changeVerifyCode(); });
+		$("#loginBtn").bind("click", function(){ login(); });
+		$("#login_warp input").bind("keyup", function(evt){
+			if(evt.keyCode != 13) return;
+			login();
+		});
+        
+    }
+	$(document).ready(function(){
+		__initPage__();
+		var rememberUsername = $.cookie("rememberUsername");
+		$("input[name=username]").val(rememberUsername);
+		changeVerifyCode();
+		
+		
+	});
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+	
+
+<div id="login_warp">
+	<div class="indexWidth">
+		<h3>Login System / <span class="cn">登陆系统</span> </h3>
+		<ul style="width: 470px; margin: 10px  auto;">
+			
+			<li><label>用户名:</label><input name="username" class="inp" placeholder="your email"/></li>
+			<li><label>密码:</label><input name="password" class="inp" type="password" /></li>
+			<li><label>验证码:</label><input name="verifyCode" class="inp" /></li>
+			<li>
+				<label>&nbsp;</label><img src="" id="verifyCodeImg"/>
+				<a href="javascript:" style="font-size:12px;" name="changeVerifyCode">看不清,换一张</a>
+			</li>
+			<li style="text-align: center;margin-top: 1em;"><button id="loginBtn" type="button" class="btn">立即登陆</button></li>
+			<li>
+				<div style="color:#0092CE;text-align: center;font-size: 12px;">演示帐号:demo@safedragon.com.cn  密码:demo  <a href="/accounts/forgetPwd/">忘记密码?</a></div>
+			</li>
+			<li>
+				<div id="error_msg">用户名或密码有误，请重新输入</div>
+			</li>
+			
+		</ul>
+	</div>
+</div>	
+
+
+{% include "base_include/copyright.html" %}
+
+{% endblock %}

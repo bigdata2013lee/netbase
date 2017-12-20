@@ -1,0 +1,93 @@
+thead th{
+    text-align: left;
+    color: #06609C;
+}
+    
+#left-menus li{
+    height: 22px;
+    line-height: 22px;
+    padding-left:2em;
+}
+    
+.panelContent .box td *{
+    vertical-align: top;
+}
+.panelContent .box td label{
+    display: inline-block; width: 100px;
+    text-align: right;
+    color:#04629F;
+    margin-right:1em;
+}
+tr.dialog_item.odd{
+    background-color:#DBEAF5;
+}
+#servicesDetailWidget .panelContent .box td span{
+    display: inline-block; width: 200px;
+}
+
+tr.dialog_item{
+    border-bottom: 1px solid #00246B;
+}
+
+#serviceNoteDialogsWidget .msg_header{font-size: 14px; background-color: #F4F4F4;padding:4px;}
+#serviceNoteDialogsWidget .msg_header .time{float:right;}
+#serviceNoteDialogsWidget .msg_content{
+    word-break:break-all;
+    min-height: 50px;
+}
+
+
+
+#serviceNoteDialogsWidget .send_msg_box{
+    margin-top:2em;
+    position: relative;
+}
+
+
+#serviceNoteDialogsWidget .buttons{
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+#serviceNoteDialogsWidget .chart_td_box{
+    border-radius: 10px 10px 10px 10px;border:1px solid #F4F4F4;
+}
+
+
+#serviceNoteDialogsWidget .attachments{
+    float:right; width:300px;
+}
+#serviceNoteDialogsWidget .attachments a{ display: inline-block; width: 250px; margin: 4px;}
+#serviceNoteDialogsWidget .attachments a:hover{
+    font-weight: bold;
+}
+
+
+div.query_tool_bar{position: relative;margin: 20px 0px;}
+div.query_tool_bar label{
+    display: inline-block; width: 60px; text-align: right; margin-right: 1em;
+}
+div.query_tool_bar div.buttons{position: absolute; top:0px;right: 4px;}
+
+
+
+#servicesDetailWidget pre{
+    margin-left: 100px;
+}
+
+.data_table{margin-bottom: 20px;}
+.data_table span {display:inline-block;line-height: 20px;}
+.pages_tools{font-size:14px;}
+.pages_tools a{min-width: 30px;display: inline-block;text-align: center;border: 1px solid rgb(216, 214, 214);}
+.data_table thead tr th span:hover{cursor:pointer;} 
+
+.updownImg{width: 16px;height: 16px;margin-bottom: -2px;margin-left: 5px;background-size: 16px 16px;display: inline-block;}
+.upImg{background-image: url("/media/css/icons/up.png");}
+.downImg{background-image: url("/media/css/icons/down.png");}
+
+   
+
+
+
+
+

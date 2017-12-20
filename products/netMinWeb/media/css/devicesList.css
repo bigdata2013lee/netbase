@@ -1,0 +1,27 @@
+#mleft-panel div.panel_min{
+	padding:8px 8px 8px 8px;
+}
+
+#mleft-panel div.panel_min.first{
+	background: url();
+}
+#device_class_list li{
+	cursor:pointer;
+	height: 32px;
+	line-height: 32px;
+}
+#device_class_list li.rootNode{ padding-left: 1em; font-weight: bold;}
+#device_class_list li.secNode{ padding-left: 2em;}
+#device_class_list li:hover{
+	color: #0667A5;
+}
+
+#device_class_list li.selected{
+	color: #0667A5;
+	background: url(/media/images/li_selected_hover.jpg) no-repeat;
+}
+
+
+
+div.enterDetail{text-align: right; padding:  1em;}
+

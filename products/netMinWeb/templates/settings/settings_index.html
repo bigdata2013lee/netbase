@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/left_item_menu.css" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#user_left_menus li{
+    height: 25px;
+    line-height: 25px;
+    padding-left:1em;
+}
+#user_left_menus .header{
+	margin: 1em;
+	border-bottom: 1px solid #AAAAAA;
+	color:#444444;
+	font: bold;
+	font-size:14px;
+}
+
+#user_left_menus li.header{
+    text-align: center;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.box li{
+    height: 30px;
+    line-height: 30px;
+}
+.box li label{
+    display: inline-block;
+    width:150px;
+    text-align: right;
+    margin-right: 4px;
+}
+.panelContent .op_bar{
+    text-align: right;
+    border-bottom: 1px solid #F4F4F4;
+    padding-right: 1em;
+}
+
+#panel_0002, #panel_0003, #panel_0004{
+    display: none;
+}
+
+.panelContent label{
+    color: #08297C;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";</script>
+<script>var pageUsername="{{ user.username }}";</script>
+<script src="/media/js/settings/index.js"></script>
+<script src="/media/js/jquery.md5.js"></script>
+<!--<script src="/media/js/settings/billing.js"></script>-->
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "settings/settings_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<ul id="user_left_menus">
+	
+	<li class="header">帐户</li>
+    <li><a href="javascript:" name="viewInfo" class="selectedMenu">用户信息</a></li>
+    <li><a href="javascript:" name="changePassword">修改密码</a></li>
+    <li><a href="javascript:" name="changeEmailAandPhone">修改邮箱与电话</a></li>
+    <!--<li><a href="javascript:" name="changeUsername">修改登陆名</a></li>
+    
+    <li class="header">购买</li>
+    <li><a href="javascript:" name="listBillings">认购单查询</a></li>
+    <li><a href="javascript:" name="addBilling">认购项目</a></li>
+    <li><a href="javascript:" name="sourcesUsedCase">项目资源情况</a></li>-->
+</ul>
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel swich" actionName="viewInfo">
+    
+     <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_baseInfo"> </a>
+    </div>
+    <div class="panelTitle">
+        基本信息设置
+    </div>
+    <div class="panelContent">
+        <div class="op_bar">
+            <a action="edit_infos" href="javascript:">编辑个人资料</a>
+        </div>
+        <ul name ="template" style="display: none;">
+            <li style="height:80px;"><label>个性头像:</label><img src="{{user.icon}}" style="width:60px;height:60px;"/></li>
+            <li><label>签名：</label>{{user.sign}}</li>
+            <li><label>用户名：</label>{{user.username}}</li>
+            <li><label>帐户类型：</label>{{user.levelPolicy}}</li>
+            <li><label>邮件：</label>{{user.email}}</li>
+            <li><label>联系电话：</label>{{user.contactPhone}}</li>
+            <li><label>公司：</label>{{user.ownCompany}}</li>
+        </ul>
+        <div class="box">
+            
+        </div>
+    </div>
+</div>
+
+
+<div id="panel_0002" class="panel swich" actionName="changePassword">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_changePassword"> </a>
+    </div>
+    <div class="panelTitle">
+        修改密码
+    </div>
+    <div class="panelContent">
+        <div class="op_bar"><a href="javascript:" name="save">保存</a></div>
+        <div class="box">
+            <li><label>旧密码:</label><input type="password" data-bind="value:oldPassword"/></li>
+            <li><label>新密码:</label><input type="password" data-bind="value:newPassword" /></li>
+            <li><label>确认密码:</label><input type="password" data-bind="value:confirmPassword"/></li>
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+
+<div id="panel_0003" class="panel swich" actionName="changeEmailAandPhone">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_changeEmailAandPhone"> </a>
+    </div>
+    <div class="panelTitle">修改联系方式.</div>
+    <div class="panelContent">
+        <div class="op_bar"><a href="javascript:" name="save">保存</a></div>
+        <div class="box">
+        	{%if pageUsername == "demo@safedragon.com.cn" %}
+            <li><label>邮件:</label><span data-bind="text: email" placeholder="e.g. myname@example.net"> </span></li>
+         {%else%}
+         <li><label>邮件:</label><input data-bind="value: email" placeholder="e.g. myname@example.net"/></li>
+         {%endif%}
+            <li><label>联系电话:</label><input data-bind="value: contactPhone"/></li>
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+<div id="panel_0004" class="panel swich" actionName="changeUsername">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_changeEmailAandPhone"> </a>
+    </div>
+    <div class="panelTitle">修改登陆名</div>
+    <div class="panelContent">
+        <div class="op_bar"><a href="javascript:" name="save">保存</a></div>
+        <div class="box">
+            <li>
+                <label>新登陆名:</label><input data-bind="value: username" />
+                <a href="javascript:" name="checkUsernameValid">检测用户名是否可用？</a><sapn style="color:#CCCCCC">(6~28位字母或数字或_组成)</sapn>
+            </li>
+        </div>
+        <div class="validateErrorMsg"> </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block other_extend_block %}
+
+<div id="editInfosWin" class="dialog_win">
+    {% csrf_token %}
+    <dl class="fields">
+        <dt style="vertical-align: top;">个性头像：</dt>
+        <dd>
+            <img src="{{request.user.icon}}" name="icon" style="width:60px;height:60px;" />
+            <a href="javascript:" action="selectIcon">选择头像-&gt;</a>
+        </dd>
+    </dl>
+    <dl class="fields">
+        <dt>姓名：</dt>
+        <dd><input  name="originalName" value="{{request.user.originalName}}" maxlength="20"/></dd>
+    </dl>
+    
+    <dl class="fields">
+        <dt>个性签名：</dt>
+        <dd><input  name="sign" value="{{request.user.sign}}" maxlength="100" style="width: 300px;"/></dd>
+    </dl>
+        
+    <dl class="fields">
+        <dt>公司名称：</dt>
+        <dd><input  name="companyName" value="{{request.user.ownCompany.title}}" maxlength="100" style="width: 300px;"/></dd>
+    </dl>
+
+    <div class="validateErrorMsg"></div>
+    
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+
+</div>
+
+<div id="user_icons_select_div_win" class="dialog_win">
+{% include "settings/user_icons_select_div.html" %}
+</div>
+{% endblock %}

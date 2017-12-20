@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+export NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+PRGHOME=$NBHOME/products/netRRD
+PRGNAME=netperfsnmp.pyc
+generic "$@"
+

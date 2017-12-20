@@ -1,0 +1,8 @@
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/left_item_menu.css" />
+{% endblock %}
+<ul class="left-menus">
+	<li class="{%if pageName == 'apache_list' %}selected{%endif%} "><a href="/middleware/apache_list/">Apache2 ({{mwClsCounts.MwApache}})</a></li>
+	<li class="{%if pageName == 'tomcat_list' %}selected{%endif%} "><a href="/middleware/tomcat_list/">Tomcat ({{mwClsCounts.MwTomcat}})</a></li>
+	<li class="{%if pageName == 'nginx_list' %}selected{%endif%} "><a href="/middleware/nginx_list/">Nginx ({{mwClsCounts.MwNginx}})</a></li>
+</ul>

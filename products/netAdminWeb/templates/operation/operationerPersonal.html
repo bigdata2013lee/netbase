@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+h3.info_header,div#editPersonalInfoWin h3{
+    position: relative;
+    border-bottom: 1px solid  #ccc;
+}
+
+h3.info_header a{
+    position: absolute;
+    right:1em;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=2; </script>
+<script src="/media/js/ucenter/technologyFileds.js"> </script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script src="/media/js/operation/operationerPersonal.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/personalLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+        <div class="panelTitle"></div>
+            <div class="panelContent"> 
+               <h3 class="info_header">基本信息<a href="javascript:" action="editPersonalInfo">编辑</a></h3>
+              <dl class="fields">
+                <dt style="vertical-align: top;">个性头像：</dt>
+                <dd name="icon">
+                    <img src="{{operationer.icon}}" name="icon" style="width:60px;height:60px;" />
+                </dd>
+            </dl> 
+              <dl class="fields">
+                <dt>公司名称：</dt>
+                <dd name="companyName">
+                        {{operationer.baseInfo.companyName}}                
+                </dd>
+              </dl>              
+              <dl class="fields">
+                <dt>营业执照：</dt>
+                <dd name="bussinessLicenseNum">
+                        {{operationer.baseInfo.bussinessLicenseNum}}                
+                </dd>
+            </dl>              
+              <dl class="fields">
+                <dt>联系电话：</dt>
+                <dd name="phoneNum">
+                        {{operationer.baseInfo.phoneNum}}            
+                </dd>
+            </dl>              
+              <dl class="fields">
+                <dt>地址：</dt>
+                <dd name="address">
+                        {{operationer.baseInfo.address}}                  
+                </dd>
+            </dl>
+            
+            <h3 class="info_header">服务领域\地域</h3>
+            <dl class="fields">
+                <dt>技术领域：</dt>
+                <dd>
+                    {% for technologyFiled in operationer.serviceInfo.technologyFileds%}
+                        <span>{{technologyFiled}}</span>
+                     {% endfor %}                
+                </dd>
+            </dl>
+            <dl class="fields">
+                <dt>技术特长：</dt>
+                <dd>
+                        {{operationer.serviceInfo.technologyForte}}                  
+                </dd>
+            </dl>
+            <dl class="fields">
+                <dt>服务地域：</dt>
+                <dd>
+                        {% for serviceArea in operationer.serviceInfo.serviceAreas%}     
+                            <span>{{serviceArea}}</span>
+                        {% endfor %}             
+                </dd>
+            </dl>
+            
+            <h3 class="info_header">公司简介</h3>
+            <div style="padding:2em;">
+                        <p>{{operationer.companydescription}}</p>                  
+            </div>
+        </div>
+  </div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="editPersonalInfoWin" class="dialog_win">
+<div class="box" style="height: 600px;overflow: auto;">    
+    <div class="validateErrorMsg"></div>
+    
+    <h3>基本信息</h3>
+    <div style="display: inline-block;">
+        <div style="float: left;">   
+            <dl class="fields" style="padding: 10px 45px 10px 0px;">
+                <dt style="vertical-align: top;">个性头像：</dt>
+                <dd>
+                    <img src="{{request.user.icon}}" name="icon" style="width:60px;height:60px;float: left;" />
+                    <a href="javascript:" action="selectIcon" style="margin-top: 65px;margin-left: -60px;float: left;">选择头像-&gt;</a>
+                </dd>
+            </dl> 
+        </div>
+        <div style="float: right;">        
+            <dl class="fields">
+                <dt>公司名称：</dt>
+                <dd class="newPWD"><input  name="companyName" value="{{operationer.baseInfo.companyName}}" /></dd>
+            </dl>
+            <dl class="fields">
+                <dt>营业执照：</dt>
+                <dd><input name="bussinessLicenseNum" value="{{operationer.baseInfo.bussinessLicenseNum}}" /></dd>
+            </dl>
+            <dl class="fields">
+                <dt>联系电话：</dt>
+                <dd><input  name="phoneNum" value="{{operationer.baseInfo.phoneNum}}" /></dd>
+            </dl>
+            <dl class="fields">
+                <dt>地址：</dt>
+                <dd><input name="address" value="{{operationer.baseInfo.address}}" /></dd>
+            </dl>       
+        </div>
+    </div>
+    <h3>服务领域\地域</h3>
+    <dl class="fields">
+        <dt>技术领域：</dt>
+        <dd>            
+            <div id="autoComplateWidget1" class="autoComplateWidget">
+                <div class="input_box">
+                    {% for technologyFiled in operationer.serviceInfo.technologyFileds%}
+                        <span value="{{technologyFiled}}">{{technologyFiled}}<em>x</em></span>
+                     {% endfor %}
+                    <input type="" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                </div>
+                <ul class="item_list">
+                </ul>
+            </div>
+        </dd>
+    </dl>
+    <dl class="fields">
+        <dt>技术特长：</dt>
+        <dd><input name="technologyForte" value="{{operationer.serviceInfo.technologyForte}}"  maxlength="100"/></dd>
+    </dl>
+    <dl class="fields">
+        <dt>服务地域：</dt>
+        <dd>
+            <div id="areaAutoComplateWidget" class="autoComplateWidget">
+                <div class="input_box">
+                    {% for serviceArea in operationer.serviceInfo.serviceAreas%}     
+                            <span value="{{serviceArea}}">{{serviceArea}}<em>x</em></span>
+                    {% endfor %}   
+                    <input type="" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                </div>
+                <ul class="item_list" style="z-index: 10009; overflow: auto; height: 200px;"></ul>        
+            </div> 
+        </dd>  
+   </dl> 
+    <h3>公式简介</h3>
+    <dl class="fields">
+        <dt style="vertical-align: top;">公司简介：</dt>
+        <dd>
+            <textarea style="width: 400px;height: 100px; max-width: 600px;max-height: 200px;"  
+            name="companydescription">{{operationer.companydescription}}</textarea>
+        </dd>
+    </dl>
+    <br clear="both"/>
+</div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+<div id="user_icons_select_div_win" class="dialog_win">
+{% include "user_icons_select_div.html" %}
+</div>
+
+{% endblock %}
+

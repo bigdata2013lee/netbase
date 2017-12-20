@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#createAlarmRuesWidget, #editAlarmRuesWidget{
+    display: none;
+}
+
+
+
+#user_left_menus li{
+    height: 25px;
+    line-height: 25px;
+    padding-left:1em;
+}
+
+div.rule{border-bottom: 1px solid #F4F4F4;position: relative;}
+div.rule:hover{background-color: #F4F5F7;}
+
+div.rule li label{
+    display: inline-block;
+    width:120px;
+    text-align: right;
+    color: #0262A0;
+    padding-right: 8px;
+}
+
+div.rule div.buttons{
+    position: absolute;
+    right: 10px;
+    top:5px;
+}
+
+.box li{
+    height:28px; line-height: 28px;
+}
+.box li label {
+    display: inline-block;
+    margin-right: 4px;
+    text-align: right;
+    width: 150px;
+    color: #08297C;
+}
+
+
+div.panelContent fieldset{
+    border: 1px solid #F4F4F4;
+    border-radius: 4px;
+}
+
+div.panelContent fieldset legend{
+    padding: 0px 0.5em;
+}
+
+span.severity_span {
+    background-color: #FFFFFF;
+    border: 1px solid #CBC6C2;
+    border-radius:2px;
+    padding: 4px;
+    margin: 2px 0px;
+    
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userName="{{ user.getUid }}";</script>
+<script>var userEmail="{{ user.email }}";</script>
+<script>var userContactPhone="{{ user.contactPhone }}";</script>
+<script src="/media/js/settings/alarm.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "settings/settings_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<ul id="user_left_menus">
+    <li><a href="javascript:" name="allAlarmRules">告警规则列表</a></li>
+    <li><a href="javascript:" name="createAlarmRule">创建告警规则</a></li>
+</ul>
+{% endblock %}
+
+{% block mright-panel  %}
+<div id="allAlarmRulesWidget" class="panel swich" actionName="allAlarmRules">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_allAlarmRules"> </a>
+    </div>
+    <div class="panelTitle">告警规则列表</div>
+    <div class="panelContent">
+        <div class="box"> </div>
+    </div>
+</div>
+
+
+
+<div id="createAlarmRuesWidget" class="panel swich" actionName="createAlarmRule">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_createAlarmRuesWidget"> </a>
+    </div>
+    <div class="panelTitle">创建规则</div>
+    <div class="panelContent">
+        <div class="op_bar"><a name="save" href="javascript:">保存</a></div>
+        <div class="validateErrorMsg"> </div>
+        <div class="box">
+            <fieldset><legend>命名说明</legend>
+                <li><label>名称:</label><input data-bind="value:title" /></li>
+                <li><label>描述:</label><input data-bind="value:description" /></li>
+                <li><label>告警方式:</label><select class="common" data-text-field="text" data-value-field="val"  
+                data-bind="source:alarmTypes, value:alarmModel, events:{change: changeAlarmType}"></select></li>
+                <li class="alarmTypes Email">
+                    <label>邮件地址:</label><input  data-bind="value: alarmEmail" />
+                </li>
+                <li class="alarmTypes SMS">
+                    <label>手机号码:</label><input  data-bind="value: alarmSMS" />
+                </li>
+                <li><label>启用:</label> 
+                    <select class="common" data-bind="source:booleans, value:enable" 
+                        data-value-field="val" data-text-field="text"> </select>
+                </li>
+            </fieldset>
+            
+            <fieldset><legend>规则参数</legend>
+                <li><label>类型:</label><select class="common" data-text-field="text" data-value-field="val"  
+                data-bind="source:firstTypes, value:conditionData.firstType, events:{change: changeFirstType}"></select>
+                    <span class="severity_span swich device">
+                        <input type="checkbox" value="Device" data-bind="checked:conditionData.device_componentTypes" />设备 
+                        <input type="checkbox" value="IpInterface" data-bind="checked:conditionData.device_componentTypes" />接口 
+                        <input type="checkbox" value="Process" data-bind="checked:conditionData.device_componentTypes" />进程 
+                        <input type="checkbox" value="IpService" data-bind="checked:conditionData.device_componentTypes" />服务
+                        <input type="checkbox" value="FileSystem" data-bind="checked:conditionData.device_componentTypes" />磁盘
+                    </span>
+                    
+                </li>
+                
+                <li class="swich device"><label>IP:</label><input data-bind="value:conditionData.deviceIps" /> <em style="color:#797979;">(匹配一个或多个ip, 多个请用","号隔开)</em></li>
+                <li><label>消息关键字:</label><input data-bind="value:conditionData.keyWord" /></li>
+                <li><label>级别:</label>
+                    <span class="severity_span">
+                        <input type="checkbox" value="3" data-bind="checked:conditionData.severity" />警告 
+                        <input type="checkbox" value="4" data-bind="checked:conditionData.severity" />错误 
+                        <input type="checkbox" value="5" data-bind="checked:conditionData.severity" />严重 
+                    </span>
+                </li>
+                <li><label>持续时间:</label><input data-role="numerictextbox" min="0" max="100" data-format="# 分钟" data-bind="value:conditionData.last" /></li>
+                
+                
+            </fieldset>
+            
+        </div>
+    </div>
+</div>
+
+
+<div id="editAlarmRuesWidget" class="panel swich" actionName="editAlarmRule">
+    <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_editAlarmRule"> </a>
+    </div>
+    <div class="panelTitle">编辑规则</div>
+    <div class="panelContent">
+        <div class="op_bar">
+            <a name="save" href="javascript:"> 保存 </a> 
+            <a name="del" href="javascript:"> 删除 </a>
+        </div>
+        <div class="validateErrorMsg"> </div>
+        <div class="box">
+            <fieldset><legend>命名说明</legend>
+                <li><label>名称:</label><input data-bind="value:title" /></li>
+                <li><label>描述:</label><input data-bind="value:description" /></li>
+                <li><label>告警方式:</label><select class="common" data-text-field="text" data-value-field="val"  
+                data-bind="source:alarmTypes, value:alarmModel, events:{change: changeAlarmType}"></select></li>
+                <li class="alarmTypes Email">
+                    <label>邮件地址:</label><input  data-bind="value: alarmEmail" />
+                </li>
+                <li class="alarmTypes SMS">
+                    <label>手机号码:</label><input  data-bind="value: alarmSMS" />
+                </li>
+                <li><label>启用:</label> 
+                    <select class="common" data-bind="source:booleans, value:enable" 
+                        data-value-field="val" data-text-field="text"> </select>
+                </li>
+            </fieldset>
+            
+            <fieldset><legend>规则参数</legend>
+                <li><label>类型:</label><select disabled="true" class="common" data-text-field="text" data-value-field="val"  
+                data-bind="source:firstTypes, value:conditionData.firstType, events:{change: changeFirstType}"></select>
+                    <span class="severity_span swich device">
+                        <input type="checkbox" value="Device" data-bind="checked:conditionData.device_componentTypes" />设备
+                        <input type="checkbox" value="IpInterface" data-bind="checked:conditionData.device_componentTypes" />接口 
+                        <input type="checkbox" value="Process" data-bind="checked:conditionData.device_componentTypes" />进程 
+                        <input type="checkbox" value="IpService" data-bind="checked:conditionData.device_componentTypes" />服务
+                        <input type="checkbox" value="FileSystem" data-bind="checked:conditionData.device_componentTypes" />磁盘
+                    </span>
+                
+                     <span class="severity_span swich mw">
+                        <input type="checkbox" value="MwApache" data-bind="checked:conditionData.mw_componentTypes" />Apache 
+                        <input type="checkbox" value="MwTomcat" data-bind="checked:conditionData.mw_componentTypes" />Tomcat
+                        <input type="checkbox" value="MwNginx" data-bind="checked:conditionData.mw_componentTypes" />Nginx
+                        <input type="checkbox" value="MwIis" data-bind="checked:conditionData.mw_componentTypes" />Iis
+                    </span>
+                    
+                </li>
+                
+                <li class="swich device"><label>IP:</label><input data-bind="value:conditionData.deviceIps" /> <em style="color:#797979;">(匹配一个或多个ip, 多个请用","号隔开)</em></li>
+                <li><label>消息关键字:</label><input data-bind="value:conditionData.keyWord" /></li>
+                <li><label>级别:</label>
+                    <span class="severity_span">
+                        <input type="checkbox" value="3" data-bind="checked:conditionData.severity" />警告 
+                        <input type="checkbox" value="4" data-bind="checked:conditionData.severity" />错误 
+                        <input type="checkbox" value="5" data-bind="checked:conditionData.severity" />严重 
+                    </span>
+                </li>
+                <li><label>持续时间:</label><input data-role="numerictextbox" min="0" max="100" data-format="# 分钟" data-bind="value:conditionData.last" /></li>
+                
+                
+            </fieldset>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

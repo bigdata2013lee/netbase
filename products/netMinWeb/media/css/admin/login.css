@@ -1,0 +1,90 @@
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	font-family: arial, sans-serif;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: auto;
+	_text-align:center;
+}
+body {
+
+	background: #0d4a82;
+}
+#login-form {
+	text-align:left;
+	position: relative;
+	margin: auto;
+	padding: 0;
+	width: 1000px;
+	height: 568px;
+	background: url(/media/images/admin/login_bg.jpg) no-repeat;
+	overflow: hidden;
+}
+
+#login_div {
+	position: absolute;
+	left: 290px;
+	top: 240px;
+}
+
+#login_div .inputx {
+	width: 189px;
+	height: 24px;
+	line-height: 24px;
+	background: #FFFFFF;
+	border: 1px solid #A0C7E8;
+	text-align: center;
+}
+
+#login_div .buttonx {
+	width: 64px;
+	height: 25px;
+	line-height: 25px;
+	background: url(/media/images/buttom_bg01.jpg) no-repeat;
+	text-align: center;
+	border: none;
+}
+#login_div .buttonx:hover {
+	background: url(/media/images/buttom_hover.jpg) no-repeat;
+}
+#login_div span {
+	display: block;
+	text-align: right;
+	float: left;
+	width: 60px;
+}
+
+#login_div .row {
+	height: 30px;
+	line-height: 30px;
+	margin: 0 0 12px 60px;
+}
+#login_div .row.first {
+	margin-top: 0px;
+}
+#login_div .row.rempassword {
+	margin-left: 290px;
+	margin-bottom: 0px;
+}
+#login_div .row.buttons {
+	margin-left: 136px; 
+	display:inline;
+	
+	margin-bottom: 6px;
+}
+
+#login_div .row.error_message {
+	width:380px;
+	height: 24px;
+	margin:0;
+	line-height: 24px;
+	color: #A82200;
+	text-align: center;
+}

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/css/serviceNoteList.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=0; </script>         
+<script src="/media/js/operation/serviceUsers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/customerLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+    <div class="panelTitle">服务的客户</div>
+    <div class="panelContent">
+       <div>
+            <table class="data_table" name="listServiceNotes">
+                <thead>
+                    <tr>      
+                        <th><span name="username">用户名</span></th>
+
+
+                         <th><span name="email">邮箱</span></th>
+                         <th><span name="contactNum">联系电话</span></th>
+                           <th><span style="" name="engineer">工程师</span></th>                         
+                         <th><span name="operate">操作</span></th>
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for cu in serviceCustomers%}
+                        <tr class="data_tr" >
+                            <td><span style="">{{cu.customer.username|getName}}</span></td>
+                            <td><span style="">{{cu.customer.email}}</span></td>
+                            <td><span style="">{{cu.customer.contactPhone}}</span></td>
+                            <td><span style="">{{cu.engineer.originalName}}</span></td>
+                            <td>
+                                <span style="">
+                                        <a href="javascript:" name="extend_device" userid="{{cu.customer.getUid}}">添加设备</a>
+                                        <a href="javascript:" action="appointServiceEngineer" customer_id="{{cu.getUid}}">指派工程师</a>
+                                        <a href="javascript:" action="delelteCustomer" service_customer_id="{{cu.getUid}}">删除</a>
+
+                                    </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pages_tools">
+             <a href="/operation/serviceUsers/?cpageNum=1" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+             {%for cp in cpageInfos.plist%}
+                <a href="/operation/serviceUsers/?cpageNum={{cp}}&fpageNum={{request.REQUEST.fpageNum}}">{{cp}}</a>
+             {%endfor%}
+        </div>
+        <br clear="both" />
+    </div>
+</div>
+<div class="panel">
+    <div class="panelTitle">收藏的客户</div>
+    <div class="panelContent">
+       <div>
+            <table class="data_table" name="listServiceNotes">
+                <thead>
+
+                    <tr>   
+                        <th>用户名</th>   
+                        <th>邮箱</th>   
+                        <th>联系电话</th>   
+                        <th>操作</th>   
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for cu in favoriteCustomers%}
+                    
+                        <tr class="data_tr" >
+
+                            <td>{{cu.customer.username|getName}}</td>
+                            <td>{{cu.customer.email}}</td>
+                            <td>{{cu.customer.contactPhone}}</td>
+                            <td><a href="javascript:" action="deleteFavorite" favorite_customer_id="{{cu.getUid}}">删除</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pages_tools">
+             <a href="/operation/serviceUsers/?fpageNum=1" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+             {%for fp in fpageInfos.plist%}
+                <a href="/operation/serviceUsers/?fpageNum={{fp}}&cpageNum={{request.REQUEST.cpageNum}}">{{fp}}</a>
+             {%endfor%}
+        </div>
+        <br clear="both" />
+    </div>
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="appointServiceEngineerWin" class="dialog_win">
+    <div>
+        <input type="hidden" name="operationServiceCustomerId" value=""/>
+        <dl class="fields">
+            <dt>
+                工程师：
+            </dt>
+            <dd>
+                <select name="engineerId">
+                {% for eng in engineers %}
+                    <option value="{{eng.getUid}}">{{eng.originalName}}</option>
+                {%endfor%}
+                </select>
+            </dd>
+        </dl>
+
+    </div>
+    <div class="win_opbar">
+        <button class="ok">指派</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+{%  include "operation/extend_device_byoperationer.html" %}
+{% endblock %}
+

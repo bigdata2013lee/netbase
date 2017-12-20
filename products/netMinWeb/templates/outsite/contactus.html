@@ -1,0 +1,110 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+	<link href="/media/css/outsite/safety.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+div.gsjj{margin-bottom:20px;}
+div.gsjj p{
+	text-indent: 2em;
+	font-size: 14px;
+	line-height: 24px;
+	padding: 0.5em 0px;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+	
+
+{% endblock %}
+
+{% block content_block %}
+<div class="">
+	<div class="indexWidth">
+		<div class="safe_div_top">
+			<h3>公司简介</h3>
+			<p>&nbsp;</p>
+			<div class="gsjj">
+<img src="/media/css/outsite/index_images/about_tp.jpg" style="float:right; padding:22px 0 10px 10px" />
+<p>
+网脊科技开发有限公司前身为商之杰科技有限公司，是华南区专注于IT全架构管理产品研发的高科技IT企业，成立于2003年。
+网脊科技的业务范围主要为拥有自有知识产权的全IT管理平台－－Netbase。Netbase 产品与现有的IT网络管理产品不同，
+具备全IT架构、监控、管理策略灵活定制、无插件等技术特点，是网脊科技在长期网络安全服务实践中，根据平安集团、招商银行总部等大客户的实际需求当中提炼，
+目前在国内已经在平安集团总部、天源证券、招商银行总部等等大、中型IT应用环境中实际上线使用，为用户实现IT运维的零缺陷管理承担重要的组成部分。
+公司从成立开始，就在网络安全、IT管理等相关领域奋力开拓，服务了超过200家
+直接客户，积累了较为丰富的行业解决方案及系统架构平台、业务应用等外包服务经验。
+</p>
+
+<p>
+目前中国的IT建设环境正在进行着显著的变化，由原来注重网络基础建设、
+应用系统建设逐渐演变为注重已有系统的稳定性及提升IT服务水平等相关方向上来，
+网脊科技推出的Netbase产品超越了以往注重网络监控的NMS系统及注重业务管理的APM系统，
+直接跨入了基于ITIL的全IT架构管理平台阶段，具备目前业界的最高技术标准。
+</p>
+
+<p>
+2012年网脊科技获得创造人曾李青创立的德迅投资公司、BYD创造人杨龙忠先生创立的鹏萱投资公司及架桥富凯三家风险投资公司联合投资，
+公司实力更加强大，网脊科技深知，优秀的产品及先进的技术只是针对用户良好解决方案的重要组成部分，
+而可靠、规范的售后服务体系更是保障用户最终应用效果不可或缺的重要手段，
+网脊科技在业界开创了全天候不间断服务体系―――"安捷100企业专属IT服务平台"，
+透过互联网平台及专业专属IT服务顾问为用户提供不间断技术支持及专属IT服务。
+</p>
+
+<p>
+	除了对直接客户的全力支持，网脊科技亦非常重视对合作伙伴的支持，将合作伙伴分为系统集成商及增值行业解决方案提供商二种，
+	并针对后者的技术能力提供相应的二次开发API接口，以求更广泛、准确地解决不同行业用户的各种监控、管理诉求。
+</p>
+
+			</div>
+			
+			
+			<h3>联系我们</h3>
+			<div style="float: right;margin-right: 10em;">
+				<strong>
+					<span style="font-size:15px; color:#f60;">网脊科技开发有限公司</span>
+				</strong>
+				
+				地址：深圳市南山区中山园路君翔达大厦2F <br/>
+				
+				Email: sissi@safedragon.com.cn <br/>
+				电话：0755-22192790 <br/>
+				传真：0755-25867960 <br/>
+				网址：www.wanjee.cn <br/>
+				<br/> <br/>
+				
+		      华南交流群:37960299<br/>
+              华东交流群:315888922<br/>
+              华北交流群:328857644<br/>
+			</div>
+			
+			<div style="float:left;padding-top: 2em;">
+				<img src="/media/css/outsite/index_images/addr_map.png" />
+			</div>
+			<br clear="both"/>
+		</div>
+
+	</div>
+</div>
+{% endblock %}
+
+
+
+
+{% block bottom_block %}
+{% include "base_include/tyzl.html" %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/js/ucenter/leftMenus.css" rel="stylesheet" />
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+span.hot{
+    display:inline-block;
+    width:50px;
+    text-align:center;
+    border:1px solid #559DE0 ;
+    background-color:#DDEEF;
+    color:#F1710E;
+    padding:1px 4px;
+    border-radius: 4px;
+}
+div.not_topic_tip{
+    text-align: center;
+    font-size:16px;
+    color:#666666;
+    margin-top:2em;
+}
+
+span.create{
+    display:inline-block;
+    min-width:50px;
+    width:auto;
+    text-align:center;
+    border:1px solid #559DE0 ;
+    background-color:#1668A5;
+    color:#FFF;
+    padding:1px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+table.k-editor{width:auto;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/ucenter/dynamicValidate.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+    {% include "ucenter/left_menu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+    <!--  我的求助-->
+    <div class="panel">
+        <div class="panelTitle">
+            我的求助
+               <button type="button" id="createQuestionDirect_btn" style="margin-left: 35px;">
+                    <span class="create">发起求助</span>
+               </button>
+        </div>
+        {%if not qList%}
+            <div class="panelContent">
+                {%if aboutme %}
+                    <div class="not_topic_tip">您暂无问题的动态</div>
+                {%else%} 
+                    <div class="not_topic_tip">您未发布任何问题</div>
+                {%endif%}
+            </div>
+        {%endif%}
+            
+        {% if qList %}
+           <div class="panelContent">        
+            	<div>
+                   <table class="data_table2">
+                        <thead>
+                         <tr>  
+                            <th>热度</th>
+                            <th>领域</th>
+                            <th>标题</th>
+                            <th>悬赏</th>
+                        </tr>
+                      </thead>
+                        <tbody> 
+                        {% for q in qList %}
+                        <tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+                            <td style="width:80px">
+                                <span class="hot">{{q.replyNum}}</span>
+                            </td>
+                            <td style="width:180px">
+                                {% for tag in q.fields %}
+                                    <label class="tag"><a href="/ucenter/abouteFiled/?filed={{tag|urlencode}}&topicType=Question">{{tag}}</a></label>
+                                {%endfor%}
+                            </td>
+                           <td style="">
+                                  <a href="/ucenter/viewQuestion/{{q.getUid}}" style="font-size: 14px;text-decoration: underline;"><span>{{q.title|getSureLength:20}}</span></a>
+                            </td>
+                            <td style="width:160px">
+                                {%if q.award.aType = "人民币"%}
+                                    <span>{{q.award.value}}{{q.award.aType}}</span>
+                                {%endif%}
+                                {%if q.award.aType = "积分"%}
+                                    <span>{{q.award.value}}{{q.award.aType}}</span>
+                                {%endif%}
+                                {% if q.award.aType = "不悬赏" %}
+                                    <span>不悬赏</span>
+                                 {%endif%}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {%endif%}
+     </div>
+    <!--  我的分享 -->
+    <div class="panel">
+        <div class="panelTitle">我的分享
+			<button type="button" id="createShareDirect_btn" style="margin-left: 35px;"><span class="create">发起分享</span></button>        
+        </div>
+		{%if not sList%}
+			<div class="panelContent">
+			{%if aboutme %}
+				<div class="not_topic_tip">您暂无分享的动态</div>
+			{%else%} 
+				<div class="not_topic_tip">您未发布任何分享</div>
+			{%endif%}
+			</div>
+		{%endif%}
+          
+	{% if sList %}
+    <div class="panelContent">
+		<table class="data_table2">
+			<thead>
+				<th>热度</th>
+				<th>领域</th>
+				<th>标题</th>
+			</thead>
+			<tbody> 
+				{% for s in sList %}
+				<tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+					<td style="width:80px"><span class="hot">{{s.replyNum}}</span></td>
+					<td style="width:180px">
+						{% for tag in s.fields %}
+						<label class="tag"><a href="/ucenter/abouteFiled/?filed={{tag|urlencode}}&topicType=Share">{{tag}}</a></label>
+						{%endfor%}
+					</td>
+					<td>
+						<a href="/ucenter/viewShare/{{s.getUid}}" style="font-size: 14px;text-decoration: underline;">
+							<span>{{s.title|getSureLength:20}}</span>
+						</a>
+					</td>
+				</tr>   
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{%endif%}
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+{% include "ucenter/qustionShare.html" %}
+{% endblock %}
+

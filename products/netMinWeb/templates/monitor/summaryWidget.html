@@ -1,0 +1,39 @@
+
+<div class="panel_min" id="summaryWidget">
+    <script name="template" type="text/x-kendo-template">
+        检测监控设备的运行状态，以及设备的接口、进程、服务整体运行状态，绿色标记运行良好的监控项目，橙色标记运行状态不佳的监控项目，最后给予整体平均评分.
+        <p/>
+        <ul>
+            <li class="first">设备: <em>
+                <span class="item_count good">#=devices.goods#</span> 
+                <span class="item_count bad">#=devices.bads#</span> 
+                <span class="item_count unknown">#=devices.unknowns#</span> 
+                <span class="item_count score" style="color:#=devices.statusColor#">评分:#=devices.score#</span></em>
+            </li>
+                
+            <li>接口: <em>
+                <span class="item_count good">#=interfaces.goods#</span> 
+                <span class="item_count bad">#=interfaces.bads#</span>
+                <span class="item_count unknown">#=interfaces.unknowns#</span> 
+                <span class="item_count score" style="color:#=interfaces.statusColor#">评分:#=interfaces.score#</span></em>
+            </em></li>
+            <li>进程: <em>
+                <span class="item_count good">#=processes.goods#</span> 
+                <span class="item_count bad">#=processes.bads#</span>
+                <span class="item_count unknown">#=processes.unknowns#</span> 
+                <span class="item_count score" style="color:#=processes.statusColor#">评分:#=processes.score#</span></em>
+            </em></li>
+            <li>服务: <em>
+                <span class="item_count good">#=services.goods#</span> 
+                <span class="item_count bad">#=services.bads#</span>
+                <span class="item_count unknown">#=services.unknowns#</span> 
+                <span class="item_count score" style="color:#=services.statusColor#">评分:#=services.score#</span></em>
+            </em></li>
+        </ul>
+        <br/>
+        综合评分:<em style="font-size: 28px; color:#=statusColor# ">#=score#</em>
+    </script>
+    <span style="padding-left:1em;font-weight: bold">概要：</span>
+    <div style="padding-left: 2em;" class="box"> </div>
+    
+</div>

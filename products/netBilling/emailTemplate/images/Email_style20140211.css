@@ -1,0 +1,56 @@
+	/*======================
+        公共样式
+=======================*/
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset,input,div,img{ margin: 0; padding: 0; }
+em, cite, th { font-style: normal; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-size: 1em; font-weight:normal;}
+a{color:#333; text-decoration:none}
+a:hover{color:#f60; text-decoration:none;}
+li{ list-style:none;}
+img{ border:none;}
+input,img{ vertical-align:middle; border:none;}
+.clear{ clear:both}
+.hide{ display:none}
+
+.marginbot15{ margin-bottom:15px;}
+.marginbot12{ margin-bottom:12px;}
+.marginbot20{ margin-bottom:20px;}
+.marginleft10{ margin-left:10px;}
+.margintop10{ margin-top:10px;}
+.marginbot10{ margin-bottom:10px;}
+.marginbot30{ margin-bottom:30px;}
+.marginleft15{ margin-left:15px;}
+.paddingleft25{ padding-left:25px;}
+
+body{ font-family: "微软雅黑",arial;font-size: 12px; color:#333;}
+
+#emailbox{ border:solid 1px #ddd;  width:700px; background-color:#f4f4f4; margin:20px auto; overflow:hidden;}
+.email_header{ border-top: solid 6px #1b6cd1; height:48px; line-height:48px; color:#fff;}
+.email_header .logo{ width:120px; height:37px; padding:12px 15px; float:left;}
+
+
+.email_main{ padding:15px ;}
+.Event_Title{ font-size:20px; height:40px; line-height:40px; font-weight:bold; padding:5px; color:#f60;}
+.Event_Title span{ font-size:12px; font-weight:normal; float:right;}
+
+.email_main_Content{ min-height:200px; padding:15px; font-size:14px; line-height:28px; border-bottom:solid 1px #ddd; overflow: hidden;}
+
+
+.email_main_wei{ overflow:hidden;}
+.weixin_bo{ width:435px; height:101px; float:left;  padding:20px 0 0 0;}
+.Phone{ float:right; padding:25px 10px 0 0; text-align:center; line-height:18px; font-size:12px;}
+.Phone a{ color:#03F; text-decoration: underline; font-size:13px;}
+.Phone a:hover{ color:#f30;}
+
+.Phone .qq20140211{ text-align:right; padding-bottom:8px;}
+
+
+
+
+
+
+
+
+
+
+

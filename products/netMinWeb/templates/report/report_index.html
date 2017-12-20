@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#user_left_menus li{
+    height: 25px;
+    line-height: 25px;
+    padding-left:1em;
+}
+
+.box li{
+    height: 30px;
+    line-height: 30px;
+}
+.box li label{
+    display: inline-block;
+    width:150px;
+    text-align: right;
+    margin-right: 4px;
+}
+.panelContent .op_bar{
+    text-align: right;
+    border-bottom: 1px solid #F4F4F4;
+    padding-right: 1em;
+}
+
+#panel_0002, #panel_0003, #panel_0004{
+    display: none;
+}
+
+.panelContent label{
+    color: #08297C;
+}
+.SelectTd{
+	background-color:#0088CC;
+	color:#EEEEEE;
+}
+
+/*<![CDATA[*/
+.treediv{margin:1px; width:30%; height:250px; display:inline-block;display:-moz-inline-stack; *zoom:1; *display:inline;}
+ /*]]>*/
+
+/*详细报表*/
+#Translation{ padding:30px;}
+.Trans_top,.Trans_top label{ font-size:24px; color:#f60; border-bottom:solid 2px #d4e3ea; padding-bottom:10px;}
+.Trans_top span{ width:104px; height:30px; line-height:30px; float:right;}
+.Trans_top span a{ width:104px; height:28px; line-height:28px; text-align:center; display:block; background-color:#ff8600; font-size:16px; color:#fff;border-radius:4px; border:solid 1px #f76e00; }
+.Trans_top span a:hover{ background-color:#1081db; border:solid 1px #0063b1;}
+.Trans_02{ font-size:14px; color:#333; border-bottom:solid 2px #d4e3ea; padding:10px 0 20px 0;}
+.dltrans01{ overflow:hidden; margin-top:10px;}
+.dltrans01 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9;}
+.dltrans01 dd{ color:#555;}
+.dltrans02{ overflow:hidden; margin-top:15px;}
+.dltrans02 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9; padding-top:15px;}
+.dltrans02 dd{   overflow:hidden;}
+.dltrans02 dd a{ float:left; display:block; padding:5px 10px; background-color:#2671c2;border-radius:4px; margin:10px 15px 0 0; color:#fff;}
+.dltrans02 dd a:hover{ background-color:#f60;}
+
+.dltrans03{ overflow:hidden; margin-top:10px;}
+.dltrans03 dt{ width:150px; float:left; text-align:right; font-size:15px; font-weight:bold; color:#0064b9; padding-top:15px;}
+.dltrans03 dd{ padding-top:12px; line-height:24px; color:#555; font-size:12px;   overflow:hidden;}
+.dltrans03 dd p{ color:#f30; padding:5px 0;}
+
+
+.Chart_01{ padding:20px 0; overflow:hidden;}
+.Chart_01_top{ line-height:24px; color:#555; overflow:hidden;}
+.Chart_01_top span{ font-size:15px; font-weight:bold;color:#0064b9; padding-right:10px; border-left: solid 4px #f60; padding-left:8px;}
+.Chart_tp{ padding:10px 20px; overflow:hidden;}
+
+.Chart_table{ padding:10px 20px;overflow:hidden;}
+.Chart_table .tabChart{  border-left:solid 1px #c7d3de; }
+.Chart_table .tabChart tr .tb01{ background-color:#216dad; border-right:solid 1px #157ed7; text-align:center;  line-height:24px; padding:4px 6px; color:#fff; font-size:14px; font-weight:bold;}
+.Chart_table .tabChart tr .tb02{ text-align:center; line-height:24px; padding:4px 6px; border-bottom:solid 1px #c7d3de; border-right:solid 1px #c7d3de;}
+
+.Chart_table .tabChart tr .tb03{ background-color:#f7f8f9; text-align:center; line-height:24px; padding:4px 6px; border-bottom:solid 1px #c7d3de; border-right:solid 1px #c7d3de;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";
+var rUid = '{{moUid}}';
+var datalist = [];
+</script>
+<script src="/media/js/report/reportListTree.js"></script>
+<script src="/media/js/report/index.js"></script>
+<script src="/media/js/report/reportClsTree.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "report/report_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min psbar" style="max-height: 400px;">
+	<div id="report_tree"> </div>
+	<br/>
+</div>
+<hr>
+　　<button type="button" onclick="window.location.href='/report/addreport'" class="btn">添加报表</button>
+<br/>
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel swich" actionName="CommDeviceReport">
+     <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_baseInfo"> </a>
+    </div>
+    <div class="panelTitle">
+        
+    </div>
+     <div id="tabstrip">
+ 		<ul>
+			<li class="k-state-active">报表</li>
+			<li> 报表设置</li>
+		</ul>
+		<div>
+			<div id="reportContentWidget" class="panelContent">
+				
+<div id="Translation">
+      <!-- <div class="Trans_top"><span id="outspan"><a href="#" class="outreport">导出报表</a></span><label id="_reportTitle"> </label></div> -->
+      <div class="Trans_02">
+           <dl class="dltrans01">
+                 <dt>报表统计时间：</dt>
+                 <dd><label id="_startTime"> </label> 至 <label id="_endTime"> </label></dd>
+           </dl>
+           <dl class="dltrans02">
+                 <dt>报表内容：</dt>
+                 <dd id="_reportReports">
+                 	
+                 </dd>
+           </dl>
+           <dl class="dltrans03">
+                 <dt>分类选择：</dt>
+                 <dd>
+                 	<span id="_reportObjclass"> </span>
+                 </dd>
+           </dl>
+      </div>
+      
+      <!--设备Cpu 平均利用率趋向图-->
+      <div id="detail_cpu" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="acpu">设备Cpu平均利用率趋向图</a></span>(某一段时间内，设备Cpu的平均利用率，分别统计分析每个核心的平均利用率)</div>
+            <div class="Chart_tp" id="detail_cpu_photo"> </div>
+            <div id="detail_cpu_table" class="Chart_table">                
+            </div>          
+      </div>
+      <!--设备Cpu 平均利用率趋向图-->
+      
+      <!--设备磁盘分区状态-->
+      <div id="detail_mem" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="amem">设备内存平均利用率趋向图</a></span>(某一段时间内，设备内存的平均利用率变化趋势 )</div>
+            <div class="Chart_tp" id="detail_mem_photo"> </div>
+            <div class="Chart_table" id="detail_mem_table">                
+            </div>          
+      </div>
+      <!--设备磁盘分区状态-->
+       <div id="detail_resTime" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="aresTime">设备平均响应时间趋向图</a></span>(某一段时间内，设备内存的平均响应时间变化趋势 )</div>
+            <div class="Chart_tp" id="detail_resTime_photo"> </div>
+            <div class="Chart_table" id="detail_resTime_table">                
+            </div>          
+      </div>
+       <div id="detail_availability" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="aavailability">可用性 趋向图</a></span>(某一段时间内，可用性变化趋势 )</div>
+            <div class="Chart_tp" id="detail_availability_photo"> </div>
+            <div class="Chart_table" id="detail_availability_table">                
+            </div>          
+      </div>
+       <div id="detail_even" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="aevent">事件统计报表</a></span></div>
+            <div class="Chart_tp" id="detail_even_photo1"> </div>     
+            <div class="Chart_tp" id="detail_even_photo2"> </div>     
+       </div>   
+      
+       <div id="detail_disk" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="adisk">设备磁盘分区状态</a></span></div>
+            <div class="Chart_table" id="detail_disk_table">                
+            </div>          
+      </div>
+       <div id="detail_curConn" class="Chart_01">
+            <div class="Chart_01_top"><span><a name="acurConn">设备连接数报表报表</a></span></div>
+            <div class="Chart_tp" id="detail_curConn_photo"> </div>    
+            <div class="Chart_table" id="detail_curConn_table">                
+            </div>          
+      </div>
+       <div id="detail_newConn" class="Chart_01">
+            <div class="Chart_01_top"><span>设备新建连接数排行</span></div>
+            <div class="Chart_tp" id="detail_newConn_photo"> </div>    
+            <div class="Chart_table" id="detail_newConn_table">                
+            </div>          
+      </div>
+</div>
+			        <script type="text/x-kendo-template" name="template">
+			            
+			        </script>
+			        <div class="box">
+			            
+			        </div>
+                 </div>
+			</div>
+		<div>
+			<div id="editreportWidget" class="panelContent">
+				<div class="op_bar"><input type="button" name="save" value="保存修改"/> 
+					<input type="button" name="del" value="删除"/></div>
+				<div class="validateErrorMsg"> </div>
+				<table><tr><td align="right"><label>报表名称：</label> </td>
+    		    		<td width="30%"><input data-bind="value:description" maxlength="50"></td>
+    		    		<td align="right"><label>邮件收件人：</label></td>
+    		    		<td><input data-bind="value:email">(多个收件人时，请用分号(;)隔开)</td></tr>
+    		    		<tr><td align="right"><label>报表导出类型：</label></td>
+    		    		<td><select class="common" data-text-field="text" data-value-field="val" data-bind="source:exportFormats, value:exportFormat"> </select>
+                     		</td>
+    		    			<td align="right"><label>报表类型：</label>　 </td>
+    		    		<td>
+			         	<input type="checkbox" value="DeviceClass" data-bind="checked:reportType,events:{change: changereportType}" />主机性能报表 
+                        <input type="checkbox" value="WebSiteClass" data-bind="checked:reportType,events:{change: changereportType}" />站点监控报表 
+                        <!-- <input type="checkbox" value="NetworkClass" data-bind="checked:reportType,events:{change: changereportType}" />网络监控报表  -->
+			         </td>
+    		    		</tr>
+    		    	</table> <p><label>报表统计时间：</label></p>
+			         <p>　<input type="radio" value="0" name="timeRange" data-bind="checked:timeRange"/>预定义时间 ：
+			         	<select class="common" data-text-field="text" data-value-field="val" data-bind="source:defaultTimes, value:defaultTime"> </select>
+			         </p>
+			         <p>　<input type="radio" value="1" name="timeRange" data-bind="checked:timeRange" >指定具体时间：
+			         	<input class="start timeclass" data-bind="value:startTime"/>~
+    					<input class="end timeclass" data-bind="value:endTime"/></p>
+			         <p><label>报表内容选择：</label></p>
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="cpu" data-bind="checked:reports" />Cpu报表</li>
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="mem" data-bind="checked:reports" />内存报表</li>
+			         	<!-- <li class="network_reports">　<input type="checkbox" value="curConn" data-bind="checked:reports" />连接数报表</li>
+			         	<li class="network_reports">　<input type="checkbox" value="newConn" data-bind="checked:reports" />新建连接数报表</li> -->
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="disk" data-bind="checked:reports" />磁盘报表</li>
+			         	<li class="device_reports network_reports website_reports">　<input type="checkbox" value="availability" data-bind="checked:reports" />可用性报表</li>
+			         	<li class="website_reports">　<input type="checkbox" value="resTime" data-bind="checked:reports" />响应时间报表</li>
+			         	<li class="device_reports network_reports website_reports">　<input type="checkbox" value="event" data-bind="checked:reports" />事件统计报表</li>
+			      	<p>
+			         	<label>报表数据过滤：</label>
+			         </p>
+			         <p>
+			         	<div id="report_device_tree" class="treediv"> </div>
+			         	<div id="report_website_tree" class="treediv"> </div>
+			         	<!-- <div id="report_network_tree" class="treediv"> </div> -->
+			         	<input type="hidden" id="WebSiteClassID"/>
+			         	<input type="hidden" id="NetworkClassID"/>
+			         	<input type="hidden" id="DeviceClassID"/>
+			         </p>
+			         <hr>
+			        
+			         <div class="box"> </div>
+                 </div>          
+		</div>
+    </div>
+</div>
+
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

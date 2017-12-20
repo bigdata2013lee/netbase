@@ -1,0 +1,202 @@
+
+/**--------------------查询框样式---------------------------------*/
+.search_box {
+    padding-left: 30px;
+}
+
+.search_box  dl dt{
+    float: left;
+    margin-right:0.5em;
+    width:120px;
+    font-size:14px;
+    text-align:right;
+}
+
+.search_box  dl dd{
+    float: left;
+    margin-left:0px; 
+}
+.search_box dl dd .search_txt{
+    line-height: 26px;
+    height: 26px;
+    padding:0px;
+    width:294px;
+}
+.search_box dl dd #search_btn{
+    background-color: #f4f4f4;
+    border: medium none;
+    border-radius: 2px;
+    color: #000;
+    box-shadow: 0px 0px 6px rgba(202, 190, 190, 0.56);
+	margin: 0px 10px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition-duration: 0.2s;
+    transition-property: background-color, color;
+    transition-timing-function: ease;
+    width: 100px;
+}
+
+.search_box  dl dd label .r_input{
+    margin-left:40px;
+}
+.search_box  dl dd select{
+    width:100px;
+}
+
+
+/**----------------------------查询结果集样式-------------------------------------*/
+    
+
+
+#search_results ul li{
+    padding: 5px 2px;
+    border-bottom:1px solid #EEEEEE;
+    min-width: 800px;
+}
+#search_results ul li div.col_1{
+    width:600px;
+    float: left;
+    font-size: 16px;
+}
+#search_results ul li div.col_2{
+    width:600px;
+    color:#516270;
+}
+#search_results ul li div.col_3{
+    float:left;
+    width:200px;
+}
+#search_results ul li div.col_4{
+    float:left;
+    width:60px;
+    height:60px;
+    color: #555555;
+    padding-bottom: 10px;
+}
+
+
+#search_results ul li div.col_1 span.hot{
+    display: inline-block;
+    width:60px;
+    text-align:center;
+    border-radius: 4px;
+    margin-right: 1em;
+    font-size: 12px;
+    color:#516270;
+}
+
+#search_results ul li div.col_3 .tags .tag{
+    border: 0px solid  #ccc;
+    min-width:60px;
+    background-color:#EFF6FA;
+    padding:1px 4px;
+    display:inline-block;
+    width:auto;
+    border-radius: 12px;
+    text-align: center;
+}
+#search_results ul li div.col_3 .tags .tag:hover{
+    background-color:#1385C6;
+    color:#fff;
+}
+#search_results ul li div.col_3 .tags .tag:hover a{
+    color:#fff;
+}
+
+#search_results div.no_result_tip{
+    text-align:center;
+    font-size:16px;
+    padding-top:2em;   
+    color:#555555;
+}
+
+/**-----------------------------查询分页样式------------------------------------*/
+
+.pages_tools a{
+    min-width:30px;
+    display:inline-block;
+    padding:4px auto;
+    border:1px solid #CBC6C2;
+    line-height: 24px;
+    font-size: 14px;
+    margin: 2px 2px;
+    text-align:center;
+}
+
+.pages_tools{
+    margin-bottom: 10px;
+    float:right;
+    margin-right: 2em;
+}
+
+
+/**------------------------------标签自动配置组件样式-----------------------------------*/
+    
+
+div.autoComplateWidget{
+    width:400px;
+    position: relative;
+}
+div.autoComplateWidget div.input_box{
+    border:1px #C1C1C1 inset ;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 4px;
+}
+div.autoComplateWidget div.input_box span{
+    border-radius: 4px;
+    background: #AECFF7;
+    color:#002A80;
+    padding:2px 4px;
+    margin-right:4px;
+}
+
+div.autoComplateWidget div.input_box em{
+    color:#CC0000;
+    cursor: pointer;
+}
+
+div.autoComplateWidget div.input_box input{
+    border:none;
+}
+div.autoComplateWidget  ul{
+    max-height: 300px;
+    overflow: auto;
+}
+div.autoComplateWidget  ul.item_list{
+    border:1px solid  #ccc;
+    position: absolute;
+    top:32px;
+    left:0;
+    width: 400px;
+    z-index: 10003;
+    background: #fff;
+    display:none;
+}
+
+div.autoComplateWidget  ul.item_list li{}
+div.autoComplateWidget  ul.item_list li.pLabel{
+    padding:4px 4px 4px 1em;
+    background:#E6E6E6;
+}
+
+div.autoComplateWidget  ul.item_list li.cLabel{
+    padding:1px 4px 2px 2em;
+    border-bottom: 1px solid #F0ECDE;
+    cursor: pointer; 
+}
+
+div.autoComplateWidget  ul.item_list li.pLabel:hover{
+}
+
+div.autoComplateWidget  ul.item_list li.cLabel:hover{
+    background:#F6F6F6;
+    color:#002a80;
+}
+
+
+
+/**-----------------------------------------------------------------*/

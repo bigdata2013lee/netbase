@@ -1,0 +1,103 @@
+
+<style>
+table.k-editor{width:auto;}
+</style>
+
+<div id="createQuestion_win" class="dialog_win">
+	<div class="validateErrorMsg"></div>
+    <div>
+        <dl class="fields">
+            <dt>求助标题：</dt>
+            <dd><input type="text" name="title" placeholder="请输入20字以内..." /></dd>
+        </dl>
+        <dl class="fields">
+            <dt>选择区域：</dt>
+            <dd><select name="province" > </select></dd>
+            <dd><select name="city" > </select></dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt>选择类别：</dt>
+            <dd>
+	            <div class="autoComplateWidget" id="questionAutoComplateWidget">
+	                <div class="input_box">
+	                    <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+	                </div>
+	                <ul class="item_list"></ul>
+	            </div>
+            </dd>
+        </dl>
+        <dl class="fields">
+            <dt>悬赏</dt>
+            <dd>
+                <select name="aType">
+                    <option value="积分">积分</option>
+                    <option value="人民币">人民币</option>
+                    <option value="不悬赏" selected="true">不悬赏</option>
+                </select>
+            </dd>
+            <dt id="scoreDtId">悬赏金额</dt>
+            <dd><input type="text" name="value" /></dd>
+            <dd id="awardNumId"><span name="awardNum">{{publisher.awardNum}}<span></dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt style="vertical-align: top;">求助描述：</dt>
+            <dd><textarea name="content"></textarea></dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt>验证码：</dt>
+            <dd><input type="text" name="questionVerifyCode"></dd>
+            <label>&nbsp;</label><img src="" name="verifyCodeImg"/>
+            <a href="javascript:" style="font-size:12px;" name="changeVerifyCode">看不清,换一张</a>
+        </dl>
+        
+    </div>
+    <div class="win_opbar">
+        <button class="ok">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+<div id="createShare_win" class="dialog_win">
+	<div class="validateErrorMsg"></div>
+    <div>
+        <dl class="fields">
+            <dt>分享标题：</dt>
+            <dd><input type="text" name="title" placeholder="请输入20字以内..."/></dd>
+        </dl>
+        <dl class="fields">
+            <dt> 选择区域：</dt>
+            <dd><select name="province" > </select></dd>
+            <dd><select name="city" > </select></dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt>选择类别：</dt>
+            <dd>
+	            <div class="autoComplateWidget" id="shareAutoComplateWidget">
+	                <div class="input_box"><input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/></div>
+	                <ul class="item_list"></ul>
+	            </div>
+            </dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt style="vertical-align: top;">分享描述：</dt>
+            <dd><textarea name="content"></textarea></dd>
+        </dl>
+        
+        <dl class="fields">
+            <dt>验证码：</dt>
+            <dd><input type="text" name="shareVerifyCode"></dd>
+            <label>&nbsp;</label><img src="" name="verifyCodeImg"/>
+            <a href="javascript:" style="font-size:12px;" name="changeVerifyCode">看不清,换一张</a>
+        </dl>        
+    </div>
+    <div class="win_opbar">
+        <button class="ok">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+

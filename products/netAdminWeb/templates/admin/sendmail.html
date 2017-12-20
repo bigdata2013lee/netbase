@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+    div.pos{
+        border: 1px solid #CCCCCC;
+    }
+    
+    div.editor_box{position: relative; margin-top:2em;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/ui/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+<script>kendo.culture("zh-CN");</script>
+<script src="/media/js/admin/adminUser/sendmail.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_0.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="conditionTypeDiv">
+	<label><input type="radio" name="conditionType" value="filter" checked="checked" /> 条件筛选</label>
+	<label><input type="radio" name="conditionType" value="specified" /> 指定收件人</label>
+</div> 
+
+<div class="pos pos_filter">
+	<div style="text-align: right; padding-right: 2em;"><a href="javascript:" action="testFilter">测试条件</a></div>
+    <dl class="fields">
+        <dt>最后登录时间:</dt>
+        <dd>晚于<input type="text" id="loginTime1" name="loginTime1" size="15"/></dd>
+        <dd> 早于<input type="text" id="loginTime2" name="loginTime2" size="15"/></dd>
+    </dl>
+	
+	<dl class="fields">
+        <dt>注册时间:</dt>
+        <dd>晚于<input type="text" id="registTime1" name="registTime1" size="15"/></dd>
+        <dd>早于<input type="text" id="registTime2" name="registTime2" size="15"/></dd>
+    </dl>
+    
+	<dl class="fields">
+	    <dt>用户匹配:</dt>
+	    <dd><input type="text" id="username" name="username" size="35"/></dd>
+	</dl>
+	
+	
+</div>
+
+<div class="pos pos_specified" style="display: none">
+    <p style="padding:0.5em; color:#1881c5">请输入正确的邮箱，多个邮箱之间用换行隔开</p>
+    <textarea id="specified" rows="10" cols="75"></textarea>
+
+</div>
+
+
+
+<div class="editor_box">
+    <div style="text-align: left;">
+        <button type="button" id="send_email_btn">发送邮件</button>
+        <dl>
+           <input type="text" id="subject" name="subject" size="35" placeholder="邮件主题"/>
+        </dl>
+    </div>
+<textarea id="email_editor"> </textarea>
+</div>
+    
+{% endblock %}
+
+
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

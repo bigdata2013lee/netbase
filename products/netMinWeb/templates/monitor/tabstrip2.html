@@ -1,0 +1,104 @@
+{%load netbasefilters%}
+<div id="tabstrip2">
+	<ul>
+		<li class="k-state-active"> 基本配置 </li>
+		<li>SNMP 配置</li>
+		<li>通用配置</li>
+		<li>阀值配置</li>
+		<li>模板配置</li>
+	</ul>
+
+	<div>
+		<div id="dev_panel_001">
+		    <div class="panelContent">
+	            <script name="template" type="text/x-kendo-template">
+	                <input type="hidden" name="uid" value="#=_id#"/>
+	                <li><label>名称:</label><input value="#=title#" name="title"/> <label>管理IP:</label><span>#=manageIp#</span>
+	                {%if user|isEC_user %}
+	                <label>收集器：</label><span>#=collector#</span>
+	                {%endif%}
+	                </li>
+	                <li style="height: auto;">
+	                    <label>描述说明:</label>
+	                    <textarea name="description" style="width: 400px; height: 22px;">#=description#</textarea>
+	                </li>
+	                
+	            </script>
+	            <div class="op_bar"> 
+	                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_base"> </a>
+	                <a href="javascript:" name="save">保存</a> 
+	            </div>
+	            <div class="box device_base_info"> </div>
+		    </div>
+		</div>
+	</div>
+	<div>	
+		<div id="dev_panel_002">
+		    <div class="panelContent">
+	    		<div class="op_bar">
+	    		    <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_snmp"> </a>
+					<a href="javascript:" name="save">保存</a>
+				</div>
+	            <div class="box snmpConfig" style="display:none;">
+					{% include "monitor/snmpConfigTemplate.html" %}
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div>
+		<div id="dev_panel_003">
+		    <div class="panelContent">
+	    		<div class="op_bar">
+	    		    <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_comm"> </a>
+					<a href="javascript:" name="save">保存</a>
+				</div>
+	            <div class="box commConfig">
+                    {% include "monitor/commConfigTemplate.html" %}
+				</div>
+		    </div>
+		</div>
+	</div>
+	
+    
+    <div>
+        <div id="dev_panel_005" style="position: relative;">
+            <div class="panelContent">
+                <div class="op_bar">
+                    <a class="help tool_tip" tipid="thresholdConfig" name="help_action" href="javascript:"> </a>
+                    <a href="javascript:" name="save">保存</a>
+                </div>
+                <div class="box thresholdConfig" style="display: none;">
+                    0000
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div>
+        <div id="templateConfigWidget" style="position: relative;">
+            <div class="panelContent">
+                <div class="op_bar">
+                    <a href="javascript:" name="add_ext">绑定扩展模板</a>  
+                </div>
+                <div class="box dev_template_conf">
+                    <script name="template" type="text/x-kendo-template">
+                    	<tr>
+                    		<td style="width: 300px;">#=_id#</td>
+                    		<td style="width: 300px;">#=title#</td>
+                    		<td>#if(tplType != "base"){#
+                    			<a name="unbind" tpluid="#=_id#" href="javascript:">取消绑定</a>
+                    			#}#</td>
+                    	</tr>
+                    </script>
+                    
+                   <table style="width: 100%">
+	                    <tbody> </tbody>
+	               </table>
+	               
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>

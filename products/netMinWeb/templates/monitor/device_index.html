@@ -1,0 +1,406 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/css/monitor_index.css" rel="stylesheet" />
+<link href="/media/css/cpu_mem_gauge/style.css" rel="stylesheet" />
+<link href="/media/ui/nbProcessBar/css.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+div.row label.error{
+    text-align:center;
+    width:auto;
+    min-width:150px;
+    color:#949596;
+    margin-right:2px;
+    padding:1px;
+    padding-left:4px;
+    background-color: #FCF3C2;
+    border: 1px solid #F9E19D;
+    border-radius: 2px;
+}
+
+
+label.error{color:#FF7300}
+
+
+.panelContent thead>tr>td{
+	color: #1881C5;
+}
+
+
+.device_base_info.box li{
+    line-height:22px;
+}
+    
+.device_base_info.box li label{
+    display: inline-block;
+    width:75px;
+    text-align: right;
+    color: #1881C5;
+    margin-right:4px;
+}
+    
+#cpuMemPerfImgWidget div.box{
+    height: 320px;
+}
+    
+#dev_panel_004 div.panelContent{
+    max-height: 480px; overflow: auto;
+}
+#ipInterfacesPerfImgWidget div.panelContent,
+#processesPerfImgWidget div.panelContent{
+    min-height: 400px;
+}
+
+
+div.box div.chart_div{
+    height:280px;
+    border-radius: 4px;
+    margin:2px auto;
+    width: 99%;
+    padding-right:2px;
+}
+    
+#processesPerfImgWidget div.box div.chart_div{height:350px;}
+    
+.buttons a.button{margin-left:-5px;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var moUid = '{{moUid}}';</script>
+<script>var orgUid = '{{orgUid}}';</script>
+<script>var locUid = '{{locUid}}';</script>
+<script src="/media/js/monitor/hostWithLocTree.js"></script>
+<script src="/media/ui/nbProcessBar/processBar.js"></script>
+<script src="/media/js/monitor/device_index.js"></script>
+<script src="/media/js/monitor/summary_monitor.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "monitor/monitor_sec_menu.html" %}
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+
+<div class="panel_min psbar" style="max-height: 500px;">
+	<div id="device_class_tree"> </div>
+	<br/>
+</div>
+{% include "monitor/summaryWidget.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+
+<div class="index_coumns Device">
+    <div class="coumn first">
+        <div id="dev_panel_001" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="001"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">设备基本信息</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <div id="cpumem-gauge-container" class=""></div>
+                    
+                    <div style="position: absolute; top:40px; left:190px;">
+                        <li><label>状态:</label><span class='status-icon-small Down #=status#'></span></li>
+                        <li><label>名称:</label><span>#=title#</span></li>
+                        <li> <label>管理IP:</label><span>#=manageIp#</span></li>
+                        
+                    </div>
+                    
+                    <li><label>Cpu概况:</label>
+                        <span class="cpu_gk_span">
+                            #=deviceIndex.renderCpus(cpu)#
+                        </span>
+                    </li>
+                    <li><label>内存概况:</label>
+                        <span>
+                            #=deviceIndex.renderMems(mem)#
+                        </span>
+                    </li>
+                    <li><label>描述说明:</label><span>#=description#</span></li>
+                </script>
+                <div class="box device_base_info"> </div>
+
+            </div>
+        </div>
+        
+        <div id="dev_panel_002" class="panel lastEvents">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="002"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">最新事件</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td style="vertical-align: top; position: relative;">
+                            <div title="#=nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)#">
+                            <span class="severity-icon-small #= nb.Render.severitys(severity)#" />
+                            #=nb.Render.ellipsisStr(nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)) #
+                            </div>
+                            <div title="#=message#" style="color:rgb(69,134,216);padding-left:4em;">#=nb.Render.ellipsisStr(message, 80)#</div>
+                            <div style="position:absolute; right:0; top:0;color:rgb(176,176,176)">#= nb.xutils.getTimeStr(endTime * 1000) #</div>
+                        </td>
+                        
+                    </tr>
+                </script>
+               <table style="width: 100%">
+                    <tbody> </tbody>
+               </table>
+            </div>
+        </div>
+        
+
+        
+        {% if  moUid|hasExtendTpl:'ExtendTpl_SshRaidLinux' %}
+        <div id="raidInfoWidget" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+                    	
+        	<div class="panelTitle">磁盘Raid状态</div>
+        	<script name="template" type="text/x-kendo-template">
+        		<div style="margin-bottom: 4px; border-bottom: 1px solid rgb(244,244,244);">
+        			Raid控制器基本信息
+	        		<li>
+	        			<label>Raid控制器:</label><span>#=productName#</span>
+	        			<label>序号:</label><span>#=serialNo#</span>
+	        		</li>
+	        		<li><label>内存大小:</label><span>#=memorySize#</span></li>
+        		</div>
+        		
+        		<div style="float: left; width: 48%;">
+        			虚拟盘信息
+	    			<li><label>虚拟盘:</label><span>#=vdsOnLineDisk#个</span></li>
+	        		<li><label>故障盘:</label><span>#=vdsCriticalDisks#个</span></li>
+	        		<li><label>重构盘:</label><span>#=vdsRebuildDisk#个</span></li>
+        		</div>
+        		
+        		<div  style="float: left; width: 48%;">
+        			物理盘信息
+	        		<li><label>物理盘:</label><span>#=pdsDisks#</span>个</li>
+	        		<li><label>故障盘:</label><span>#=pdsCriticalDisks#</span>个</li>
+	        		<li><label>错误盘:</label><span>#=pdsFailedDisks#</span>个</li>
+        		</div>
+        		<br clear="both"/>
+        	</script>
+        	<div class="panelContent">
+        		<div class="box"> </div>
+        	</div>
+        </div>
+        {%endif%}
+        
+        <div id="dev_panel_005" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="004"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">磁盘状态</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td>
+                            <div  style="height:35px; line-height:35px; padding-left:66px;position:relative;
+                                background:url(/media/images/filesystem.png) no-repeat;">
+                                #=new nbProcessBar(usedCapacity/capacity*100,1,"down").html()#
+                                <div style="position:absolute;top:4px;right:2px;">
+                                分区 <span style="color:rgb(69,134,216)">#=uname#</span>,
+                                已用 #=nb.Render.byte2readable(usedCapacity)#,
+                                总 #=nb.Render.byte2readable(capacity)# 
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </script>
+                <table style="width: 100%">
+                    <thead>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+            </div>
+        </div>  
+        
+        
+        
+        {% if  moUid|hasExtendTpl:'ExtendTpl_IpmiLinux' %}
+        <div id="tempAndFanInfoWidget" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+                    	
+        	<div class="panelTitle">机箱温度与风扇状态</div>
+        	<script name="template" type="text/x-kendo-template">
+        		<div style="margin-bottom: 4px; border-bottom: 1px solid rgb(244,244,244);">
+        			机箱温度
+	        		<li>
+	        			<label>机箱温度:</label><span>#=ambientTemp#度</span>
+	        		</li>
+        		</div>
+        		
+        		<div style="float: left; width: 48%;">
+        			风扇状态
+	    			<li><label>正常运行风扇:</label><span>#=okFan#个</span></li>
+	        		<li><label>异常运行风扇:</label><span>#=failFan#个</span></li>
+        		</div>
+
+        		<br clear="both"/>
+        	</script>
+        	<div class="panelContent">
+        		<div class="box"> </div>
+        	</div>
+        </div>
+        {%endif%}
+        
+        
+        <div id="dev_panel_007" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="005"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">服务状态</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td>#=title#</td> <td width="50px"><span class='status-icon-small #=status#'></span></td>
+                    </tr>
+                </script>
+                <table style="width: 100%">
+                    <thead>
+                        <tr>
+                            <td>标题</td><td style="width: 40px;">状态</td>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>                
+            </div>
+        </div>  
+        
+     
+	    <div id="cpuMemPerfImgWidget" class="panel">
+	        <div class="panelActions">
+	            <a href="javascript:" name="help_action" class="help tool_tip" tipId="003"> </a>
+	            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+	        </div>
+	        <div class="panelTitle">Cpu与Mem(内存)24小时性能图(%)</div>
+	        <div class="panelContent">
+	            <div class="box"> </div>
+	        </div>
+	    </div>
+        
+    </div> <!-- end coumn first -->
+        
+    <div class="coumn sec">
+	    
+        <div id="dev_panel_004" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="008"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">接口状态</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                         <td>#=uname#</td>
+                        <td>#=macAddress#</td>
+                        <td>#=nb.Render.byte2readable(throughValues.input, true)#</td> 
+                        <td>#=nb.Render.byte2readable(throughValues.output,true)#</td>
+                        <td><span class='status-icon-small #=status#'></span></td>
+                        
+                    </tr>
+                </script>
+                <table style="width: 100%">
+                    <thead>
+                        <tr>
+                            <td>名称</td><td>物理地址</td>
+                            <td>流入</td> <td>流出</td>
+                            <td style="width: 40px;">状态</td>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="ipInterfacesPerfImgWidget" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="009"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">接口流量性能图</div>
+            <div class="panelContent">
+                <div class="box"> </div>
+            </div>
+        </div>
+
+        
+    
+        
+        <div id="dev_panel_006" class="panel lastEvents">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="010"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">进程状态</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td title="#=kendo.htmlEncode(title)#">#=kendo.htmlEncode(nb.Render.ellipsisStr(title, 50))#</td> 
+                        <td>#=nb.Render.toNum2(cpu,'%')#</td> 
+                        <td>#=nb.Render.byte2readable(mem) #</td> 
+                        <td><span class='status-icon-small #=status#'></span></td>
+                    </tr>
+                </script>
+                <table style="width: 100%">
+                    <thead>
+                        <tr>
+                            <td>标题</td><td>Cpu</td><td>内存</td><td  style="width: 40px;">状态</td>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="processesPerfImgWidget" class="panel">
+            <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="011"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+            <div class="panelTitle">进程Cpu与Mem(内存)性能图</div>
+            <div class="panelContent">
+                <div class="box"> </div>
+            </div>
+        </div>
+        
+        
+        
+		       
+
+        
+        
+        
+    </div> <!-- end coumn sec -->
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

@@ -1,0 +1,46 @@
+{%load netbasefilters%}
+{% block extra_js %}
+<script src="/media/js/monitor/extend_device.js"></script>
+{% endblock %}
+{% block extra_style %}
+<style>
+dl dd em{
+    color: rgba(109, 191, 242, 0.99);
+    margin-left: 15px;
+}
+</style>
+{% endblock %}
+
+
+<div id="extendDevicePage" style="display: none" class="dialog_win">
+    <div>
+        <dl class="fields">
+            <dt>主机:</dt>
+            <dd><input type="text" id="host" value="0"><em class="host"></em></dd>
+        </dl>
+        <dl class="fields">
+            <dt>站点:</dt>
+            <dd><input type="text" id="website" value="0"><em class="website"></em></dd>
+        </dl>
+        <dl class="fields">
+            <dt>网络:</dt>
+            <dd><input type="text" id="network" value="0"><em class="network"></em></dd>
+        </dl>        
+        <dl class="fields total_price" style="display: none">
+            <dt>总价：</dt><dd><em class="total_price"></em></dd>
+        </dl>
+        <dl class="fields">
+            <dt style="vertical-align: top;">扩充详情：</dt>
+            <dd>
+                    套餐A：0-10个以内，主机、站点、网络均5元每个(台)</br>
+                    套餐B：10-100个以内，享有9折优惠</br>
+                    套餐C：100-500个以内，享有8折优惠</br>
+                    套餐D：500以上，享有5折优惠
+            </dd>
+        </dl>
+    </div>
+    <div class="win_opbar">
+        <button class="ok" id="extendDeviceBtk">保存</button>
+        <button class="cancel">退出</button>
+    </div>            
+</div>

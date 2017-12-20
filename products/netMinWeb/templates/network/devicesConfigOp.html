@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#mleft-panel_td{ display: none; width: 0px; }
+
+    #dev_panel_001{
+        height:150px;
+    }
+    div.panelContent div.op_bar{
+        border-bottom: 1px solid #F4F4F4;
+        padding:4px;
+        text-align: right;
+    }
+    
+    .panelContent thead > tr > td {
+        color: #1881C5;
+    }
+    
+
+    
+    div.panelContent li{
+        height: 30px;
+        line-height: 30px;
+    }
+    
+    div.panelContent li label{
+        color: #1881C5;
+        display: inline-block;
+        margin-right: 4px;
+        text-align: right;
+        width: 100px;
+        vertical-align: top;
+    }
+    
+    
+    div.panelContent .snmpConfig li label,
+    div.panelContent .commConfig li label
+    {
+        color: #1881C5;
+        display: inline-block;
+        margin-right: 4px;
+        text-align: right;
+        width: 180px;
+    }
+    
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var moUid = '{{moUid}}';</script>
+<script src="/media/js/network/deviceConfig.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "network/network_sec_menu.html" %}
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+
+
+
+
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+{% include "network/edit_network_page.html" %}
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="setCustomSpeedWin" class="dialog_win">
+    <div class="box">
+        <li><label>接口名:</label><span data-bind="text:title"> </span></li> 
+        <li><label>自定义带宽:</label><input data-role="numerictextbox" min="1" max="2000" data-format="# M" data-bind="value: customSpeed" /></li>
+    </div>
+    <br /><br /><br />
+    <div class="messageTip">(注:自定义带宽提供用户根据接口的实际带宽设置，主要应用于产生正确流量阀值告警)</div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+<div id="addIpInterfaceWin" class="dialog_win" style="display: none">
+    <script name="template" type="text/x-kendo-template">
+        <tr uname="#=escape(uname)#">
+            <td><input name="data-uids" type="checkbox" value="#=uid#"/></td>
+            <td>#=uname #</td>
+            <td>#= macAddress #</td>
+        </tr>
+    </script>
+    <div style="height: 200px; overflow: auto">
+        <table style="width:100%">
+            <thead><tr><td>  </td><td>接口</td><td>物理地址</td></tr></thead>
+            <tbody> </tbody>
+        </table>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+
+
+
+
+<div id="thresholdConfigWin" class="dialog_win">
+    <div class="op_bar">
+        <a class="help tool_tip" tipid="thresholdConfig" name="help_action" href="javascript:"> </a>
+        <a name="save" href="javascript:">保存</a>
+    </div>
+    <div class="box thresholdConfig"></div>
+</div>
+
+
+{% endblock %}
+

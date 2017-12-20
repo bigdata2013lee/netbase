@@ -1,0 +1,8 @@
+[
+    {"severitys": [5,4,2],  "messageKey":"网络连接失败", "title":"默认规则1",
+    "description":"检查网络情况","isStart":true,"sendTo":"a@sina.com","sendType":"email","continueAlarm":0},
+    {"severitys": [5,4,2],  "messageKey":"网络连接失败", "title":"默认规则2","description":"","isStart":true,"sendTo":"b@sina.com",
+    "sendType":"email","continueAlarm":30},
+    {"severitys": [5,4,2],  "messageKey":"网络连接失败", "title":"默认规则3","description":"","isStart":true,"sendTo":"13222222222",
+    "sendType":"phone","continueAlarm":40}
+]

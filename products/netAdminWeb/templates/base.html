@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>netbase</title>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/icons.css"/>
+        <link rel="stylesheet" type="text/css" href="/media/css/alertTip.css"/>
+		<link href="{{ MEDIA_URL }}/ui/dalert/css/default/zebra_dialog.css" rel="stylesheet">
+        
+         <link href="{{ MEDIA_URL }}/ui/kendo/kendo.common.min.css" rel="stylesheet">
+         <link href="{{ MEDIA_URL }}/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet"> 
+         {% block extra_css %}{% endblock %}
+         {% block extra_style %}{% endblock %}
+
+		<script type="text/javascript">
+		    var userName="{{user.getUid}}"
+		</script>
+		<script type="text/javascript" src="/media/ui/kendo/messages.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL}}/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL}}/ui/kendo/kendo.web.min.js"></script>
+		<script type="text/javascript" src="/media/js/nbUtils.js"></script>
+		<script type="text/javascript" src="/media/js/page.js"></script>
+		<script type="text/javascript" src="/media/js/nbUtils.js"></script>
+		<script type="text/javascript" src="/media/js/alertTip.js"></script>
+		<script type="text/javascript" src="/media/js/validator.js"></script>
+		<script type="text/javascript" src="/media/js/adminRemoteUrls.js"></script>
+		<script type="text/javascript" src="/media/js/renderUtils.js"></script>
+		<script type="text/javascript" src="/media/js/nbRemote.js"></script>
+		<script type="text/javascript" src="/media/js/nbUiTools.js"></script>
+		<script type="text/javascript" src="/media/js/baseWidget.js"></script>
+		<script src="/media/ui/dalert/javascript/zebra_dialog.js"></script>
+         
+         <script type="text/javascript" src="/media/ui/highstock/highstock.js"></script>
+         <!-- <script type="text/javascript" src="/media/ui/highstock/highcharts.js"></script> -->
+         <script type="text/javascript" src="/media/ui/highstock/setOptions.js"></script>
+         {% block extra_js %}{% endblock %}
+          
+    </head>
+    <body>
+        <div id="page_block">
+            
+            <div id="top-panel">{% include "top.html" %}</div>
+        	<div id="sec-menu-panel">{% block sec-menu-panel %}{% endblock %}</div>
+            <div id="middle-panel">
+                <table style="border-collapse: none;padding: 0; margin: 0;width: 100%;">
+                    <tr>
+                        <td id="mleft-panel_td" style="vertical-align: top;width: 220px;">
+                            <div id="mleft-panel">{% block  mleft-panel %} mleft-panel {% endblock %}</div>
+                        </td>
+                        <td style="vertical-align: top;">
+                            <div id="mright-panel">{% block mright-panel  %}mright-panel {% endblock %}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="bottom-panel">{% block bottom-panel %}  {% endblock %}</div>
+            
+        </div>
+        <div id="other_extend_block" class="k-content">{% block other_extend_block %}{% endblock %}</div>
+    </body>
+</html>

@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/css/monitor_index.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#dev_panel_002 td{word-break: break-all;}
+
+div.row label.error{
+    text-align:center;
+    width:auto;
+    min-width:150px;
+    color:#949596;
+    margin-right:2px;
+    padding:1px;
+    padding-left:4px;
+    background-color: #FCF3C2;
+    border: 1px solid #F9E19D;
+    border-radius: 2px;
+}
+
+#panel_003 div.box{height: 300px;}
+#panel_004 div.box{height: 300px;}
+#panel_005 div.box{height: 380px;}
+#panel_006 div.box{height: 300px;}
+label.error{color:#FF7300}
+
+
+.panelContent thead>tr>td{
+	color: #1881C5;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var orgUid = '{{orgUid}}';</script>
+<script>var locUid = '{{locUid}}';</script>
+<script src="/media/js/monitor/hostWithLocTree.js"></script>
+<script src="/media/js/monitor/monitor_index.js"></script>
+<script src="/media/js/monitor/summary_monitor.js"></script>
+<script>
+	jQuery(document).ready(function(){
+		nb.uiTools.wellcomeHelp();
+	})
+</script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "monitor/monitor_sec_menu.html" %}
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+{% block  mleft-panel %}
+
+<div class="panel_min psbar" style="max-height: 500px;">
+	<div id="device_class_tree" style="margin-top: 10px;"> </div>
+	<br/>
+</div>
+
+{% include "monitor/summaryWidget.html" %}
+{% include "base_include/left_conn_us.html" %}
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="index_coumns DeviceClass">
+	<div class="coumn first">
+		<div id="panel_001" class="panel">
+		   <div class="panelActions">
+            <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_baseInfo"> </a>
+            <a href="javascript:" name="refresh_action" class="refresh"> </a>
+        </div>
+		    <div class="panelTitle">设备当前状态</div>
+		    <div class="panelContent" style="max-height: 400px; overflow: auto;">
+		       <div class="data_grid"> </div>
+		    </div>
+		</div>
+		
+		
+		<div id="panel_002" class="panel lastEvents">
+		    <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_newEvent"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+             </div>
+		    <div class="panelTitle">最新事件</div>
+		    <div class="panelContent">
+	            <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td style="vertical-align: top; position: relative;">
+                            <div title="#=nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)#">
+                            <span class="severity-icon-small #= nb.Render.severitys(severity)#" />
+                            #=nb.Render.ellipsisStr(nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)) #
+                            </div>
+                            <div title="#=message#" style="color:rgb(69,134,216);padding-left:4em;">#=nb.Render.ellipsisStr(message, 80)#</div>
+                            <div style="position:absolute; right:0; top:0;color:rgb(176,176,176)">#= nb.xutils.getTimeStr(endTime * 1000) #</div>
+                        </td>
+                        
+                    </tr>
+	            </script>
+		       <table style="width: 100%">
+		       		<tbody> </tbody>
+		       </table>
+		    </div>
+		</div>
+		
+		<div id="panel_003" class="panel">
+		    <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_hostAvail"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+		    <div class="panelTitle">主机可用性Top10<span style="color:#b4b4b4">(一定时间段内无法连接次数最多主机前十名)</span></div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+	</div><!-- end first c -->
+	
+	<div class="coumn sec">
+		<div id="panel_004" class="panel">
+		   <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_interfaceAvail"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+		    <div class="panelTitle">接口可用性Top10<span style="color:#b4b4b4">(一定时间段内掉线次数最多,断线时间最长的接口前十名)</span></div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+		
+		<div id="panel_005" class="panel">
+		    <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_processAvail"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+		    <div class="panelTitle">进程可用性Top10<span style="color:#b4b4b4">(一定时间段内停止运行次数最多进程前十名)</span></div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+		
+		<div id="panel_006" class="panel">
+		    <div class="panelActions">
+                <a href="javascript:" name="help_action" class="help tool_tip" tipId="dev_index_serviceAvail"> </a>
+                <a href="javascript:" name="refresh_action" class="refresh"> </a>
+            </div>
+		    <div class="panelTitle">服务可用性Top10<span style="color:#b4b4b4">(一定时间段内连接不上次数最多的端口前十名)</span></div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+		
+</div><!-- end sec c -->
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+    <link href="/media/js/ucenter/leftMenus.css" rel="stylesheet" />
+   <link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+span.componentType{
+    border:1px solid #D3D3D3;
+    display: inline-block;
+    text-align: center;
+    width:80px;
+    padding: 2px 0px;
+}
+table.k-editor{width:auto;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/ucenter/dynamicValidate.js"></script>
+<script src="/media/js/ucenter/deviceDynamic.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "ucenter/left_menu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+<div class="panel">
+    <div class="panelTitle">最新事件</div>
+    <div class="panelContent">
+        <div id="eventList">
+            <table class="data_table2">
+				<thead>
+					<th>名称</th>
+					<th>监控项目</th>
+					<th>事件信息</th>
+					<th>开始时间</th>
+					<th>结束时间</th>
+					<th>求助</th>
+					<th>分享</th>
+				</thead> 
+                <tbody>
+                    {% for line in ret.results %}              
+                    <tr {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+                        <td style="width:100px">  
+                            <span class="mo_lable ">{{line.label}}</span>
+                        </td> 
+                        <td style="width:80px">
+                            <span class="componentType" componentType="{{line.componentType}}" onblur="javascript:"></span>
+                        </td> 
+                        <td class="evt_message_td" style="width:300px"><span>{{line.message}}</span></td> 
+                        <td class="evt_startTime_td" style="width:120px"><span>{{line.firstTime|formatTime}}</span></td> 
+                        <td class="evt_endTime_td" style="width:120px"><span>{{line.endTime|formatTime}}</span></td> 
+                        <td style="width:60px">
+                            <button type="button" name="createQuestion_btn" class="btn btn-default">
+                                <span>求助</span>
+                            </button>                            
+                        </td>
+                        <td style="width:60px">
+                            <button type="button" name="createShare_btn" class="btn btn-default">
+                                <span>分享</span>
+                            </button>                            
+                        </td>
+                     </tr> 
+                     {% endfor%}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div align="center">
+	<button type="button" id="createQuestionDirect_btn" class="btn btn-default">
+		<span class="glyphicon  glyphicon-user">直接求助</span>
+	</button>
+	<button type="button" id="createShareDirect_btn" class="btn btn-default">
+		<span class="glyphicon  glyphicon-user">直接分享</span>
+	</button>       
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+{% include "ucenter/qustionShare.html" %}
+{% endblock %}
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>运维通功能介绍--一键通功能</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+<link href="/media/help/help_content.css" rel="stylesheet" type="text/css" />
+<style>
+.ptitle{
+	color: #333333;font-weight:bold;
+    font-size: 16px;
+	margin:10px;
+}
+.ptitle2{
+	line-height: 40px;
+	margin:10px;
+    font-size: 16px;
+}
+hr{color: #F0ECDE;}
+</style>
+</head>
+
+<body>
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/features_left.html"%}
+       <div class="help_right" style="min-height:580px; line-height:28px; font-size:14px;">
+        <h1 style="padding:0; margin:0; font-size:22px;">一键通功能</h1>
+         <p class="content01">
+            <h3 style="background-color:#F90; width:100px; text-align:center; font-size:16px; font-weight:bold; color:#fff; margin:20px 0 5px 0;">一键重启</h3>
+            通过IPMI 接口，配置远程访问的用户名/密码，即可以使用一键通当中的一键重启功能，远程重启已经处于蓝屏死机情况下的物理主机，包括普通服务器及云宿主机。<br /><br />
+            <p class="image"><img src="/media/help/yzcq.jpg" style="width:auto;"/></p>
+            <h3 style="background-color:#F90; width:100px; text-align:center; font-size:16px; font-weight:bold; color:#fff; margin:20px 0 5px 0;">一键命令</h3>
+            通过SSH 接口，可预先录制命令脚本，一旦需要时，通过运维通web界面或手机APP即可轻松实现常用指令的一键运行，如在linux主机上预先录制 service  network  restart 通过点击该一键命令图标即可实现远程开关网络服务。<br /><br />
+         </p>
+         
+         <p class="image"><img src="/media/help/yzml.jpg" style="width:auto;"/></p>
+        
+    </div>    
+    
+</div>
+
+
+</body>
+</html>

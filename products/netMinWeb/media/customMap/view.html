@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="map.css" />
+        <style>
+            h3{
+                font-size:30px;
+                text-shadow:0 0 6px #8BACEA, -1px -1px  #ccc, 1px -1px  #444;
+            }
+            #canvas_continer, #canvas_continer2{
+                margin-top:10px;
+                width:800px;min-height:500px;
+                border:1px solid #eee;
+                border-radius: 6px;
+                box-shadow: 0px 0px 12px #c1c1c1;
+            }
+        </style>
+        <script src="jquery.min.js"></script>
+        <script src="raphael.js"></script>
+        <script src="popup.js"></script>
+        <script src="core.js"></script>
+        <script src="model.js"></script>
+        <script src="utils.js"></script>
+        <script src="view.js"></script>
+        <script>
+            $(document).ready(function(){
+                jQuery("#canvas_continer").bind("contextmenu",function(){ return false; });
+            });
+        </script>
+    </head>
+    
+    <body>
+    
+        <h3>The Customer Net View Editor.</h3>      
+        <div id="canvas_continer"> </div>
+        
+    </body>
+</html>

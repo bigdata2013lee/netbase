@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/css/topic.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/settings/servicesNoteDetail.js"></script>
+<script src="/media/js/ucenter/showUser.js"> </script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+
+{% endblock %}
+
+{% block mright-panel  %}
+<div class="topicBrief">
+    <div class="topic_header" style="display:flex;height:auto;">
+        <div class="user" style="float:left;width: 80px;display: inline-table;">
+            <a href="javascript:" style="vertical-align: top;width: 80px;">
+                <img name="user_icon" user_id="{{serviceNote.user.getUid}}"  src="{{serviceNote.user.icon|defaultIcon}}" 
+                        user_type="User" style="width: 80px;height: 80px;"/>
+            </a>            
+        </div>                
+        <div class="tags1">
+		    <dl class="fields">
+		        <dt>用户：</dt><dd>{{ serviceNote.user.titleOrUid|getName }}</dd>
+		        {% if serviceNote.subject|length  < 21 %}
+		        <dt>主题：</dt><dd style="color: #000000;">{{ serviceNote.subject }}</dd>
+		        {% endif %}
+		        {% if serviceNote.dueTime %}
+		        <dt>期限：</dt><dd>{{ serviceNote.dueTime|getTime}}</dd>
+		        {% endif %}
+		        <dt>紧急度：</dt><dd>{{ serviceNote.emergencyDegree }}</dd>        
+		    </dl>
+		    {% if serviceNote.subject|length  >= 21 %}
+			    <dl class="fields fields1">
+			        <dt style="vertical-align: top;">主题：</dt><dd style="color: #000000;max-width: 1010px;vertical-align: top;">{{ serviceNote.subject }}</dd>
+			    </dl>
+		    {% endif %}
+	        {% if serviceNote.attachments %}
+			    <dl class="fields">
+			        <dt>附件列表：</dt>
+			        <dd>
+			          {% for attach in serviceNote.attachments %}
+			            <a href="/downloads/{{attach}}/" target="_blank">{{attach|cutAttachName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			        {% endfor %}
+			        </dd>
+			    </dl>
+	        {% endif %}
+        </div>
+    </div>
+	<dl class="fields fields2"><dt></dt><dd class="comment_content"><p>{% autoescape off %}{{ serviceNote.content }}{% endautoescape %}</p></dd></dl>    
+    
+	<div style="height: 1px; border-bottom:1px solid  #ccc; margin: 1em 0;"></div>
+</div>
+
+<br clear="both"/>
+<div style="height: 1px; border-bottom:1px solid  #ccc; margin: 1em 0;"></div>
+<div class="commentList">
+    {% for dialog in dialogs %}
+        <div class="comment_list">
+            <div class="comment_header1">
+            {% ifequal serviceNote.user.username dialog.speaker.username %}
+                <a href="javascript:"><img name="user_icon" user_id="{{dialog.speaker.getUid}}" src="{{dialog.speaker.icon|defaultIcon}}" 
+                        user_type="User" style="width: 36px;height: 36px;"/></a>
+				<dl class="fields">
+	                <dt>用户：</dt><dd>{{dialog.speaker.titleOrUid|getName}}</dd>
+            {% else %}
+                <a href="javascript:"><img name="user_icon" user_id="{{dialog.speaker.getUid}}" src="{{dialog.speaker.icon|defaultIcon}}" 
+                        user_type="Enginner" style="width: 36px;height: 36px;"/></a>
+            	<dl class="fields">
+					<dt>工程师：</dt><dd>{{dialog.speaker.titleOrUid|getName}}</dd>
+            {% endifequal %}
+		            <dt class="comment_time">发表时间：</dt><dd class="comment_time">{{dialog.rTime|formatTime }}</dd>
+		        </dl>        
+            </div>
+            <div class="comment_content"><p>{% autoescape off %} {{dialog.content}}{% endautoescape %} </p></div>           
+            <br clear="both"/>
+        </div>   
+     {% endfor %} 
+</div> 
+
+{%if serviceNote.engineer%}
+<form id="form1" action="/settings/postComment/" method="post" enctype="multipart/form-data">
+    <div class="validateErrorMsg"></div>  
+    <input type="hidden" name="snUid" value="{{serviceNote.getUid}}">
+    <input name="context" id="hidden_context" style="display: none;"/>
+    <dl class="fields">
+        <dt>附件：</dt>              
+        <dd><input type="file" name="Filedata">(&nbsp;&nbsp;格式：txt文件;压缩文件;图片文件;office文件&nbsp;&nbsp;仅限10M以内)</dd>
+    </dl>            
+    <dl class="fields">        
+        <dt style="vertical-align: top;">内容：</dt>    
+        <dd style="width: 85%;">                
+            <textarea id="editor">
+            </textarea>
+        </dd>                
+    </dl> 
+    <div style="text-align: center;">
+        <input class="button" type="submit"  value="提交"/> 
+    </div>     
+</form>
+{%endif%}
+{% endblock %}
+
+{% block other_extend_block %}
+
+{% endblock %}

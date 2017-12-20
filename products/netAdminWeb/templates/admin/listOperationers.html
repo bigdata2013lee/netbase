@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load netbasefilters%}
+{% block extra_css %}
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+<link href="/media/css/serviceNoteList.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/ucenter/technologyFileds.js"> </script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script type="text/javascript" src="/media/js/admin/adminUser/listOperationers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_0.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+        <div class="panelTitle">运维商列表</div>  
+    <div class="panelContent">  
+        <div class="query_tool_bar">
+            <li>
+                <label>运维商：</label><input type="text" name="operationer"/><input type="button" name="search" value="查询" />
+                <a name="addOperation" href="javascript:">添加运维商</a>
+            </li>
+        </div>
+            <table class="data_table">
+                <thead>
+                    <tr>    
+                    	<th>运维商</th>  
+                    	<th>账号</th>  
+                    	<th>公司</th>  
+                    	<th>联系方式</th>  
+                    	<th>地址</th>  
+                    	<th>技术领域</th>  
+                        <th style="width: 10%;">操作</th>
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for  op in operationers%}
+                        <tr class="data_tr" data-href="/admin/operationerDetail/?dataId={{ op.getUid }}" >
+                        	<td>{{ op.originalName|getName }}</td>
+                        	<td>{{ op.username }}</td>
+                        	<td>{{ op.baseInfo.companyName }}</td>
+                        	<td>{{ op.contactPhone }}</td>
+                        	<td>{{ op.baseInfo.address }}</td>
+                        	<td>{% for tf in  op.serviceInfo.technologyFileds%}<label>{{ tf }}&nbsp;&nbsp;</label>{% endfor %}</td>
+                            <td  style="width: 10%;vertical-align: bottom;padding-bottom: 10px;">
+                                    <a action="delete" href="javascript:" dataId="{{ op.getUid }}">删除</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pages_tools">
+                <a href="/admin/listOperationers/?pageNum=1" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/admin/listOperationers/?pageNum={{p}}">{{p}}</a>
+                {%endfor%}
+            </div>
+        <br clear="both" />
+    </div>
+</div>
+{% endblock %}
+
+{% block other_extend_block %}
+<div id="addOperationWin" class="dialog_win">
+    <div class="box" style="height: 630px;overflow: auto;">    
+        <div class="validateErrorMsg"></div>
+        <div style="display: inline-block;float: left">
+            
+            <div class="groupdiv">
+                <h3>账号信息</h3>
+                <dl class="fields">
+                    <dt>用户名：</dt>
+                    <dd><input name="originalName" /></dd>
+                </dl>
+                <dl class="fields">
+                    <dt>账号：</dt>
+                    <dd><input name="username" placeholder="账号为邮箱格式..."/></dd>
+                </dl>
+                <dl class="fields">
+                    <dt>密码：</dt>
+                    <dd><input name="password" type="password"/></dd>
+                </dl>   
+                <dl class="fields">
+                    <dt>联系邮箱：</dt>
+                    <dd><input name="email" /></dd>
+                </dl>          
+            </div>
+            
+            <div class="groupdiv">        
+                <h3>基本信息</h3>
+                <dl class="fields">
+                    <dt>公司名称：</dt>
+                    <dd><input  name="companyName"  /></dd>
+                </dl>
+                <dl class="fields">
+                    <dt>营业执照：</dt>
+                    <dd><input name="bussinessLicenseNum" /></dd>
+                </dl>
+                <dl class="fields">
+                    <dt>联系电话：</dt>
+                    <dd><input  name="phoneNum" /></dd>
+                </dl>
+                <dl class="fields">
+                    <dt>地址：</dt>
+                    <dd><input name="address" /></dd>
+                </dl>               
+            </div>
+        
+        </div>
+        
+        <div style="display: inline-block;">
+            <h3>服务领域\地域</h3>
+            <dl class="fields">
+                <dt>技术领域：</dt>
+                <dd>            
+                    <div id="autoComplateWidget1" class="autoComplateWidget">                   
+                        <div class="input_box">
+                            <input type="" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list">
+                        </ul>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="fields">
+                <dt>技术特长：</dt>
+                    <dd><input name="technologyForte"maxlength="100"/></dd>
+            </dl>
+            <dl class="fields">
+                <dt>服务地域：</dt>
+                <dd>
+                    <div id="areaAutoComplateWidget" class="autoComplateWidget">
+                        <div class="input_box"> 
+                            <input type="" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list" style="z-index: 10009; overflow: auto; height: 200px;">
+                        </ul>
+                    </div> 
+                </dd>  
+           </dl>             
+        </div>
+       
+        <h3>公式简介</h3>
+        <dl class="fields">
+            <dt style="vertical-align: top;">公司简介：</dt>
+            <dd>
+                <textarea style="width: 400px;height: 100px; max-width: 600px;max-height: 200px;"  
+                name="companydescription"></textarea>
+            </dd>
+        </dl>
+        <br clear="both"/>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+     
+{% endblock %}
+

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{%if not user%}
+    {%load netbasefilters%}
+{%endif%}
+{% block extra_css %}
+<link href="/media/css/button.css" rel="stylesheet" />
+<link href="/media/js/ucenter/leftMenus.css" rel="stylesheet" />
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#search_box {
+    border:#DDDDDD;
+    padding:1em;
+    margin:1em;
+    box-shadow: 0 0 6px #bbb;
+}
+div.autoComplateWidget {
+    float: left;
+    margin: 0 10px 0 0;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/operationerList.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+
+{% block  mleft-panel %}
+    {% include "ucenter/left_menu.html" %}
+{% endblock %}
+{% block mright-panel  %}
+<div class="panel">
+    <div class="panelContent">
+        <div class="search_box" id="search_box">
+            <dl>
+                <dt style="height: 33px; line-height: 33px; ">技术领域：</dt>
+                <dd>
+                    <div id="autoComplateWidget1" class="autoComplateWidget">
+                        <div class="input_box">
+                            <input name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list"> </ul>
+                    </div>
+                    <button type="button" id="search_btn" class="">搜 索</button>
+                </dd>
+                <br clear="both"/>
+            </dl>           
+        </div>
+        
+        <div id="search_results">
+
+            <table class="data_table2" style="margin:3em 0em 1em 0em;">
+                <thead>
+                    <tr>
+                        <th width="40px">#</th>
+                        <th width="180px">公司名称</th>
+                        <th>技术特长</th>
+                        <th width="120px">注册时间</th>
+                    </tr>
+                </thead>
+                {% for operationer in searchResult.results %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td style="font-weight: bold;"><a href="/ucenter/viewOperationer/{{operationer.getUid}}/">{{operationer.baseInfo.companyName}}</a></td>
+                    <td>{{operationer.serviceInfo.technologyForte}}</td>
+                    <td>{{operationer.createTime|formatShortTime}}</td>
+                 </tr>
+                {% endfor %}
+            </table>
+            
+            {% if not searchResult.results %}
+                <div class="no_result_tip">查询不到任何相关领域的运维商</div>
+            {% endif %}
+        </div>
+        {%if searchResult.results%}
+            <div class="pages_tools">
+                <a href="/ucenter/operationerList/?technologyFileds={{request.REQUEST.technologyFileds|urlencode}}&pageNum=1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/ucenter/operationerList/?technologyFileds={{request.REQUEST.technologyFileds|urlencode}}&pageNum={{p}}">{{p}}</a>
+                {%endfor%}
+            </div>
+            <br clear="both"/>        
+        {%endif%}
+        <br/>
+    </div>
+</div>
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}
+

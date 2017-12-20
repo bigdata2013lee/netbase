@@ -1,0 +1,49 @@
+{%load netbasefilters%}
+{%if not searchResult.results%}
+<div class="no_result_tip">对不起，找不到你的结果</div>
+{%endif%}
+<ul>
+    
+{%for obj in searchResult.results%}
+    <li>
+       <div class="col_4">
+           <img src="{{obj.publisher.icon|defaultIcon}}" style="width: 36px;height: 36px;"/>
+       </div>
+       
+        <div class="col_1">
+            <span class="hot">回复{{ obj.replyNum }}</span> 
+            <a href="/operation/view{{topicType}}/{{obj.getUid}}">{{obj.title|getSureLength:20}}</a>
+        </div>
+        
+        <div class="col_3">
+            <div class="tags">
+                    {% for tag in obj.fields %}
+                        <label class="tag"><a href="javascript:">{{tag}}</a></label>
+                    {% endfor %}
+            </div>
+         </div>
+         
+        <div class="col_2">
+            <span>发表时间:{{obj.ctime|formatTime}}</span>
+       </div>
+       
+         
+       <br clear="both"/>
+        
+    </li>
+{%endfor%}
+
+</ul>
+
+{%if searchResult.results%}
+<div class="pages_tools">
+    <a href="javascript:" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+    {%for p in pageInfos.plist%}
+    <a href="javascript:" page_num="{{p}}">{{p}}</a>
+    {%endfor%}
+</div>
+<br clear="both"/>
+
+{%endif%}
+
+

@@ -1,0 +1,15 @@
+[
+    {"severity": 5,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 4,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 3,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 5,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 4,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 5,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 2,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 3,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 1,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 5,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 2,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 0,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"},
+    {"severity": 5,  "message":"网络连接失败", "alertTime":"2013-02-09 11:21:04"}
+]

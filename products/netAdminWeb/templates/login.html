@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{%load netbasefilters%}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Netbase 登录 </title>
+    <link rel="stylesheet" type="text/css"  href="/media/css/admin/login.css" />
+    <script src="/media/js/jquery.min.js"></script>
+    <script src="/media/js/adminLogin.js"></script>
+    
+    <style>
+        #login_div .row.rempassword{
+              margin-left: 180px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form action="/{{userType|firstPath}}/login/" method="post" id="login-form" >
+            <div id="login_div">
+            	<input type="hidden" name="userType" value="{{userType}}" />
+                <div class="row">
+                    <span>用户名：</span><input  class="inputx" type="text" name="username" id="id_username" value="" />
+                </div>
+                <div  class="row">
+                    <span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input class="inputx" type="password" name="password" id="id_password" value="" />
+                </div>
+                
+                <div class="row  buttons" style="">
+                	<input class="buttonx" type="submit" value="登陆" />&nbsp;&nbsp;
+                	<input class="buttonx" type="reset" value="重置" name="reset"/>
+                </div>
+                
+                <div class="row error_message">&nbsp; {{ message_info }}</div>
+            </div>
+        </form>
+    </div>
+    <div style="display:none;">session_fail_or_no_permission</div>
+</body>
+
+</html>

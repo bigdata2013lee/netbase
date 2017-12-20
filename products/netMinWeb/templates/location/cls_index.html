@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/left_item_menu.css" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#grid_tool_bar{
+	position:relative;
+	padding: 1.3em 0.5em;
+}
+
+#grid_tool_bar label{
+	display: inline-block;
+	width:60px;
+	text-align: right;
+}
+
+#grid_tool_bar div.op{
+	position: absolute;
+	right: 0.5em;
+	top:1.3em;
+}
+
+
+#locationsListWidget li{
+	border:1px solid #CCCCCC;
+	padding:0.5em 2px;
+	height:30px;
+	position: relative;
+	text-align: center;
+}
+
+#locationsListWidget li.selected{
+/*	border: 1px solid #0063C8;
+	box-shadow: 0 0 6px #0063C8;*/
+	background-color: #1D96E3;
+    color: #FFF;
+    border: #4FAAEE 1px solid;
+    box-shadow: 0px 0px 6px #26ADFB;
+}
+#locationsListWidget li.selected a{
+    color: #FFF;
+}
+#locationsListWidget li div.op{
+	display:none;
+	position: absolute;
+	right:0.5em; bottom:0px;
+}
+
+#locationsListWidget li:hover div.op{
+	display: block;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var orgUid = '{{orgUid}}';</script>
+<script src="/media/js/location/devicesView.js"></script>
+<script src="/media/js/location/config.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "location/location_sec_menu.html" %}
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+
+<div style="margin: 10px  4px  2em 4px; text-align: center;">
+	<a class="try-kendo" name="add_location">+创建新分组</a>
+</div>
+
+<div class="panel_min psbar" style="max-height: 500px;">
+
+	<div id="locationsListWidget" style="margin:1em;">
+		<script name="template" type="text/x-kendo-template">
+			<li locuid="#=_id#" title="#=title#">
+				<a name="listmos" href="javascript:">#=title#</a>
+				<div class="op">
+					<a href="javascript:" href="javascript:" name="edit" title="edit"><em class="icon cog_edit"></em></a>
+					<a href="javascript:" href="javascript:" name="delete" title="delete"><em class="icon cross"></em></a>
+				</div>
+			</li>
+		</script>
+		<ul> </ul>
+	</div>
+	<br/>
+</div>
+
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="panel_data_grid" class="panel">
+    <div class="panelTitle">对象视图</div>
+    <div class="panelContent">
+    	<script type="text/x-kendo-template" id="grid_tool_bar_template">
+            <div id="grid_tool_bar">
+            	<div class="query">
+	                <label>名称:</label>
+	                <input name="title" style="width: 150px"/>
+	                <label>IP:</label>
+	                <input name="manageIp" style="width: 150px"/>
+            	</div>
+            	
+            	<div class="op">
+            		<a href="javascript:" name="setLocation">设置分组</a>
+            	</div>
+            </div>
+        </script>
+		<div id="data-grid"> </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+<div id="addLocWin" class="dialog_win">
+    <div class="box">
+    	<li>
+    		<label>标题:</label> <input name="title"/>
+    	</li>
+    </div>
+    <div class="validateErrorMsg" > </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+
+
+<div id="renameLocWin" class="dialog_win">
+    <div class="box">
+    	<li>
+    		<label>标题:</label> 
+    		<input name="title" data-bind="value:title"/>
+    		<input type="hidden" name="locUid" data-bind="value:locUid" />
+    	</li>
+    </div>
+    <div class="validateErrorMsg" > </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+
+
+<div id="selectLocWin" class="dialog_win">
+    <div class="box">
+    	<li>
+    		<label>设置分组:</label> <select name="location" style="width: 200px; height: 24px; line-height: 24px;"></select>
+    	</li>
+    </div>
+    <div class="win_opbar">
+        <button class="ok">保存</button>
+        <button class="cancel">退出</button>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    #customersWidget div.panelContent{ border-radius: 4px;}
+    #query_conditions{position: relative;padding:10px 0;}
+    #query_conditions .op_bar{
+        position: absolute;
+        top:8px;
+        right: 1em;
+    }
+    
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/customers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_0.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customersWidget" class="panel">
+    <div class="panelTitle">我的客户</div>
+    <div class="panelContent">
+        <div id="query_conditions">
+            <li>
+                <label>用户名:</label> <input name="username" />
+                <label>公司名称:</label> <input name="company" />
+            </li>
+            <div class="op_bar">
+                <button class="query">查询</button>
+            </div>
+        </div>
+        <div id="data-grid"> </div>
+    </div>
+</div>  
+
+   
+     
+{% endblock %}
+
+{% block other_extend_block %}
+
+
+     
+{% endblock %}
+

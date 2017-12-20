@@ -1,0 +1,199 @@
+@charset "utf-8";
+
+/*======================
+        公共样式
+=======================*/
+
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset,input { margin: 0; padding: 0; }
+em, cite, th { font-style: normal; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-size: 1em; font-weight:normal;}
+a{color:#444; text-decoration:none}
+a:hover{color:#ff3c00; text-decoration:none;}
+li{ list-style:none;}
+img{ border:none;}
+input,img{ vertical-align:middle;}
+input:focus{ outline:none;}
+.clear{ clear:both}
+.hide{ display:none}
+
+body{ font-family:"微软雅黑","宋体",arial;font-size: 12px; color:#444;}
+
+#header0905{ background:url(/media/images/header_bg.gif) repeat-x; height:130px; overflow:hidden;}
+.header0905_top{ width:980px; margin:0 auto; text-align:right; height:30px; line-height:30px; color:#888;}
+.header0905_top a{ padding:0 5px;}
+.header0905_bot{ width:980px; margin:0 auto; height:100px; overflow:hidden;} 
+
+.login_logo{ width:200px; height:61px; padding-top:20px; float:left; overflow:hidden;}
+.hea_Slogan{ width:400px; height:31px; float:left; padding-top:50px; padding-left:15px;}
+.hea_tel{ font-size:18px; float:right; padding-top:50px;}
+.hea_tel span{ font-size:22px; color:#f30;}
+
+#main0905{height:410px; background-color:#0d4a82; overflow:hidden;}
+#login_main{ position:relative; width:980px;  margin:0 auto; }
+.ulmain_banner{ width:980px; overflow:hidden;}
+.ulmain_banner li{ width:980px; height:410px;}
+
+.login0905{ width:320px; height:294px; background-color:#e6e9eb; border:solid 1px #fff; position:absolute; top:55px; right:10px;}
+.login0905_top{ background:url(/media/images/bot01.gif) repeat-x bottom; color:#014b78; height:60px; line-height:60px; text-align:center; font-size:24px;}
+
+.inpACC{
+margin: 10px 0 10px 30px;
+width:254px; height:38px; line-height:38px; background-color:#fff; 
+border:solid 1px #bdcddd; padding-left:6px; color:#45617e; font-size:14px; 
+}
+.inpACC input{border:0px solid #FFFFFF; font-size:14px;}
+
+.Remember0905{ height:20px; padding:0px 0 10px 30px;}
+.Remember0905 .wanzi{ padding-left:55px; }
+.Remember0905 .wanzi a{ color:#f60; text-decoration:underline;  *width: 50px;}
+.Remember0905 .wanzi a:hover{ color:#f00; text-decoration:underline;}
+
+
+.row0905{ overflow:hidden; padding-left:30px; padding-top:35px;}
+.logbutton{ width:110px; height:38px; float:left;}
+.logbutton a{ background:url(/media/images/login0905_bg.jpg) no-repeat; width:110px; height:38px; line-height:38px; display:block; text-align:center; font-size:18px;     color:#fff; background-position:0 -38px;}
+.logbutton a:hover{ background-position:0 0;}
+
+
+.Registration0905{ width:110px; height:38px; float:left; padding-left:40px;}
+.Registration0905 a{ background:url(/media/images/login0905_bg.jpg) no-repeat; width:110px; height:38px; line-height:38px; display:block; text-align:center; font-size:18px;  color:#333; background-position:-110px -38px;}
+.Registration0905 a:hover{ background-position:-110px 0px;}
+
+
+#login_footer{ background-color:#f0f0f0;  padding:20px 0; overflow:hidden; bottom: 0; width: 100%;}
+.footer980{ width:980px; margin:0 auto;}
+.footer980 a{ padding-right:15px; color:#444;}
+.footer980 a:hover{ color:#f30;}
+.footer980 .Copyright0905{ color:#888; font-size:12px;}
+#packages_bg{background:url(/media/images/login_footer_bg.gif) repeat-x; overflow:hidden; height:30px;}
+
+
+.error_message{margin-top:4px; text-align: center; color: #FF3300;/**background-color: #F4E8B5; border: 1px solid #E87122;*/}
+
+
+
+
+#regist_win{
+    
+    font-size: 14px;
+}
+
+
+#regist_win h3{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#214EA1;
+    
+    padding:0px 4px 15px 4px;
+    border-bottom:1px dashed #cccccc;
+    margin:10px 20px 20px 20px; 
+}
+
+#regist_win .content-left{
+    width:650px;
+    float: left;
+    border-right:1px dashed #DDDDDD;
+    margin-right: 4px; 
+}
+
+
+#regist_win .content-left li{
+    height: 34px; line-height: 34px;
+}
+#regist_win .content-left li label{
+    display: inline-block; width: 100px; text-align: right; margin-right: 0.5em;
+}
+
+#regist_win .content-left li input, #regist_win .content-left li select{
+    border:1px solid #C6D9FF;
+    height: 25px; line-height: 25px; width: 200px;background-color: #F6FAFF;
+}
+
+#regist_win .content-left li input.checkbox{
+    width:auto;
+}
+
+
+#regist_win button{
+    border: none;
+    width:185px; height:34px;
+    cursor: pointer;
+    color:#FFFFFF;
+    font-weight:bold;
+    background: url(/media/images/Reg01.jpg) no-repeat;
+}
+
+
+#regist_win .content-right{
+    width:230px;
+    float: left;
+    margin-left: 30px; 
+}
+
+#regist_win .content-right p{
+    line-height: 24px;
+}
+#regist_win button:hover{
+    background-position: 0px -34px;
+}
+
+
+
+span.required{
+    color: red;
+}
+
+font.rnote{
+    color:#999999;font-size: 12px;
+}
+
+/**----------------------------------------------------------------------*/
+#regist_success_win h3{
+    background: url(/media/images/confirmation.png) no-repeat;
+    height: 48px; line-height: 48px;
+    padding: 0 0 0 68px;
+    font-size: 24px;
+}
+
+#regist_success_win p{
+    line-height: 28px;
+    margin-left:48px;
+    font-size: 14px;
+}
+
+#regist_success_win  span.reg_name{
+    font-size: 16px;
+    color: #CC1C0D;
+}
+
+/**----------------------------------------------------------------------*/
+#active_info_ok_win h3{
+    background: url(/media/images/confirmation.png) no-repeat;
+    height: 48px; line-height: 48px;
+    padding: 0 0 0 68px;
+    font-size: 24px;
+}
+
+#active_info_ok_win p{
+    line-height: 28px;
+    margin-left:48px;
+    font-size: 14px;
+}
+
+/**----------------------------------------------------------------------*/
+    
+#active_info_fail_win h3{
+    background: url(/media/images/warning.png) no-repeat;
+    height: 48px; line-height: 48px;
+    padding: 0 0 0 68px;
+    font-size: 24px;
+}
+
+#active_info_fail_win p{
+    line-height: 28px;
+    margin-left:48px;
+    font-size: 14px;
+}
+
+/**----------------------------------------------------------------------*/    

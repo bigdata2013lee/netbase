@@ -1,0 +1,14 @@
+.tip_content_box{
+    font-size:14px;
+}
+.tip_content_box div.goup1 img{
+    float: left;
+    margin-right:2em;
+}
+.tip_content_box div.goup1{
+    padding: 6px;
+    line-height: 24px;
+}
+.tip_content_box div.group2{
+    padding-left: 1em;
+}

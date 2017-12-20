@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<style>
+#user_left_menus li{
+    height: 25px;
+    line-height: 25px;
+    padding-left:1em;
+}
+    
+.panelContent .box li{
+    height: 30px; 
+    line-height: 22px;
+}
+
+
+#panel_0002, #panel_0003, #panel_0004, #panel_0005,#panel_0006{
+    display: none;
+}
+
+.li_money{
+	margin-top: 20px;
+}
+
+.li_btn{
+	
+	margin-top: 40px;
+}
+
+.sumbitCls {
+	padding: 8px 30px;
+	background: #FF6600;
+	text-align: center;
+	margin-left: 70px;
+
+}
+
+
+</style>
+{% endblock %}
+
+{% block extra_style %}
+
+{% endblock %}
+{% block extra_js %}
+<script>var userId ="{{ user.getUid }}";</script>
+<script src="/media/js/settings/userBilling_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "settings/settings_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<ul id="user_left_menus">
+    <li><a href="javascript:" name="Device">主机认购</a></li>
+    <li><a href="javascript:" name="Website">站点认购</a></li>
+    <li><a href="javascript:" name="Network">网络认购</a></li>
+    <li><a href="javascript:" name="Bootpo">远程开关机</a></li>
+    <li><a href="javascript:" name="ShortCutCmd">远程命令</a></li>
+	<li><a href="javascript:" name="listBillings">用户认购单列表</a></li>
+</ul>
+{% endblock %}
+
+{% block mright-panel  %}
+
+<div id="panel_0001" class="panel swich" actionName="Device">
+    <div class="panelTitle">
+        主机认购单
+    </div>
+    <div class="panelContent">
+    	<ul>
+		<li>
+			<label>购买数量：</label>
+			<input class="numberStyle" type="number"  value="1" min="0" max="100" step="1" name="billingNum" />
+		</li>
+		<li>
+			<label>购买时长：</label>
+			<select class="selectModel" >
+				<option value="byMonth" >按月</option>
+				<option value="byYear">按年</option>
+			</select>&nbsp;&nbsp;
+			<select class="select2">
+				<option value="1">1个月</option>
+				<option value="2">2个月</option>
+				<option value="3">3个月</option>
+				<option value="4">4个月</option>
+				<option value="5">5个月</option>
+				<option value="6">6个月</option>
+				<option value="7">7个月</option>
+				<option value="8">8个月</option>
+				<option value="9">9个月</option>
+				<option value="10">10个月</option>
+			</select>
+		</li>
+		<li class="li_money">
+			<label>费用：</label><span name="billingMoney" style="font-size:25px;color: #F76E00"></span><em style="font-size: 14px;">元</em>
+		</li>
+		<li class="li_btn"><a href="javascript:" name="sumbitBt" class="sumbitCls">提交</a></li>
+		</ul>
+    </div>
+</div>
+
+
+
+<div id="panel_0002" class="panel swich" actionName="Website">
+    <div class="panelTitle">
+        站点认购单
+    </div>
+    <div class="panelContent">
+    	<ul>
+		<li>
+			<label>购买数量：</label>
+			<input class="numberStyle" type="number"  value="1" min="0" max="100" step="1" name="billingNum" />
+		</li>
+		<li>
+			<label>购买时长：</label>
+			<select class="selectModel" >
+				<option value="byMonth" >按月</option>
+				<option value="byYear">按年</option>
+			</select>&nbsp;&nbsp;
+			<select class="select2">
+				<option value="1">1个月</option>
+				<option value="2">2个月</option>
+				<option value="3">3个月</option>
+				<option value="4">4个月</option>
+				<option value="5">5个月</option>
+				<option value="6">6个月</option>
+				<option value="7">7个月</option>
+				<option value="8">8个月</option>
+				<option value="9">9个月</option>
+				<option value="10">10个月</option>
+			</select>
+		</li>
+		<li class="li_money">
+			<label>费用：</label><span name="billingMoney" style="font-size:25px;color: #F76E00"></span><em style="font-size: 14px;">元</em>
+		</li>
+		<li class="li_btn"><a href="javascript:" name="sumbitBt" class="sumbitCls">提交</a></li>
+		</ul>
+    </div>
+</div>
+
+<div id="panel_0003" class="panel swich" actionName="Network">
+    <div class="panelTitle">
+        网络认购单
+    </div>
+    <div class="panelContent">
+    	<ul>
+		<li>
+			<label>购买数量：</label>
+			<input class="numberStyle" type="number"  value="1" min="0" max="100" step="1" name="billingNum" />
+		</li>
+		<li>
+			<label>购买时长：</label>
+			<select class="selectModel" >
+				<option value="byMonth" >按月</option>
+				<option value="byYear">按年</option>
+			</select>&nbsp;&nbsp;
+			<select class="select2">
+				<option value="1">1个月</option>
+				<option value="2">2个月</option>
+				<option value="3">3个月</option>
+				<option value="4">4个月</option>
+				<option value="5">5个月</option>
+				<option value="6">6个月</option>
+				<option value="7">7个月</option>
+				<option value="8">8个月</option>
+				<option value="9">9个月</option>
+				<option value="10">10个月</option>
+			</select>
+		</li>
+		<li class="li_money">
+			<label>费用：</label><span name="billingMoney" style="font-size:25px;color: #F76E00"></span><em style="font-size: 14px;">元</em>
+		</li>
+		<li class="li_btn"><a href="javascript:" name="sumbitBt" class="sumbitCls">提交</a></li>
+		</ul>
+    </div>
+</div>
+
+<div id="panel_0004" class="panel swich" actionName="Bootpo">
+    <div class="panelTitle">
+        远程开关机认购单
+    </div>
+    <div class="panelContent">
+    	<ul>
+		<li>
+			<label>购买数量：</label>
+			<input class="numberStyle" type="number"  value="1" min="0" max="100" step="1" name="billingNum" />
+		</li>
+		<li>
+			<label>购买时长：</label>
+			<select class="selectModel" >
+				<option value="byMonth" >按月</option>
+				<option value="byYear">按年</option>
+			</select>&nbsp;&nbsp;
+			<select class="select2">
+				<option value="1">1个月</option>
+				<option value="2">2个月</option>
+				<option value="3">3个月</option>
+				<option value="4">4个月</option>
+				<option value="5">5个月</option>
+				<option value="6">6个月</option>
+				<option value="7">7个月</option>
+				<option value="8">8个月</option>
+				<option value="9">9个月</option>
+				<option value="10">10个月</option>
+			</select>
+		</li>
+		<li class="li_money">
+			<label>费用：</label><span name="billingMoney" style="font-size:25px;color: #F76E00"></span><em style="font-size: 14px;">元</em>
+		</li>
+		<li class="li_btn"><a href="javascript:" name="sumbitBt" class="sumbitCls">提交</a></li>
+		</ul>
+    </div>
+</div>
+
+<div id="panel_0005" class="panel swich" actionName="ShortCutCmd">
+    <div class="panelTitle">
+        远程命令认购单
+    </div>
+    <div class="panelContent">
+    	<ul>
+		<li>
+			<label>购买数量：</label>
+			<input class="numberStyle" type="number"  value="1" min="0" max="100" step="1" name="billingNum" />
+		</li>
+		<li>
+			<label>购买时长：</label>
+			<select class="selectModel" >
+				<option value="byMonth" >按月</option>
+				<option value="byYear">按年</option>
+			</select>&nbsp;&nbsp;
+			<select class="select2">
+				<option value="1">1个月</option>
+				<option value="2">2个月</option>
+				<option value="3">3个月</option>
+				<option value="4">4个月</option>
+				<option value="5">5个月</option>
+				<option value="6">6个月</option>
+				<option value="7">7个月</option>
+				<option value="8">8个月</option>
+				<option value="9">9个月</option>
+				<option value="10">10个月</option>
+			</select>
+		</li>
+		<li class="li_money">
+			<label>费用：</label><span name="billingMoney" style="font-size:25px;color: #F76E00"></span><em style="font-size: 14px;">元</em>
+		</li>
+		<li class="li_btn"><a href="javascript:" name="sumbitBt" class="sumbitCls">提交</a></li>
+		</ul>
+    </div>
+</div>
+
+<div id="panel_0006" class="panel swich" actionName="listBillings">
+    <div class="panelTitle">账户认购单列表</div>
+    <div class="panelContent">
+        <div id="data-grid"> </div>   
+    </div>
+</div> 
+
+
+{% endblock %}
+{% block other_extend_block %}
+
+{% endblock %}

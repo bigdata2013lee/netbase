@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+<link href="/media/js/ucenter/showUser.css" rel="stylesheet" />
+<link href="/media/css/topic.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#error_msg{ display:none; border:1px solid #F1710E; color:#CC1C0D; padding:0px  1em; margin-top:2em; 
+background-color: #FCE296; text-align: center;}
+#ucenter_left_menus{}
+#ucenter_left_menus li{
+    height: 30px;
+    line-height: 30px;
+
+}
+
+#ucenter_left_menus li a{
+    display:block;
+    width: 140px;
+    text-align:center;
+    margin:16px auto;
+    border: 1px solid #ccc;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>window.topicType="{{topicType}}";</script>
+<script src="/media/js/ucenter/viewTopic.js"></script>
+<script src="/media/js/ucenter/showUser.js"> </script>
+<script>
+    var checkInfo=function(){
+        var userInfo={};
+        $("#login_dilog input").each(function(){
+            var name = $(this).attr("name");
+            var val = $.trim($(this).val());
+            userInfo[name] = val;
+        })   
+        if(userInfo.username == ""){
+                setErrorMsg("请填写用户名，您注册时使用的邮箱"); return;
+        }else if(userInfo.password == ""){
+                setErrorMsg("请填写密码"); return;
+        }else if(userInfo.verifyCode==""){
+                setErrorMsg("请填写验证码");return;
+        }else{
+                $("#error_msg").hide();
+        }
+        return userInfo;
+    }
+    var login=function(){
+        userInfo=checkInfo();
+        $.post("/accounts/login/", {userInfo:$.toJSON(userInfo)}).success(function(msg){
+            if(msg=='0'){
+                nb.uiTools.closeEditDialogWin("#login_dilog");
+                window.location.reload(true); return;
+            }
+            setErrorMsg(msg);
+            changeVerifyCode();
+        })
+    };
+    
+    var changeVerifyCode=function(){
+        $("#verifyCodeImg").attr("src", "/getVerifyCode?xtime=" + new Date().valueOf());
+        $("input[name=verifyCode]").val("");
+    }
+    
+    var  setErrorMsg = function(msg){
+        $("#error_msg").html(msg).show();
+    }
+            
+    var __initPage__ = function(){
+        $("a[name=changeVerifyCode]").bind("click", function(){ changeVerifyCode(); });
+        $("#loginBtn").bind("click", function(){ login(); });
+        $("#login_dilog input").bind("keyup", function(evt){
+            if(evt.keyCode != 13) {
+                checkInfo();
+                return;
+            }else{
+                login();
+            }
+        });
+        
+    }
+    $(document).ready(function(){
+        __initPage__();
+        changeVerifyCode();
+    });
+</script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% endblock %}
+{% block  mleft-panel %}
+<div class="panel_min">
+    {% include "ucenter/left_menu.html" %}
+</div>
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+    
+
+<div class="panel" id="search_results_panel" style="display:none;">
+    <div class="panelContent">
+        <div id="search_results"> </div>
+    </div>
+</div>
+
+<div class="panel" id="question_detail_panel" style="border: none;">
+    <div class="panelContent">
+        <div class="topicBrief">
+            <div class="topic_header">
+                <div class="user" style="float:left; margin-right:2em; ">
+                    <a href="javascript:" style="vertical-align: top;">
+                        <img name="user_icon" user_id="{{topic.publisher.getUid}}"  src="{{topic.publisher.icon|defaultIcon}}" 
+                        user_type="{{topic.publisher|userType}}"
+                        style="width: 60px;height: 60px;"/>
+                    </a>
+                    
+                </div>
+                
+                <div class="tags">
+                	{% if topic.fields %}
+	                    {% for tag in topic.fields %}
+	                        <label class="tag"><a href="/ucenter/abouteFiled/?filed={{tag|urlencode}}&topicType={{topicType}}">{{ tag }}</a></label>
+	                    {% endfor %}
+	                    <label>用户:{{topic.publisher.titleOrUid|getName}}  </label>
+                    {% endif %}
+                    {%if  topic.award.aType == "积分" or  topic.award.aType == "人民币" %}
+                        <label>悬赏：{{ topic.award.value }}{{ topic.award.aType }}</label>
+                    {%endif%}
+                    <h3>
+                        {{topic.title}}
+                    </h3>
+                </div>
+                <div class="header_right">
+                    {{topic.replyNum}}条评论  
+                    发表时间:{{topic.ctime|formatTime}} 
+                </div>
+            </div>
+            <div class="topic_content"><p>{{topic.content}}</p></div>
+            <div class="topic_bottom">
+                <a href="javascript:" action="openCommentWin" topic_id="{{topic.getUid}}"  visiter_id="{{visiter}}">
+                    <button type="button" class="btn btn-info">评论</button>    
+                </a>
+            </div>
+            
+            <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        </div>
+         <div class="comment_actions">
+            <span class="approveNum"><a href="/ucenter/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=approveNum">支持度^</a></span>
+            <span class="ctime"><a href="/ucenter/viewQuestion/{{topic.getUid}}/?pageNum=1&sort=ctime">最新时间^</a></span>
+       </div>
+       <br clear="both"/>
+        <div style="height: 1px; border-bottom:1px solid  #ccc; margin: 2em 0;"></div>
+        
+        
+        <div class="commentList">
+            {%if not commentList%}
+            <div class="no_result_tip">没有相关评论</div>
+            {%endif%}
+            {% for comment in commentList%}
+                <div class="comment_list">
+                    <div class="comment_header">
+                           <a href="javascript:"><img name="user_icon" user_id="{{comment.publisher.getUid}}" user_type="{{comment.publisher|userType}}"  src="{{comment.publisher.icon|defaultIcon}}" style="width: 36px;height: 36px;"/></a>
+                       <span class="comment_user">
+                           {{comment.publisher.titleOrUid|getName}}
+                       </span>
+                       <span class="comment_time">时间：{{comment.ctime|formatTime}}</span>
+                       <div class="comment_actions">
+                            <span class="approve"><a href="javascript:" name="approve" action="approve" 
+                                comment_id="{{comment.getUid}}" topic_type="{{topicType}}">{{comment.approveNum}}  给力</a></span>
+                            {% if topicType == "Question" and not accetpComment %}
+                                <span class="accept"><a href="javascript:" action="accept"  comment_id="{{comment.getUid}}" qid="{{topic.getUid}}">采纳</a></span>
+                            {%endif%}
+                            {% if topicType == "Question" and comment == accetpComment %}
+                                <span class="accept">已采纳</span>
+                            {%endif%}
+                            <span class="report"><a href="javascript:" action="report" topic_type="{{topicType}}" 
+                                comment_id="{{comment.getUid}}" topic_type="{{topicType}}">举报</a></span>
+                       </div>
+                    </div>
+                    <div class="comment_content"><p>{% autoescape off %}{{comment.content}}{% endautoescape %}</p></div>
+                    <br clear="both"/>
+                </div>   
+             {% endfor %}
+        </div> 
+        <div class="pages_tools">
+            <a href="/ucenter/view{{topicType}}/{{topic.getUid}}/?pageNum=1&sort={{request.REQUEST.sort}}">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+            {%for p in pageInfos.plist%}
+            <a href="/ucenter/view{{topicType}}/{{topic.getUid}}/?pageNum={{p}}&sort={{request.REQUEST.sort}}">{{p}}</a>
+            {%endfor%}
+        </div>
+        <br clear="both"/>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+<div id="createComment_win" class="dialog_win">
+    <div>
+        <input type="hidden" name="topicType" value="{{topicType}}" />
+        <input type="hidden" name="topicId" value="{{topic.getUid}}" />
+        <textarea name="content" style="height:350px"></textarea>
+    </div>
+    <div class="win_opbar">
+        <button class="ok" name="topicTypeBtn">发布</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+
+<div id="login_dilog" class="dialog_win">
+    <div class="indexWidth">
+        <h3>Login System / <span class="cn">登陆系统</span> </h3>
+        <ul style="width: 600px; margin: 10px  auto;font-size:16px;">
+            <li>
+            	<label>用户名:</label>
+            	<input name="username" class="inp" size="30"  placeholder="your email"/>
+                <a href="/accounts/register.html/" name="registerLink">还无账号？猛击这里注册</a>                 
+            </li>
+            <li><label>密码:</label><input name="password" class="inp" size="30" type="password" /></li>
+            <li><label>验证码:</label><input name="verifyCode" class="inp" size="30" /></li>
+            <li>
+                <label>&nbsp;</label><img src="/getVerifyCode" id="verifyCodeImg"/>
+                <a href="#"  name="changeVerifyCode">看不清,换一张</a>
+            </li>
+            <li style="text-align: center;margin-top: 1em;"><button id="loginBtn" type="button" class="btn">立即登陆</button></li>
+            <li>
+                <div style="color:#0092CE;text-align: center;font-size: 12px;">演示帐号:demo@safedragon.com.cn  密码:demo  <a href="/accounts/forgetPwd/">忘记密码?</a></div>
+            </li>
+            <li>
+                <div id="error_msg">用户名或密码有误，请重新输入</div>
+            </li>
+            
+        </ul>
+    </div>
+</div>  
+{% endblock %}
+

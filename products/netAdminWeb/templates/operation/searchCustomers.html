@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link href="/media/css/serviceNoteList.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block extra_js %}
+<script>var nb_firstNav=0; </script>
+<script src="/media/js/operation/searchCustomers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+    {% include "operation/customerLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+ <div class="panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="custtomers_search_box">
+            <dl class="fields">
+                <dt>邮箱：</dt>
+                <dd><input name="email" value="{{request.REQUEST.email}}"/><button id="search_btn">搜索</button></dd>
+            </dl>
+        </div>
+        
+        <div class="customers">
+           {% if not customers %}
+            <h3 style="text-align: center;color: #333333;">找不到任何用户！</h3>
+           {% endif %}
+        </div> 
+        
+        <div>
+        	<table class="data_table" name="listServiceNotes">
+                <thead>
+                    <tr>    
+                        <th>用户名</th>  
+                        <th>邮箱</th>  
+                        <th>联系电话</th>  
+                        <th>操作</th>  
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for cu in customers%}
+                       {% if not cu.operationer %}
+                        <tr class="data_tr" >
+                            <td>{{cu.username|getName}}</td>
+                            <td>{{cu.email}}</td>
+                            <td>{{cu.contactPhone}}</td>
+                            <td>
+                                        <a href="javascript:" action="add" username="{{cu.username}}">添加 |</a>
+                                        <a href="javascript:" action="favorite" customerId="{{cu.getUid}}">收藏</a>
+                            </td>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pages_tools">
+             <a href="/operation/searchCustomers/?pageNum=1&email={{request.REQUEST.email}}" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+             {%for p in pageInfos.plist%}
+                <a href="/operation/searchCustomers/?pageNum={{p}}&email={{request.REQUEST.email}}">{{p}}</a>
+             {%endfor%}
+        </div>
+        <br clear="both" />
+       </div>
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

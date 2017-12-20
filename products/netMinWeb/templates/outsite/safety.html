@@ -1,0 +1,73 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+	<link href="/media/css/outsite/safety.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+	
+
+{% endblock %}
+
+{% block content_block %}
+<div class="safe_div">
+	<div class="indexWidth">
+		<div class="safe_div_title">
+			
+		</div>
+		<div class="clear"></div>
+		<div class="safe_div_top">
+			<h3>使用运维通安全吗？</h3>
+			<span>
+				&nbsp;&nbsp;&nbsp;&nbsp;运维通的使用安装无需任何插件，被监控设备性能数据全部通过snmp协议获得。Snmp协议是简单网管协议，运维通不需 要额外的权限，不会对被监控设备造成流量冲击，更不会
+影响系统上所运行业务系统。在被监控设备性能参数达到设定警界值时 ，运维通将给系统管理员发送短信或邮件报警通知，将可能发生的故障扼杀在摇篮。同时运维通的日常监控数据，
+也可方便用 于日后系统升级提供一个重要参考依据。
+			</span>
+		</div>
+		<div class="clear"></div>
+		<div class="safe_div_Two">
+			<h3>运维通如何监控数据</h3>
+			<span>运维通提供丰富的监控数据，主要分三种：设备性能数据、设备在线情况数据和设备服务可用性数据，这三种数据分别通过 snmp协议、ICMP报文和tcp端口连接测试完成得到。站点专
+家，还可模拟不同网络线路的访客，得到对应线路的访问体验。</span>
+		</div>
+		<div class="clear"></div>
+		<div class="safe_div_Two">
+			<h3>snmp协议原理</h3>
+			<span>SNMP(Simple Network Management Protocol,简单网络管理协议)的前身是简单网关监控协议(SGMP)，用来对通信线 路进行管理。SNMP的目标是管理互联网Internet上众多厂家生
+产的软硬件平台，因此也成为监控领域应用最广泛的网管协议。 SNMP协议括两部分：网络管理站 (manager) 和被管理的网络单元（被管设备），管理进程和代理进程之间的通信有两
+种方式，一种是管理进程向代理进程发出请求，询问参数值，另一种方式是代理进程主动向管理进程报告某些重要的事件。 运维通 就是充当一个网络管理站的角色。</span>
+		</div>
+		<div class="clear"></div>
+		<div class="safe_div_Two">
+			<h3>哪些大企业使用这种协议</h3>
+			<span>作为互联网应用最广泛的网管协议，得到了几乎所有网络设备生产厂商的大力支持，甚至一些简单传感器也开始支持snmp协 议。 IT监控行业最巨影响力的四大厂商HP OpenView、
+IBM Tivoli、CA Unicenter和BMC Patrol均支持使用snmp协议制 定IT监控解决方案。</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+
+{% block bottom_block %}
+{% include "base_include/tyzl.html" %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

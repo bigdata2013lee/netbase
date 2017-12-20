@@ -1,0 +1,151 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+    <link href="/media/css/outsite/base.css" rel="stylesheet" />
+    <link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/media/css/base.css"/>
+    <link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+    <link href="/media/ui/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="/media/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet" /> 
+    <link href="/media/css/alertTip.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+.panelContent input, .panelContent select, .panelContent textarea {
+    border:1px solid #CCCCCC;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+ <script type="text/javascript" src="/media/ui/kendo/messages.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.min.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+ <script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+ <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+ <script type="text/javascript" src="/media/js/validator.js"></script>
+ 
+ <script type="text/javascript" src="/media/ui/kendo/kendo.dataviz.min.js"></script>
+ <script type="text/javascript" src="/media/ui/kendo/kendo.web.min.js"></script>
+ <script type="text/javascript" src="/media/ui/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+ <script>kendo.culture("zh-CN");</script>
+         
+         
+<script src="/media/js/nbUiTools.js"></script>
+<script type="text/javascript" src="/media/js/netbaseRemoteUrls.js"></script>
+<script type="text/javascript" src="/media/js/nbRemote.js"></script>
+ <script type="text/javascript" src="/media/js/alertTip.js"></script>
+ <script type="text/javascript" src="/media/js/renderUtils.js"></script>
+ <script src="/media/js/baseWidget.js"></script>
+         
+         
+<script src="/media/js/ucenter/search.js"></script>
+<script src="/media/js/ucenter/technologyFileds.js"></script>
+<script src="/media/js/ucenter/area_data.js"> </script>
+<script>
+    $(document).ready(function(){
+        $("#search_btn").click();
+    });
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+{% endblock %}
+
+{% block content_block %}
+<div class="indexWidth">
+<div class="panel">
+    <div class="panelTitle">查询</div>
+    <div class="panelContent">    
+        <div class="search_box" id="search_box">
+            <dl class="search_dl">
+                <dt>搜索问题：</dt>
+                <dd><input type="text" class="search_txt" name="search_txt"/> <input type="button" id="search_btn" class="try-kendo" value="搜索" /></dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl class="search_community">
+                <dt>社区范围：</dt>
+                <dd>
+                    <label><input type="radio" value="question" name="search_field" checked="checked" />求助 </label> 
+                    <label><input type="radio" value="share" name="search_field" class="r_input"/>分享</label>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl class="search_area">
+                <dt>区域设定：</dt>
+                <dd>
+                    <select name="province"></select>
+                    <select name="city"></select>
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+            <dl class="search_fields">
+                <dt>类别设定：</dt>
+                <dd class="input_class">
+                    <div class="autoComplateWidget" id="autoComplateWidget">
+                       
+                        <div class="input_box">
+                            <input type="text" name="type_txt" class="input_cls" placeholder="请输入..."/>
+                        </div>
+                        <ul class="item_list">
+                        </ul>
+                    </div>
+
+                </dd>
+                <br clear="both"/>
+            </dl>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panelTitle">
+        
+    </div>
+    <div class="panelContent">
+        <div id="search_results">
+            
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+{% block bottom_block %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}
+
+{% block other_extend_block %}
+<div id="login_dilog" class="dialog_win">
+
+        <h3>Login System / <span class="cn">登陆系统</span> </h3>
+        <ul style="width: 600px; margin: 10px  auto;font-size:16px;">
+            
+            <li><label>用户名:</label><input name="username" class="inp" size="30"   placeholder="your email"/>
+                   <a href="/accounts/register.html/" name="registerLink">还无账号？猛击这里注册</a>                 
+            </li>
+            <li><label>密码:</label><input name="password" class="inp" size="30" type="password" /></li>
+            <li><label>验证码:</label><input name="verifyCode" class="inp" size="30" /></li>
+            <li>
+                <label>&nbsp;</label><img src="/getVerifyCode" id="verifyCodeImg"/>
+                <a href="#"  name="changeVerifyCode">看不清,换一张</a>
+            </li>
+            <li style="text-align: center;margin-top: 1em;"><button id="loginBtn" type="button" class="btn">立即登陆</button></li>
+            <li>
+                <div id="error_msg">用户名或密码有误，请重新输入</div>
+            </li>
+            
+        </ul>
+</div>  
+{% endblock %}

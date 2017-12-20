@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+export NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+PRGHOME=$NBHOME/products/netBoot
+PRGNAME=netboot.pyc
+generic "$@"
+
+

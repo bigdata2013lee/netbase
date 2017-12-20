@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+	.panelContent thead > tr > td {
+	    color: #1881C5;
+	}
+	
+	#panel_003 div.box,#panel_004 div.box{
+		height:300px;
+	}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var orgUid = '{{orgUid}}';</script>
+<script src="/media/js/network/networkTree.js"></script>
+<script src="/media/js/network/summary.js"></script>
+<script src="/media/js/network/network_index.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "network/network_sec_menu.html" %}
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+
+<div class="panel_min psbar" style="max-height: 500px;">
+	<div id="network_class_tree"> </div>
+	<br/>
+</div>
+
+{% include "network/summary.html" %}
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="index_coumns">
+	<div class="coumn first">
+		<div id="panel_001" class="panel">
+		    <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+		    <div class="panelTitle">网络设备当前状态</div>
+		    <div class="panelContent" style="max-height: 400px;overflow: auto;">
+	            <script name="template" type="text/x-kendo-template">
+	                <tr>
+	                    <td><a href="/network/network/#=_id#/" name="view_detail"><em class="icon monitor_link"></em> #=title #</a></td>
+	                    <td>#= manageIp #</td>
+						<td>#= nb.Render.toNum2(cpu.CPU, "%") #</td>
+						<td>#= nb.Render.toNum2(mem.Mem,"%") #</td>
+	                    <td><span class='status-icon-small #=status#'></span></td>
+	                    <td>
+	                    	<a href="/network/devicesConfigOp/#=_id#/" name="view_detail"> <em class="icon cog_edit"></em> </a>
+	                    </td>
+	                </tr>
+	            </script>
+		       <table style="width: 100%">
+						<td style="">标题</td>
+						<td style="width:100px;">IP</td>
+						<td style="width:60px;">Cpu</td>
+						<td style="width:60px;">内存</td>
+						<td style="width:60px;">状态</td>
+						<td style="width:60px;">配置</td>
+		       		<tbody> </tbody>
+		       </table>
+		    </div>
+		</div>
+
+
+		<div id="panel_002" class="panel">
+		    <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+		    <div class="panelTitle">最新事件</div>
+		    <div class="panelContent">
+	            <script name="template" type="text/x-kendo-template">
+	                <tr>
+	                    <td><span class="severity-icon-small #= nb.Render.severitys(severity)#"></span></td>
+	                    <td  style="min-width: 80px;" title="#=nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)#">
+	                        #=nb.Render.ellipsisStr(nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)) #
+	                    </td>
+	                    <td title="#=message#">#=nb.Render.ellipsisStr(message, 80) #</td>
+	                    <td width="110px">#= nb.xutils.getTimeStr(endTime * 1000)#</td>
+	                </tr>
+	            </script>
+		       <table style="width: 100%">
+		           <thead><td> </td><td>标题</td><td>事件摘要</td><td>最后时间</td>
+		       		<tbody> </tbody>
+		       </table>
+		    </div>
+		</div>
+		
+		
+		
+	</div><!-- end first c -->
+	
+	<div class="coumn sec">
+		<div id="panel_003" class="panel">
+		    <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+		    <div class="panelTitle">网络设备可用性 Top10</div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+		
+		<div id="panel_004" class="panel">
+		    <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+		    <div class="panelTitle">接口可用性 Top10</div>
+		    <div class="panelContent">
+		       	<div class="box"> </div>
+		    </div>
+		</div>
+		
+	</div><!-- end sec c -->
+
+</div>
+
+
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

@@ -1,0 +1,11 @@
+{%load netbasefilters %}
+<div id="three_menus_bar">
+    <ul>
+        <li {%if request.path|rootFilter == "monitor" %}class="active" {%endif%}><a href="/monitor/index/">主机监控</a></li>
+        <li {%if request.path|rootFilter == "website"  %}class="active" {%endif%}><a href="/website/index/">站点监控</a></li>
+        <li {%if request.path|rootFilter == "middleware"  %}class="active" {%endif%}><a href="/middleware/apache_list/">Web服务器</a></li>
+        <li {%if request.path|rootFilter == "network" %}class="active" {%endif%}><a href="/network/index/">网络监控</a></li>
+        <li {%if request.path|rootFilter == "location" %}class="active" {%endif%}><a href="/location/index/">自定义分组</a></li>
+        <br clear="both" />
+    </ul>
+</div>

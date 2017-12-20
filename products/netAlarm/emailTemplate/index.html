@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网脊运维通</title>
+<style>
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset,input,div,img{ margin: 0; padding: 0; }
+em, cite, th { font-style: normal; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-size: 1em; font-weight:normal;}
+a{color:#333; text-decoration:none}
+a:hover{color:#f60; text-decoration:none;}
+li{ list-style:none;}
+img{ border:none;}
+input,img{ vertical-align:middle; border:none;}
+.clear{ clear:both}
+.hide{ display:none}
+
+.marginbot15{ margin-bottom:15px;}
+.marginbot12{ margin-bottom:12px;}
+.marginbot20{ margin-bottom:20px;}
+.marginleft10{ margin-left:10px;}
+.margintop10{ margin-top:10px;}
+.marginbot10{ margin-bottom:10px;}
+.marginbot30{ margin-bottom:30px;}
+.marginleft15{ margin-left:15px;}
+.paddingleft25{ padding-left:25px;}
+
+body{ font-family: "微软雅黑",arial;font-size: 12px; color:#333;}
+#emailbox li{list-style:none;}
+#emailbox{ width:700px; background-color:#eeeeee; margin:20px auto; overflow:hidden;}
+.email_header{ background-color:#2053a7; height:48px; line-height:48px; color:#fff;}
+.email_header .logo{ width:120px; height:37px; padding:6px 10px; float:left;}
+.email_header_right{ float:right; padding-right:10px; overflow:hidden;}
+.email_header_right a{ color:#fff; padding:0 8px;}
+.email_header_right a:hover{ color:#FF6;}
+
+
+.email_main{ padding:15px 12px 15px 18px;}
+.Event_Title{ font-size:18px; height:40px; line-height:40px; font-weight:bold; padding-left:5px;}
+.Event_Title span{ font-size:12px; font-weight:normal; float:right; padding-right:10px;}
+
+.email_main_Content{ width:674px; margin-top:5px; overflow: hidden;}
+.email_main_Content_t01{ background:url(cid:t01) no-repeat; width:674px; height:26px; overflow:hidden;}
+.email_main_Content_t02{ background:url(cid:t02) repeat-y;width:674px; overflow:hidden;}
+.email_main_Content_t03{ background:url(cid:t03) no-repeat; width:674px; height:59px; overflow:hidden;}
+
+.email_main_Content_t02 .ulcontent{ padding:0 15px;}
+.email_main_Content_t02 .ulcontent li{ border-bottom:dashed 1px #ddd; height:32px; line-height:32px;}
+.email_main_Content_t02 .ulcontent li span{ color:#0f4781;}
+
+.email_main_wei{ overflow:hidden;}
+.weixin_bo{ width:435px; height:101px; float:left;  padding:10px 0 0 0;}
+.Phone{ float:right; padding:40px 10px 0 0; text-align:center; line-height:24px; font-size:12px;}
+.Phone a{ color:#03F; text-decoration: underline; font-size:13px;}
+.Phone a:hover{ color:#f30;}
+</style>
+</head>
+<div id="emailbox">
+
+      <div class="email_header">
+          <div class="logo"><a href="#"><img src="cid:logo" /></a></div>
+          <div class="email_header_right">%(alarmUser)s|<a href="http://www.wanjee.cn">登录</a>|<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=239313450&site=qq&menu=yes"><img src="cid:qq" />技术咨询</a>|<a href="http://bbs.wanjee.cn/forum.php">社区</a></div>
+      </div>
+      
+      <div class="email_main">
+           <div class="email_main_Content">
+                 <div class="email_main_Content_t01"></div>
+                 <div class="email_main_Content_t02">
+                      <ul class="ulcontent">
+                           <li><span>对象名称：</span>%(label)s</li>
+                           <li><span>事件信息：</span>%(message)s</li>
+                           <li><span>监控项目：</span>%(componentType)s</li>
+                           <li><span>开始时间：</span>%(firstTime)s</li>
+                           <li><span>结束时间：</span>%(endTime)s</li>
+                           <li><span>重复次数：</span>%(count)s</li>
+                      </ul>
+                 </div>
+                 <div class="email_main_Content_t03"></div>
+           </div>
+           <div class="email_main_wei">
+                 <div class="weixin_bo"><img src="cid:wenxin" /></div>
+                 <div class="Phone">
+                      <img src="cid:phone" /><br />
+                      运维通官网：<a href="http://www.wanjee.cn" target="_blank">www.wanjee.cn</a>
+                 </div>
+           </div>
+           
+      </div>
+      <div class="adve"><img src="cid:adve" /></div>
+</div>
+
+</html>

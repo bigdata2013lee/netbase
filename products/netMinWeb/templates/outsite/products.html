@@ -1,0 +1,416 @@
+{% extends "public_base.html" %}
+{% block extra_css %}
+	<link href="/media/css/outsite/base.css" rel="stylesheet" />
+	<link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+	<link href="/media/css/outsite/products.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/jquery.cycle.all.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){ 			   
+		$('#slideshow').cycle({
+			fx:     'fade',
+			speed:  'slow',
+			timeout: 5000,
+			pager:  '#slider_nav',
+			pagerAnchorBuilder: function(idx, slide) {
+			return '#slider_nav li:eq(' + (idx) + ') a';
+			}
+		});
+	});	
+</script>
+{% endblock %}
+
+
+{% block top_block %}
+{% include "base_include/header.html" %}
+	
+
+{% endblock %}
+
+{% block content_block %}
+<div id="products_warp">
+	<!--运维通设计背景-->
+	<div class="cp_shejiBg">
+		<div class="indexWidth">
+			<div class="cp_sj_l left">
+				<div class="cp_sj_l_top">
+				<img src="/media/css/outsite/index_images/cp_designBg.gif" />
+				<h3>运维通设计背景</h3>
+				</div>
+				<div class="clear"></div>
+				<div class="cp_sj_l_box">
+					运维通的设计背景主要是针对目前互联网上的设备、应用越来越多，
+	而一般客户的运维技术人员多在公司本部，系统、设备多托管在远
+	端机房，他们希望能有一套集成了远程连接、在线监控的自动化运
+	维解决方案，同时可以很好地集成到手机APP上，随时随地对远端
+	设备进行监控或者简单常用的快捷操作等功能，同时各地系统集成
+	商、外包服务公司也希望可以拓展自身的业务范围，不停留在低价
+	竞争的本地市场，而是可通过运维通系统对用户提供远程运维，进
+	行系统、实用的监控、远程维护、工单流转/考核等功能，从而可
+	持续性地提升用户服务体验，提高自身的客户美誉度。
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="right">
+				<img src="/media/css/outsite/index_images/cpS_r.png" width="613" height="357" />
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<!--运维通设计背景-->
+	<!--设计原则-->
+	<div class="cp_sjyuanze">
+		<div class="indexWidth">
+			<div class="cp_sjyuanze_top">
+				<h3 class="int_bt_h3"><img src="/media/css/outsite/index_images/cp_bt.gif" /></h3>
+			</div>
+			<div class="clear"></div>
+			<div class="cp_sjyuanze_top_title">
+				在线系统的监控、运维与普通运维解决方案看似有许多相似的地方，但其实还是有很大的不同，普通运维解决方案部署在本地，监控的设备数量有限，使用的用户数量也有
+	限，但在线SaaS系统则明显不同，监控的设备往往是海量数据，一个普通IDC就有上万台设备，用户数量则往往过千，如果采用普通IT运维网管软件的设计是完全不行的，
+	同时在SaaS模式下，整个监控是在公网上完成，用户对安全性要求比较高，如果采用插件的方式，用户也一定会比较抵制，总之，在线SaaS运维系统的设计有其自身的特定，
+	我们在开发运维通过程中，遵循了以下设计原则：
+			</div>
+			<div class="clear"></div>
+			<div class="cp_sjyuanze_row">
+				<div class="cp_col left">
+					<dl>
+						<dt>弹性化架构</dt>
+						<dd>考虑到在线SaaS系统的运营特点，运维通的设计采用了高度可扩展性的云系统
+	架构，整个系统分为三个层次，按需部署的收集器、管理服务器以及数据库集
+	群，任何层 面的设备都是采用负载均衡的方式工作，任何设备实效后会自动切
+	换到相应的健康设备上。</dd>
+					</dl>
+				</div>
+				<div class="cp_col right">
+					<dl>
+						<dt>高性能</dt>
+						<dd>网脊运维通的收集器，每台至少可监控、管理500台设备（主要是snmp协议特点，
+	而非运维通设计瓶颈），每台管理服务器至少可以管理30台收集器，一个2台管
+	理服务器、60台收集器的小型运维通系统集群就可以很好地管理、监控3万台互
+	联网设备，其性能指标是比较高的。</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="cp_sjyuanze_row">
+				<div class="cp_col left">
+					<dl>
+						<dt>安全性</dt>
+						<dd>与完全运行在用户企业内部网络的本地监控系统不同，网脊运维通系统是为广
+	大用户通过SaaS方式来监控、管理自身设备而研发的，所以网脊科技在开发过
+	程中摒弃了其企业解决方案运维通的很多功能强大，但会牺牲安全性的监控项
+	目和监控策略，用户设备无需安装插件，主要通过配置SNMP（支持V3）对特定的
+	收集器的只读功能来实现监控功能，远程操作等通过配置IPMI的功能来实现，
+	因为通过标准的网络管理协议来进行操作，与用户的业务系统是完全隔离的，安
+	全性比存在后门的插件方式要强很多。</dd>
+					</dl>
+				</div>
+				<div class="cp_col right">
+					<dl>
+						<dt>移动互联网</dt>
+						<dd>网脊运维通的操作，除了普通的web浏览器的工作方式外，手机APP的良好操作体
+	验是比较重要的设计原则之一，我们将一些相对复杂的配置保留在web端，而查看、
+	快捷远程操作等重要功能，我们在手机界面都很好地进行了拓展，用户可以很流
+	畅地体验随身、随时对在线IT系统监控、快捷操作的易用、方便。</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<!--设计原则-->
+	
+	<!--主要功能-->
+	<a name="main_fun"></a>
+	<div class="cp_zygn">
+		<div class="indexWidth">
+			<div class="cp_sj_l_top">
+				<img src="/media/css/outsite/index_images/mainfunction.gif" />
+				<h3>主要功能</h3>
+			</div>
+			<div class="clear"></div>
+			<div class="cp_zygn_box">
+				运维通是一个监控、运维门户，用户只需经过简单的注册后，就可以在线实现互联网IT资源的监控、故障报警、报表、ITIL事件跟踪、一键通自动化运维等功能，同时具备，以保障客户
+	互联网业务应用的可靠运行。现在很多国内的IT用户都在考虑如何把自己的业务部署到私有云或混合云环境中，以增强其业务的可扩充性及高可用性，从理论上来说，云架构可以提供更
+	高可用性的IT基础环境，但实际上云计算不是万能的，最近亚马逊及Google的多次重大云故障说明，云计算环境除了系统层面以上的应用软件问题，其更加复杂的架构及资源池算法等因
+	素，都需要更专业的监控管理工具及具备云计算知识背景的运维人员才能很好胜任云平台的高可用运维，但一般企业显然不能把他的运维团队搬到运营商机房去，这时候，运维通就有了
+	用武之地，下面简单介绍网脊运维通的主要功能特点：
+			</div>	
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<div class="cp_zygnTwo">
+		<div class="indexWidth">
+			<div class="cp_zygnTwo_div">
+				<ul>
+					<li><a href="#main_fun01"><span>01</span> 一键通功能</a></li>
+					<li><a href="#main_fun02"><span>02</span> 主机监控</a></li>
+					<li><a href="#main_fun03"><span>03</span> 网站监控</a></li>
+					<li><a href="#main_fun04"><span>04</span> 丰富的自定义报表功能</a></li>
+					<li><a href="#main_fun05"><span>05</span> 事件查询机制</a></li>
+					<li><a href="#main_fun06"><span>06</span> 自定义阀值、报警</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<!--主要功能-->
+	
+	
+	<!--一键通功能-->
+	<a name="main_fun01"></a>
+	<div class="indexWidth cp_box_one">
+		<div class="cp_box_one_top"><img src="/media/css/outsite/index_images/cp_y01.png"  />一键功能</div>
+		<div class="clear"></div>
+		<div class="cp_box_one_section">运维通的一键通功能，主要实现的功能就是通过预先配置好的IPMI接口协议，实现类似远程KVM的一些功能，主要可以实现以下功能：</div>
+		<div class="clear"></div>
+		<div class="cp_box_one_show">
+			<div class="cp_box_one_col_l left">
+				<div class="cp_box_one_col">
+					<dl>
+						<dt>远程开、关机</dt>
+						<dd>可对远程托管的已经死机、蓝屏的远端服务器，直接进行重启操作，无需IDC购买价格高昂
+	的PDU设备，只需连接服务器主板上的IPMI接口，通过运维通软件就可以实现硬重启；</dd>
+					</dl>
+				</div>
+				<div class="cp_box_one_col">
+					<dl>
+						<dt>一键命令 </dt>
+						<dd>对于常用的运维命令脚本，如：重启服务、重启进程等等，可预先设置好后，在手机APP上
+	一键运行，当某个服务出现僵死，而自己不在电脑旁边时，这个功能就变的非常实用；</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="cp_box_one_col_r right">
+				<img src="/media/css/outsite/index_images/cp_yi_01.gif" />
+			</div>
+		<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="cp_box_onsje_title"><h1 class="yijian_jk">手机上也具备完整的一键通功能，具体使用界面可见下图：</h1></div>
+		<div class="cp_box_onsje_img"><img src="/media/css/outsite/index_images/cp_yi_02.gif"  /></div>
+	</div>
+	<div class="clear"></div>
+	<div class="hrBottom"></div>
+	<!--一键通功能-->
+	
+	
+
+
+
+	<!--主机监控-->
+	<a name="main_fun02"></a>
+	<div class="indexWidth cp_box_one">
+		<div class="cp_box_one_top"><img src="/media/css/outsite/index_images/cp_y02.png"  />主机监控</div>
+		<div class="clear"></div>
+		<div class="int_bt_des">
+			在线SaaS监控系统中，最重要的部分是服务器主机的监控，通过监控主机的主要可用性、性能、日志等指标，用户可以随时了解和掌握放在远端数据中心机房的设备工作好
+	坏，配合手机APP的及时推送信息，免除在IDC托管机房还需购置短信网关等问题，主机监控主要涉及的监控项目主要有：
+		</div>
+		<div class="clear"></div>
+		<div class="">
+			<div class="cp_box_twoL left">
+				<div class="cp_box_twocol left">
+					<dl>
+						<dt>CPU/内存</dt>
+						<dd>这是非常基本的监控项目，运维通以仪表板的方式直观地展现CPU、内存的消耗情况，让用户了
+	解这一基本资源的消耗情况；</dd>
+					</dl>
+				</div>
+				<div class="cp_box_twocol left">
+					<dl>
+						<dt>端口监控</dt>
+						<dd>与目前主流的云监控、SaaS监控系统的总端口流量监控不同，运维通的端口监控可以任意定义
+	物理或虚拟端口的监控，对于多台设备托管在IDC，跑不同业务的用户该项功能非常实用，并
+	且端口监控是以连续波形的方式展现，用户可以通过设定小时、日、周等方式变换视角。</dd>
+					</dl>
+				</div>
+				<div class="cp_box_twocol left">
+					<dl>
+						<dt>进程监控</dt>
+						<dd>般的云监控平台只可监控总进程数，这个对于网管人员非常不实用，运维通可以选择任意进程
+	来进行监控，也是以连续波形的方式来展现。</dd>
+					</dl>
+				</div>
+				<div class="cp_box_twocol left">
+					<dl>
+						<dt>磁盘监控</dt>
+						<dd>以图像化的方式展现目前所设定的监控磁盘、分区的总容量、可用容量等磁盘信息。</dd>
+					</dl>
+				</div>
+				<div class="cp_box_twocol left">
+					<dl>
+						<dt>服务监控</dt>
+						<dd>用户可设定被监控的任意服务端口，系统会自动监控其服务状态，如果端口down则为红
+	色，正常则为绿色。 
+	</dd>
+					</dl>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="cp_box_twoR right">
+
+				<div id="slider">
+				  <!-- start slideshow -->
+				  <div id="slideshow">
+					<div class="slider-item"><img src="/media/css/outsite/index_images/slider/1.jpg" alt="icon" width="498" height="280" border="0" /></div>
+					<div class="slider-item"><img src="/media/css/outsite/index_images/slider/2.jpg" alt="icon" width="498" height="280" border="0" /></div>
+					<div class="slider-item"><img src="/media/css/outsite/index_images/slider/3.jpg" alt="icon" width="498" height="280" border="0" /></div>
+					<div class="slider-item"><img src="/media/css/outsite/index_images/slider/4.jpg" alt="icon" width="498" height="280" border="0" /></div>
+				  </div>
+				  <!-- end #slideshow -->
+				  <div class="controls-center">
+					<div id="slider_controls">
+					  <ul id="slider_nav">
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+					  </ul>
+					</div>
+				  </div>
+				  <div class="clr"></div>
+				</div>
+				<!--/slider -->
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="cp_box_onsje_title"><h1 class="zhuji_jk">手机界面展示如下：</h1></div>
+		<div class="cp_box_onsje_img"><img src="/media/css/outsite/index_images/cp_two_sj01.gif"  /></div>
+		<div class="clear"></div>
+		
+		
+	</div>
+	<div class="clear"></div>
+	<div class="hrBottom"></div>
+	<!--主机监控-->
+
+
+
+	<!--  -->
+	<a name="main_fun03"></a><a name="main_fun04"></a>
+	<a name="main_fun05"></a><a name="main_fun06"></a>
+	<div class="indexWidth cpObj_madding">
+	<div class="cpObj_block_l left">
+		<div class="cpObj_block_padding">
+			<div class="cpObj_box_one_top"><img src="/media/css/outsite/index_images/cp_y03.png"  />网站监控</div>
+			<div class="clear"></div>
+			<div class="cpObj_box_one_tibox">
+				   &nbsp;&nbsp;&nbsp;&nbsp; 网站监控也是SaaS监控中非常重要的部分，毕竟大部分的在线系统主要是各种网站，对于网
+		站监控，网脊运维通可以从不同的监控点来监控被监控网站的延时响应时间，这对目前国内的网
+		络环境还是有必要的，下图为网脊运维通网站监控实际的例子：
+		<img src="/media/css/outsite/index_images/cp_san_01.gif" class="cpimg" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="cpObj_block_padding">
+			<div class="cpObj_box_one_top"><img src="/media/css/outsite/index_images/cp_y05.png"  />事件查询机制</div>
+			<div class="clear"></div>
+			<div class="cpObj_box_one_tibox">
+				   &nbsp;&nbsp;&nbsp;&nbsp;网脊运维通的事件机制比一般SaaS监控产品或云监控产品丰富，可按照系统的不同分类监控
+	项目，如：主机、网站、磁盘、进程等等来进行分类查看，同时也可选择不同的时间区间来进行
+	事件查看，支持信息内容检索、组件检索等等辅助功能，详细见下图：
+		<img src="/media/css/outsite/index_images/cp_wu_01.gif" class="cpimg" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="cpObj_block_padding">
+			<div class="cpObj_box_one_top"><img src="/media/css/outsite/index_images/cp_y06.png"  />自定义阀值、报警</div>
+			<div class="clear"></div>
+			<div class="cpObj_box_one_tibox">
+				   &nbsp;&nbsp;&nbsp;&nbsp;网脊运维通的监控项目，主要是在线服务器的一些重要的可用性、性能、事件等监控指标，
+	每个监控项目，用户都可以自定义触发报警的阀值、报警级别等相关条件，做到事件、报警按照
+	用户的意愿和需求来生成，免却大量无用报警、事件的烦恼。：
+		<img src="/media/css/outsite/index_images/cp_liu_01.gif" class="cpimg" />
+		<img src="/media/css/outsite/index_images/cp_liu_02.gif" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>	
+	</div>
+	<div class="cpObj_block_r right">
+		<div class="cpObj_block_padding">
+			<div class="cpObj_box_one_top"><img src="/media/css/outsite/index_images/cp_y04.png"  />丰富的自定义报表功能</div>
+			<div class="clear"></div>
+			<div class="cpObj_box_one_tibox">
+				   &nbsp;&nbsp;&nbsp;&nbsp;网脊运维通的报表是可以按照用户的需求进行自定义配置，自定义的规则可以监控的任意项
+	目来进行设定，并可导出为PDF格式，具体设定项目见下图所示：
+		<img src="/media/css/outsite/index_images/cp_si_01.gif"  class="cpimg" />
+		<img src="/media/css/outsite/index_images/cp_si_02.gif" />
+		<img src="/media/css/outsite/index_images/cp_si_03.gif" />
+		<img src="/media/css/outsite/index_images/cp_si_04.gif" />
+		<img src="/media/css/outsite/index_images/cp_si_05.gif" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	</div>
+	<div class="hrBottom"></div>
+	<div class="clear"></div>
+	<!-- -->
+
+
+	
+	<!---工单流转--->
+		<div class="indexWidth">
+			<div class="cp_sjyuanze_top">
+				<h3 class="int_bt_h3"><img src="/media/css/outsite/index_images/cp_bt_wordk.jpg" /></h3>
+				<span class="wordTitle">技术服务——专业工程师为您提供一对一服务 </span>
+			</div>
+			<div class="clear"></div>
+			<div class="int_bt_des">
+			     网脊运维通可以对监控产生的事件，然后由这些事件自动或者手动去生成服务单，用户和我们的工程师都可以在第一时间看到所产生的服务单，然后就可以第一时间通过用户和工程
+	师去沟通进行处理，我们会提供专业的一程师给用户进行一对一服务，这些可以在更短的时间内处理好所产生的事件，保障您的业务及时恢复正常。
+		</div>
+		<div class="clear"></div>
+		<div class="cp_wordk_boxL left">
+			<h3 class="cp_wordk_boxLh3">快速响应处理，在线一对一的服务</h3>
+			<span class="cp_wordk_boxLspan"><img src="/media/css/outsite/index_images/se_01.png" /></span>
+			<h3 class="cp_wordk_boxLh3">问题复杂的情况，您还可以上传附件，文字加图片说明，工程师更加方便快捷的
+	给您处理问题，节省您的宝贵时间。如下图所示：</h3>
+			<span class="cp_wordk_boxLspan"><img src="/media/css/outsite/index_images/se_02.png" /></span>
+		</div>
+		<div class="cp_wordk_boxR right">
+			<h3 class="cp_wordk_boxLh3">我们的服务一切以客户至上，在进行一对一服务的过程中，当故障处理完
+	毕后，工程师提交处理结果，用户则可以对我们的工程师进行监督评价，
+	用户的评价会直接影响到工程师的信誉和能力等级，从而更好地保障是用
+	户的利益。如下图所示：</h3>
+			<span class="cp_wordk_boxLspan"><img src="/media/css/outsite/index_images/se_03.png" /></span>
+		</div>
+		<div class="clear"></div>	
+		</div>
+	<!---工单流转--->
+
+
+
+</div>	
+{% endblock %}
+
+
+
+
+{% block bottom_block %}
+{% include "base_include/tyzl.html" %}
+{% include "base_include/websitemap.html" %}
+{% include "base_include/copyright.html" %}
+{% endblock %}

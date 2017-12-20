@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/admin/eng/customerIssues.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "eng/services_sec_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="customer_issues_tree">
+    
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customerIssuesGridWidget" class="panel">
+    <div class="panelTitle">最新事件</div>
+    <div class="panelContent">
+        <div class="data-grid"> </div>
+    </div>
+</div>    
+     
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+
+{% endblock %}
+

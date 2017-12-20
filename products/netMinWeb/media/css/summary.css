@@ -1,0 +1,39 @@
+
+#summaryWidget li{
+    background: url(/media/images/point01.png) 0px 50% no-repeat ;
+    padding-left:20px;
+}
+#summaryWidget li.first{
+    background: url(/media/images/point02.png) 0px 50% no-repeat ;
+    padding-left:20px;
+}
+#summaryWidget li em{
+    text-align: right;
+    display: inline-block;
+}
+
+#summaryWidget span.item_count {
+    background: none repeat scroll 0 0 #EFF7F9;
+    border: 1px solid #DDEEF6;
+    border-radius: 6px 6px 6px 6px;
+    color: #939393;
+    font-size: 9px;
+    margin-left: 0px;
+    padding: 0 6px;
+}
+
+#summaryWidget span.item_count.good{
+    background-color: #BDE022;
+    color:#00246B;
+}
+#summaryWidget span.item_count.bad{
+    background-color: #F1710E;
+    border: 1px solid #F0B708;
+    color:#00246B;
+}
+
+#summaryWidget span.item_count.unknown{
+    background-color: #F0F0F0;
+    border: 1px solid #B1B1B8;
+    color:#00246B;
+}

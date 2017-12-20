@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+#user_left_menus li{
+    height: 25px;
+    line-height: 25px;
+    padding-left:1em;
+}
+
+.box li{
+    height: 30px;
+    line-height: 30px;
+}
+.box li label{
+    display: inline-block;
+    width:150px;
+    text-align: right;
+    margin-right: 4px;
+}
+.panelContent .op_bar{
+    text-align: right;
+    border-bottom: 1px solid #F4F4F4;
+    padding-right: 1em;
+}
+
+#panel_0002, #panel_0003, #panel_0004{
+    display: none;
+}
+
+.panelContent label{
+    color: #08297C;
+}
+#createreportWidget{margin-left:20px}
+
+/*<![CDATA[*/
+.treediv{margin:1px; width:30%; height:250px; display:inline-block;display:-moz-inline-stack; *zoom:1; *display:inline;}
+ /*]]>*/
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var userId="{{ user.getUid }}";</script>
+<script src="/media/js/report/reportListTree.js"></script>
+<script src="/media/js/report/reportClsTree.js"></script>
+<script src="/media/js/report/add.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "report/report_sec_menu.html" %}
+</div>
+{% endblock %}
+
+{% block  mleft-panel %}
+<div class="panel_min psbar" style="max-height: 400px;">
+	<div id="report_tree"> </div>
+	<br/>
+</div>
+<hr>
+　　<button type="button" onclick="window.location.href='/report/addreport'">添加报表</button>
+<br/>
+{% endblock %}
+{% block mright-panel  %}
+<div id="panel_0001" class="panel swich" actionName="CommDeviceReport">
+     <div class="panelActions">
+        <a href="javascript:" name="help_action" class="help tool_tip" tipId="setting_index_baseInfo"> </a>
+    </div>
+    <div class="panelTitle">
+        添加报表
+    </div>
+	<div id="createreportWidget" class="panelContent">
+		<div class="op_bar"><input type="button" name="save" value="保存"/> </div>
+    		    	<div class="validateErrorMsg"> </div>
+    		    	<table><tr><td align="right"><label>报表名称：</label> </td>
+    		    		<td width="30%"><input data-bind="value:description" maxlength="50"></td>
+    		    		<td align="right"><label>邮件收件人：</label></td>
+    		    		<td><input data-bind="value:email">(多个收件人时，请用分号(;)隔开)</td></tr>
+    		    		<tr><td align="right"><label>报表导出类型：</label></td>
+    		    		<td><select class="common" data-text-field="text" data-value-field="val" data-bind="source:exportFormats, value:exportFormat"> </select>
+                     		</td>
+    		    			<td align="right"><label>报表类型：</label>　 </td>
+    		    		<td>
+			         	<input type="checkbox" value="DeviceClass" data-bind="checked:reportType,events:{change: changereportType}" />主机性能报表 
+                        <input type="checkbox" value="WebSiteClass" data-bind="checked:reportType,events:{change: changereportType}" />站点监控报表 
+                        <!-- <input type="checkbox" value="NetworkClass" data-bind="checked:reportType,events:{change: changereportType}" />网络监控报表  -->
+			         </td>
+    		    		</tr>
+    		    	</table>
+			        <p><label>报表统计时间：</label></p>
+			         <p>　<input type="radio" value="0" name="timeRange" data-bind="checked:timeRange"/>预定义时间 ：
+			         	<select class="common" data-text-field="text" data-value-field="val" data-bind="source:defaultTimes, value:defaultTime"> </select>
+			         </p>
+			         <p>　<input type="radio" value="1" name="timeRange" data-bind="checked:timeRange" >指定具体时间：
+			         	<input class="start timeclass" data-bind="value:startTime"/>~
+    					<input class="end timeclass" data-bind="value:endTime"/></p>
+			         <p><label>报表内容选择：</label></p>
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="cpu" data-bind="checked:reports" />Cpu报表</li>
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="mem" data-bind="checked:reports" />内存报表</li>
+			         	<!-- <li class="network_reports">　<input type="checkbox" value="curConn" data-bind="checked:reports" />连接数报表</li>
+			         	<li class="network_reports">　<input type="checkbox" value="newConn" data-bind="checked:reports" />新建连接数报表</li> -->
+			         	<li class="device_reports network_reports">　<input type="checkbox" value="disk" data-bind="checked:reports" />磁盘报表</li>
+			         	<li class="device_reports network_reports website_reports">　<input type="checkbox" value="availability" data-bind="checked:reports" />可用性报表</li>
+			         	<li class="website_reports">　<input type="checkbox" value="resTime" data-bind="checked:reports" />响应时间报表</li>
+			         	<li class="device_reports network_reports website_reports">　<input type="checkbox" value="event" data-bind="checked:reports" />事件统计报表</li>
+			         <p>
+			         	<label>报表数据过滤：</label>
+			         </p>
+			         <p>
+			         	<div id="report_device_tree" class="treediv"> </div>
+			         	<div id="report_website_tree" class="treediv"> </div>
+			         	<!-- <div id="report_network_tree" class="treediv"> </div> -->
+			         	<input type="hidden" id="WebSiteClassID"/>
+			         	<input type="hidden" id="NetworkClassID"/>
+			         	<input type="hidden" id="DeviceClassID"/>
+			         </p>
+			         <div>
+			         </div>
+			         <div class="box"> </div>
+                 </div>
+</div>
+
+{% endblock %}
+{% block other_extend_block %}
+{% endblock %}

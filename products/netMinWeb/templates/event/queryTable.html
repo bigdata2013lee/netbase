@@ -1,0 +1,51 @@
+<div id="query_conditions_table">
+      <li>
+        <!-- <label>状态:</label><select name="eventState"  class="common">
+            <option value="">-------</option>
+            <option value="0">未确认</option>
+            <option value="1">确认</option>
+            <option value="2">禁止</option>
+        </select>
+       -->
+        <label>级别:</label>
+        <span class="severity_span">
+        <input class="checkbox" type="checkbox" name="severity" value="1" />调试 
+        <input class="checkbox" type="checkbox" name="severity" value="2" />信息 
+        <input class="checkbox" type="checkbox" name="severity" value="3" checked="true" />警告 
+        <input class="checkbox" type="checkbox" name="severity" value="4" checked="true" />错误
+        <input class="checkbox" type="checkbox" name="severity" value="5" checked="true" />严重  
+        </span>
+        
+            <label>开始时间:</label><input id="start" class="timeclass" />
+            <label>结束时间:</label><input id="end" class="timeclass" />
+        </li>
+       
+        <li>
+            <label>监控项目:</label>
+            
+            <select name="componentType" class="min">
+                <option value="">全部</option>
+                <option value="Device">主机</option>
+                <option value="Website">站点</option>
+                <option value="Process">进程</option>
+                <option value="IpInterface">接口</option>
+                <option value="IpService">IP服务</option>
+                <option value="FileSystem">磁盘</option>
+                <option value="Bootpo">开机</option>
+                <option value="MwApache,MwTomcat,MwNginx">Web服务器/中间件</option>
+                
+            </select>
+            <label>组件:</label><input type="text" name="agent" class="min"/>
+            <label>事件信息:</label><input type="text" name="message" class="min"/>
+        </li>
+        
+
+       
+        
+        <div class="op_bar">
+            <!-- <input align="right" id="query_button" type="button" value="查询..." /> -->
+            <input type="button"  value="刷新..."  id="refresh" class="btn event_refresh"/>
+        </div>
+        
+
+</div> <!--  end query table -->

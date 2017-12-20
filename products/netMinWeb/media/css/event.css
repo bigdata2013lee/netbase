@@ -1,0 +1,57 @@
+#query_conditions_table{position: relative;background-color: #f4f4f4;}
+
+#panel_0001{
+    min-width: 1060px;
+}
+
+#panel_0001 div.panelContent {
+    background-color: #F4F4F4;
+    border-radius: 6px;
+}
+#query_conditions_table li{
+    line-height: 28px;
+    height: 28px;
+}
+#query_conditions_table input.checkbox{
+    width: auto;
+}
+
+#query_conditions_table .severity_span{
+     background-color: #FFF; padding: 4px 4px; 
+     border:1px solid #CBC6C2; border-radius: 4px;
+}
+#query_conditions_table li label{
+    display: inline-block;
+    width: 65px;
+    text-align: right;
+    margin-right: 1em;
+}
+
+#query_conditions_table div.op_bar{
+    position: absolute;
+    top:10px;
+    right:8px;
+}
+
+#query_conditions_table span.k-widget.k-datepicker.timeclass{
+    width: 110px;
+}
+
+span.eventState-icon-small {
+    background: url("/media/images/severity-sprite.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 14px;
+    margin: 0 auto;
+    width: 16px;
+}
+span.eventState-icon-small.confirm0 {
+    /**background-position: 0 -119px;*/
+    background-position: 0 -150px;
+}
+
+span.eventState-icon-small.confirm1 {
+    background-position: 0 -100px;
+}
+
+
+

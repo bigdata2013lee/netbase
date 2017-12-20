@@ -1,0 +1,86 @@
+{% extends "public_base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+    <link href="/media/css/outsite/base.css" rel="stylesheet" />
+    <link href="/media/css/outsite/top-bottom.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/media/css/base.css"/>
+    <link href="/media/js/ucenter/search_box_result.css" rel="stylesheet" />
+    <link href="/media/ui/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="/media/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet" /> 
+    <link href="/media/css/alertTip.css" rel="stylesheet" />
+    <link href="/media/css/bootstrap.css" rel="stylesheet" />
+    <link href="/media/css/bootstrap.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+.panelContent input, .panelContent select, .panelContent textarea {
+    border:1px solid #CCCCCC;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+     <script type="text/javascript" src="/media/ui/kendo/messages.js"></script>
+     <script type="text/javascript" src="/media/js/jquery.min.js"></script>
+     <script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+     <script type="text/javascript" src="/media/js/jquery.cookie.js"></script>
+     <script type="text/javascript" src="/media/js/bootstrap.js"></script>
+     <script type="text/javascript" src="/media/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+     <script type="text/javascript" src="/media/js/validator.js"></script>
+     <script type="text/javascript" src="/media/ui/kendo/kendo.dataviz.min.js"></script>
+     <script type="text/javascript" src="/media/ui/kendo/kendo.web.min.js"></script>
+     <script type="text/javascript" src="/media/ui/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script>kendo.culture("zh-CN");</script>
+    <script src="/media/js/nbUiTools.js"></script>
+    <script type="text/javascript" src="/media/js/netbaseRemoteUrls.js"></script>
+    <script type="text/javascript" src="/media/js/nbRemote.js"></script>
+    <script type="text/javascript" src="/media/js/alertTip.js"></script>
+    <script type="text/javascript" src="/media/js/renderUtils.js"></script>
+    <script src="/media/js/baseWidget.js"></script>
+    <script src="/media/js/reportOpinion.js"></script>
+{% endblock %}
+
+
+{% block top_block %}
+    
+{% endblock %}
+
+{% block content_block %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">反馈意见</h3>
+  </div>
+
+  <div class="panel-body">
+    <div class="input-group">
+      <span class="input-group-addon">标题</span>
+      <input type="text" class="form-control" placeholder="" id="submintTitle">
+    </div></br>
+    
+    <div id="content_win" class="container-fluid">
+        <textarea name="content" id="submitContent"></textarea>
+    </div>
+    
+    <div align="center">
+        <button type="button" class="btn btn-default navbar-btn" id="submitOpinion">提交</button>
+    </div>
+  </div>
+  <span id="publisherUsernameSpan">{{request.user.username}}</span>
+  <span id="publisherEmailSpan">{{request.user.email}}</span>
+</div>
+{% endblock %}
+
+
+{% block bottom_block %}
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    {% include "base_include/websitemap.html" %}
+    {% include "base_include/copyright.html" %}
+    {% endblock %}
+</nav>
+{% block other_extend_block %}
+ 
+{% endblock %}

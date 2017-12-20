@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+
+#user_list_div{
+    margin: 4px  6px;
+}
+#new_users_table{
+    width: 100%;
+     border-collapse: collapse;
+     border: 1px solid #CCCCCC;
+}
+#new_users_table thead th{
+    background: #F4F4F4;
+    line-height: 20px;
+    text-align: left;
+}
+#new_users_table tbody td{
+    border-bottom: 1px solid #CCCCCC;
+    line-height: 20px;
+    padding-left: 4px;
+}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/createAccounts.js"></script>
+<script>
+        $(document).bind("keydown", function(evt){
+            if(evt.keyCode == 116){ //116->F5
+                return false;
+            }    
+        }); 
+</script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_0.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customersWidget" class="panel">
+    <div class="panelTitle">批量生成账户</div>
+    <div class="panelContent" style="height: 100px;">
+        <div class="box">
+            <form action="/admin/upload/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+            <li>
+                <label>导入用户列表:</label>
+                <input type="file" name="file"/>（格式：*.xls）
+                <input type="submit" value="上传\导入..."/>
+                {% csrf_token %}
+            </li>
+            {%if error_message%}
+            <br/><br/><br/>
+            <div class="validateErrorMsg" style="display: block;">{{error_message}}</div>
+            {%endif%}
+            </form>
+        </div>
+    </div>
+</div>  
+
+{%if users%}
+<div class="panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+          <h3>上传文件成功.</h3>
+          <p>以下是新创建的帐号列表，帐号及密码已通过邮件发送到用户的邮件中</p>
+          <table id="new_users_table">
+              <thead>
+                  <tr>
+                      <th>公司</th><th>用户名</th><th>邮件</th><th>联系电话</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for o in users %}
+                  <tr>
+                      <td>{{o.ownCompany.title}}</td>
+                      <td>{{o.username}}</td>
+                      <td>{{o.email}}</td>
+                      <td>{{o.contactPhone}}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+       
+    </div>
+</div>
+{%endif%}  
+{% endblock %}
+
+{% block other_extend_block %}
+
+
+     
+{% endblock %}
+

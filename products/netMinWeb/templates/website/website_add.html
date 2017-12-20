@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link href="/media/js/website/add_conf.css" rel="stylesheet" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+     
+</style>
+{% endblock %}
+{% block extra_js %}
+<script src="/media/js/website/website_add.js"></script>
+
+<script type="text/javascript" src="/media/ui/svgMap/js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/res/chinaMapConfig.js"></script>
+<script type="text/javascript" src="/media/ui/svgMap/js/map.js"></script>
+<script type="text/javascript" src="/media/js/website/mapObjPage.js"></script>
+        
+{% endblock %}
+
+{% block sec-menu-panel %}
+<div id="sec_menus_bar">
+    {% include "website/website_sec_menu.html" %}
+</div>
+{% endblock %}
+
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "website/left_item_menu.html"%}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="addWebsiteWidget" class="panel">
+	<div class="panelTitle">添加新站点监控</div>
+	<div class="panelContent">
+	    <div class="op_bar">
+            <a action="saveConf" href="javascript:">保存配置</a>
+        </div>
+        
+        <div class="box">
+            
+                <dl class="fields">
+                    <dt>名称:</dt><dd><input name="title" size="30"></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>域名/IP:</dt><dd><input name="hostName"></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>端口:</dt><dd><input name="port" value="80"></dd>
+                </dl>
+                
+                <dl class="fields">
+                    <dt>监测点:</dt>
+                    <dd>
+                        <div class="cpt_item_box">&nbsp;</div>
+                        <div class="cpt_item_add_btn">
+                            <a href="javascript:">+选择监测点...</a>
+                        </div>
+                        <br clear="both"/>
+                    </dd>
+                </dl>
+                
+                <div><a href="javascript:(function(){jQuery('#more_conf_div').toggle()})()">+更多配置项</a></div>
+                <div id="more_conf_div" style="display: none;">
+                    <dl class="fields">
+                        <dt>Url:</dt><dd><input name="url" value="/"></dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>https/ssl:</dt><dd><select name="useSsl"><option value="no">no</option><option value="yes">yes</option></select></dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>http用户名:</dt><dd><input name="httpUsername"></dd>
+                    </dl>
+                    
+                    <dl class="fields">
+                        <dt>http密码:</dt><dd><input name="httpPassword"></dd>
+                    </dl>
+                </div>
+                
+                <div class="validateErrorMsg"> </div>
+        </div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+{% include "website/cptSelectWin.html" %}
+{% endblock %}
+

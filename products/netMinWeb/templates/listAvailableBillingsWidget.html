@@ -1,0 +1,19 @@
+<div id="listAvailableBillingsWidget" class="dialog_win">
+    <div>
+		<script type="text/x-kendo-template" name="template">
+			<tr>
+				<td>
+					<input type="radio" value="#=_id#" name="billingUid" /> 
+					编号: #=_id#,  截止时间: <font style="color:rgb(69,134,216);">#= nb.xutils.getTimeStr(endTime * 1000)#</font>,  使用:#=usedCount# / #=count# 
+				</td>
+			</tr>
+		</script>
+		<table style="width: 100%">
+			<tbody> </tbody>
+		</table>
+    </div>
+	<div class="win_opbar">
+		<button class="ok">确认</button>
+		<button class="cancel">退出</button>
+	</div>
+</div>

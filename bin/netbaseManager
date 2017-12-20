@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+NBHOME=/opt/netbase4
+. $NBHOME/bin/netfunctions
+C=
+C="$C nbConfigServer"
+C="$C startWebServer"
+C="$C netmerger"
+C="$C netalarm"
+
+CMDS=$C
+reverse() {
+    args=
+    for i
+    do
+       args="$i $args"
+       shift
+    done
+    echo $args
+}
+
+FUNC=$CMD
+
+issue() {
+    HUBCODE=4
+    for cmd in $CMDS
+    do
+        echo -n "Daemon: $cmd "
+        $NBHOME/bin/$cmd "$FUNC"
+	sleep 6
+    done
+    return $HUBCODE
+}
+
+case "$FUNC" in
+  start)
+        issue
+        ;;
+  stop)
+        CMDS=`reverse $CMDS`
+        issue
+        ;;
+  restart)
+        CMDS=`reverse $CMDS`
+	FUNC=stop
+	issue
+        CMDS=`reverse $CMDS`
+	FUNC=start
+        issue
+        ;;
+  status)
+        issue
+        ;;
+  list)
+	for i in $CMDS
+	do
+	    echo $i
+	done
+	;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|status|list}"
+        exit 1
+esac
+exit $?

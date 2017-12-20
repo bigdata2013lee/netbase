@@ -1,0 +1,34 @@
+
+#AlertTip{
+    width:100%;
+    position: fixed;
+    top:132px;
+    margin: 0 auto;
+    height: 0;
+    /**filter: alpha(opacity=80); 
+    opacity: 0.8;*/
+    z-index: 10009;
+}
+
+#AlertTip div.msgBox{
+    margin-bottom:0px;
+    width:406px; margin: 0 auto;
+    padding:12px 1em 15px 1em;
+}
+#AlertTip div.msgBox.warn{
+    /**border:1px solid #FF941F;*/
+    background: url(/media/images/alertTip_warn.png) no-repeat right bottom;
+    color:#f30;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#AlertTip div.msgBox.info{
+    /**border:1px solid #003397;*/
+    background: url(/media/images/alertTip_info.png)  no-repeat right bottom;
+    color:#005509;
+    text-align: center;
+}
+#AlertTip div.msgBox .message{
+    text-align: center;
+}

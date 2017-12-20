@@ -1,0 +1,9 @@
+安装过程
+1.安装centos6.3操作系统并配置IP
+2.通过yum安装SNMP的支持包(yum -y install net-snmp net-snmp-utils libg* liberation-fonts;)
+3.通过http://www.whereismyip.com/获取内网的公有IP
+4.在管理端上添加公有IP的收集器并到处license.dat文件
+5.解压内网收集器包到安装的linux6.3的/opt/目录下
+6.创建python的软连接,ln -s /opt/python2.7/bin/python2.7 /opt/netbase4/bin/python
+7.修改/opt/netbase4/etc/下的collector.conf,将rpcHost修改为rpyc服务器IP，将colUid修改为收集器的UID
+8.运行/opt/netbase4/bin/coll下的manager文件

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+<style>
+.dialog_win li {padding:0px;}
+fieldset{border: solid 1px  #DDDDDD;}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/media/js/network/networkTree.js"></script>
+<script src="/media/js/network/configGrid.js"></script>
+<script src="/media/js/fillcollector.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "network/network_sec_menu.html" %}
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+{% block  mleft-panel %}
+
+<div class="panel_min">
+	<br/>
+	<div id="network_class_tree"> </div>
+	<br/>
+	
+<div style="text-align: center;">
+	<a href="javascript:" name="add_device" class="try-kendo disable">+添加设备</a>
+</div>	
+
+</div>
+<div class="extend_device_tip">
+    <li>您一共可以添加<label>{{numDic.count}}</label>台设备</li>
+    <li>您已经添加了<label>{{numDic.usedNum}}</label>台设备</li>
+    <li>您还可以添加<label>{{numDic.availableNum}}</label>台设备</li>
+    <li><a href="javascript:" name="extend_device">我要扩充</a></li>
+</div>
+{% endblock %}
+
+{% block mright-panel  %}
+<div class="panel">
+	<div class="panelTitle">设备列表</div>
+	<div class="panelContent">
+		<div id="data-grid"> </div>
+	</div>
+</div>
+
+{% include "network/add_network_page.html" %}
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+{%  include "monitor/extend_device.html" %}
+{% endblock %}
+

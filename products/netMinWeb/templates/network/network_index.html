@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link href="/media/ui/jqueryui/jquery-ui.css" rel="stylesheet" />
+<link href="/media/ui/jqueryui/jquery.multiselect.css" rel="stylesheet" />
+<link href="/media/css/cpu_mem_gauge/style.css" rel="stylesheet" />
+{% endblock %}
+{% block extra_style %}
+<style>
+    .device_base_info.box li{
+        line-height:22px;
+        
+    }
+    
+    .device_base_info.box li label{
+        display: inline-block;
+        width:60px;
+        text-align: right;
+        color: #1881C5;
+        margin-right:4px;
+    }
+    
+    #cpuMemPerfImgWidget div.box{
+        height: 320px;
+    }
+    
+
+        
+    #ipInterfacesPerfImgWidget div.panelContent{
+        max-height: 600px; overflow: auto;
+    }
+    
+   
+    div.box div.chart_div{
+        width:97%; height:280px;float: left;
+        border-radius: 4px;
+        margin-bottom:2px;
+    }
+    
+
+	.panelContent thead > tr > td {
+	    color: #1881C5;
+	}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>var moUid = '{{moUid}}';</script>
+<script>var networkType = '{{networkType}}';</script>
+<script src="/media/js/network/networkTree.js"></script>
+<script src="/media/js/network/summary.js"></script>
+<script src="/media/js/network/networkDetail_index.js"></script>
+<script  src="/media/ui/jqueryui/jquery-ui.min.js"></script>
+<script  src="/media/ui/jqueryui/jquery.multiselect.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+{% include "network/network_sec_menu.html" %}
+{% endblock %}
+
+{% block three-menu-panel %}
+{% include "three_menu.html" %}
+{% endblock %}
+
+
+
+{% block  mleft-panel %}
+
+<div class="panel_min psbar" style="max-height: 500px;">
+	<div id="network_class_tree"> </div>
+	<br/>
+</div>
+
+{% include "network/summary.html" %}
+
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div class="index_coumns">
+    <div class="coumn first">
+        <div id="dev_panel_001" class="panel">
+            <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+            <div class="panelTitle">网络设备基本信息</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <div id="cpumem-gauge-container" class=""></div>
+                    
+                    <div style="position: absolute; top:40px; left:190px;">
+                        <li><label>状态:</label><span class='status-icon-small Down #=status#'></span></li>
+                        <li><label>名称:</label><span>#=title#</span></li>
+                        <li> <label>管理IP:</label><span>#=manageIp#</span></li>
+                        
+                    </div>
+                    
+                    <li><label>Cpu概况:</label>
+                        <span class="cpu_gk_span">
+                            #=networkIndex.renderCpus(cpu)#
+                        </span>
+                    </li>
+                    <li><label>内存概况:</label>
+                        <span>
+                            #=networkIndex.renderMems(mem)#
+                        </span>
+                    </li>
+                    <li><label>描述说明:</label><span>#=description#</span></li>
+                </script>
+                <div class="box network_base_info"> </div>
+            </div>
+        </div>
+        
+        <div id="dev_panel_002" class="panel">
+            <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+            <div class="panelTitle">最新事件</div>
+            <div class="panelContent">
+                <script name="template" type="text/x-kendo-template">
+                    <tr>
+                        <td><span class="severity-icon-small #= nb.Render.severitys(severity)#"></span></td>
+                        <td  style="min-width: 80px;" title="#=nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)#">
+                            #=nb.Render.ellipsisStr(nb.Render.deviceEventLabel(data.title, data.componentType, data.deviceIp)) #
+                        </td>
+                        <td title="#=message#">#=nb.Render.ellipsisStr(message, 80) #</td>
+                        <td width="110px">#= nb.xutils.getTimeStr(endTime * 1000) #</td>
+                    </tr>
+                </script>
+               <table style="width: 100%">
+                    <thead><td> </td><td>标题</td><td>事件摘要</td><td>最后时间</td>
+                    <tbody> </tbody>
+               </table>
+            </div>
+        </div>
+        
+        
+        {% if networkType == "firewall" %}
+        	<div id="firewallConnImageWidget" class="panel" >
+        		<div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"></a></div>
+        		<div class="panelTitle">防火墙会话</div>
+        		<div class="panelContent">
+        			<div class="box"></div>
+        		</div>
+        	</div>
+        {% endif %}
+        
+        <div id="cpuMemPerfImgWidget" class="panel">
+            <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+            <div class="panelTitle">Cpu与Mem(内存)24小时性能图(%)</div>
+            <div class="panelContent">
+                <div class="box"> </div>
+            </div>
+        </div>
+        
+        
+    </div> <!-- end coumn first -->
+    
+    <div class="coumn sec">
+        <div id="interfacesListWidget" class="panel">
+            <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+            <div class="panelTitle">接口状态</div>
+            <div class="panelContent">
+            	<div class="data_grid"> </div>  
+            </div>
+        </div>
+        
+        <div id="ipInterfacesPerfImgWidget" class="panel">
+            <div class="panelActions"><a href="javascript:" name="refresh_action" class="refresh"> </a></div>
+            <div class="panelTitle">接口流量性能图</div>
+            <div class="panelContent" style="min-height: 600px; overflow: auto;">
+                <div class="box"> </div>
+            </div>
+        </div>
+
+        
+    </div> <!-- end coumn sec -->
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+{% endblock %}

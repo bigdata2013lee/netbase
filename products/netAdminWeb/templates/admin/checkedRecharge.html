@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    thead th{
+        text-align: left;
+        color: #06609C;
+    }
+    
+    #left-menus li{
+        height: 22px;
+        line-height: 22px;
+        padding-left:2em;
+    }
+
+
+
+.panelContent .box li{
+    height: 30px; line-height: 22px;
+}
+
+.panelContent .box li>label{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 0.5em;
+  color:#06609C;
+}
+
+.c2  {
+    
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    margin-right: 0.5em;
+   
+}
+
+#customer_query_conditions{
+
+    padding:1em;
+}
+#customer_query_conditions .inputx0{width:80px;}
+#customer_query_conditions .inputx1{width:120px;}
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/checkedRecharge.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_charge.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customersWidget" class="panel">
+    <div class="panelTitle">充值记录查询</div>
+    <div class="panelContent">
+        <div id="customer_query_conditions">
+            <li>
+                <label>用户名:</label><input type="text"  name="customer" class="inputx0" />
+                <label>公司名称:</label><input type="text"  name="ownCompany" class="inputx0"/>
+                <label>充值申请号：</label><input type="text"  name="_id" class="inputx1" />
+                <label>审核状态：</label><select style="width: 100px;" name="status">
+                    <option value="3">全部</option>
+                    <option value="0">未审核</option>
+                    <option value="1">通过</option>
+                    <option value="2">不通过</option>
+                </select>
+                <button style="float: right;"  name="selectQueryBt" >搜索</button>
+            </li>
+        </div>
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+
+<div id="customersDetailWidget" class="panel">
+    <div class="panelTitle">充值记录详细信息</div>
+    <div class="panelContent">
+            <div class="box" style="float:left;">
+               <li>
+                    <label>用户名:</label><span data-bind="text: customer"></span>
+                    <label>公司:</label> <span data-bind="text: ownCompany" ></span>
+                    <label>邮件:</label> <span data-bind="text: email" ></span>
+                    <label>联系电话:</label> <span data-bind="text: contactPhone" ></span>
+               </li>
+               <li>
+                <label>充值申请号:</label> <span data-bind="text: _id" ></span>
+               </li>
+               <li>
+                <label>充值金额:￥</label> <span data-bind="text: money" ></span>
+                <label>申请时间:</label> <span data-bind="text: formatsubmitTime" ></span>
+                <label>审核时间:</label> <span data-bind="text: formatcompleteTime" ></span>
+                <label>审核人:</label> <span data-bind="text: adminUser" ></span>
+                <label>审核状态:</label> <span data-bind="text: formatStauts" ></span>
+               </li>
+               <li>
+                <label>充值说明:</label> <span data-bind="text: rechargeInstructions" ></span>
+               </li>
+            </div>
+            <br clear="both"/>
+    </div>
+</div>    
+     
+{% endblock %}
+
+{% block other_extend_block %}
+
+{% endblock %}

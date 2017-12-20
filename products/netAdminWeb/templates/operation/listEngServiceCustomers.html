@@ -1,0 +1,24 @@
+{%load netbasefilters%}
+{%if not custormers %}
+<div class="no_result_tip">
+    没有服务的客户
+</div>
+{%endif%}
+
+<ul>
+    {% for customer in  custormers %}
+    <li {%if forloop.counter|divisibleby:2%}class="alt"{%endif%}>
+		<dl class="fields" style="margin: 0px;">
+			<dt>客户：</dt>
+			<dd>{{customer.username}}</dd>
+			<dd>【 {{customer.originalName}} 】</dd>
+		</dl>
+		
+     <li>
+    {%endfor%}
+</ul>
+
+
+
+
+

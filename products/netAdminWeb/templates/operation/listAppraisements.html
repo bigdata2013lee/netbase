@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% load netbasefilters %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script> var nb_firstNav=1;  </script>
+<script src="/media/js/operation/serviceNoteDetail.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/engineersLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+
+<div id="servicesWidget" class="panel">
+    <div class="panelTitle"></div>
+    <div class="panelContent">
+            <div class="query_tool_bar">
+                <li>
+                    <a href="/operation/downloadAppraisementsFile/?sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" >导出为EXCEL</a> 
+                </li>
+            </div>
+            <table class="data_table" name="listAppraisements">
+                <thead>
+                    <tr>      
+                        <th name="username">工程师<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                        <th name="appraisement.good">好评<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                        <th name="appraisement.common">中评<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                        <th name="appraisement.bad">差评<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                        <th name="appraisement.goodRate">好评率<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for eng in engs%}
+                        <tr class="data_tr" engId="{{ eng.getUid }}" style="cursor: pointer;">
+                            <td>{{eng.originalName}}</td>
+                            <td>{{eng.appraisement.good}}</td>
+                            <td>{{eng.appraisement.common}}</td>
+                            <td>{{eng.appraisement.bad}}</td>
+                            <td>
+                                 {% if eng.appraisement.goodRate %}
+                                    {{eng.appraisement.goodRate|getGoodRate}}
+                                {%else%}
+                                    0.00%
+                                {%endif%}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pages_tools">
+                <a href="/operation/listAppraisements/?pageNum=1&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/operation/listAppraisements/?pageNum={{p}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}">{{p}}</a>
+                {%endfor%}
+            </div>
+        <br clear="both" />
+    </div>
+</div>
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

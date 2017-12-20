@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{%load netbasefilters%}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="/media/css/serviceNoteList.css" />
+{% endblock %}
+
+{% block extra_style %}
+
+<style>
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>var nb_firstNav=1;  var nb_secNav =2;</script>
+<script src="/media/js/operation/serviceNoteDetail.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "operation/engineersLeftMenu.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="servicesWidget" class="panel">
+    <div class="panelTitle">工程师的工单评价列表</div>
+    <div class="panelContent">
+            <div class="query_tool_bar">
+                <li>
+                    <a href="/operation/downloadEngAppraisementsFile/?engId={{request.REQUEST.engId}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" name="saveAsExcel">导出为EXCEL</a> 
+                </li>
+            </div>
+            <table class="data_table" name="listEngAppraisements" data-id="{{request.REQUEST.engId}}">
+                <thead>
+                    <tr>
+                             <th name="appraiseTime">评价时间<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                             <th name="serviceNote">工单主题<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                                <th name="user">客户<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                                <th name="engineer">工程师<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                                <th name="attitude">服务态度<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                                <th name="techLevel">专业水平<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                             <th name="responseSpeed">响应速度<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                              <th name="appraiseContent">评价内容<em class="downImg updownImg" sortType="{{request.REQUEST.sortType}}"></em></th>
+                    </tr>                    
+                </thead>                
+                <tbody>
+                    {% for apt in apts%}
+                        <tr class="data_tr" >
+                            <td>{{apt.appraiseTime|formatShortTime}}</td>
+                            <td>
+                                 {% if apt.serviceNote %}
+                                     {{apt.serviceNote.subject}}
+                                 {% else %}
+                                     已被删除的工单
+                                 {% endif %}
+                            </td>
+                            <td>{{apt.user.username|getName}}</td>
+                            <td>{{apt.engineer.originalName}}</td>
+                            <td>{{apt.attitude|getLevelValue}}</td>
+                            <td>{{apt.techLevel|getLevelValue}}</td>
+                            <td>{{apt.responseSpeed|getLevelValue}}</td>
+                            <td style="max-width: 500px;">{% autoescape off %}{{apt.appraiseContent}}{% endautoescape %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pages_tools">
+                <a href="/operation/listEngAppraisements/?engId={{request.REQUEST.engId}}&pageNum=1&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}" page_num="1">&nbsp;&nbsp;&lt; 首页&nbsp;&nbsp;</a>
+                {%for p in pageInfos.plist%}
+                <a href="/operation/listEngAppraisements/?engId={{request.REQUEST.engId}}&pageNum={{p}}&sortFiled={{request.REQUEST.sortFiled}}&sortType={{request.REQUEST.sortType}}">{{p}}</a>
+                {%endfor%}
+            </div>
+        <br clear="both" />
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block other_extend_block %}
+
+{% endblock %}
+

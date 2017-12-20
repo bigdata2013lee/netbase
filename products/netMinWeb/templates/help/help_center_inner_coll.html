@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心---收集器与snmp访问</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/help_left.html"%}
+    <div class="help_right" style="min-height:580px;">
+         
+          
+          
+                
+          <h1>内网收集器下载</h1>
+          <p class="content2">
+	          下载地址: <a href="http://pan.baidu.com/s/1lgBtO">http://pan.baidu.com/s/1lgBtO</a> (解压安装版) <br/>
+	          <br/>
+          </p>
+     
+  
+                      
+                     
+                     
+                     
+		<h1>内网收集器安装</h1>
+		<h2>1. 软\硬件要求</h2>
+		<p class="content2">
+			操作系统: Centos 6.3\Centos 6.4\Centos 6.5 64位 <br/>
+			CPU: 多核(2核以上) <br/>
+			Mem: 512M 以上 <br/>
+			磁盘空间: 40G 以上 <br/>
+		</p>
+		<h2>2. 安装</h2>
+     	<p class="content">
+     		解压安装版<br/>
+     		1.把innerCollector.tar.gz解压到 /opt目录下 <br/>
+     		2.通过yum安装SNMP的支持包 yum -y install net-snmp net-snmp-utils  <br/>
+     		3.创建python的软连接 ln -s /opt/python2.7/bin/python2.7 /opt/netbase4/bin/python <br/><br/><br/>
+     		虚拟机安装版 <br/>
+     		1.要求64位的主机环境 <br/>
+     		2.使用VMware虚拟机软件打开安装版<br/>
+     	</p>
+     
+     	<h2>3. 配置</h2>
+     	<p class="content">
+     		配置文件路径: /opt/netbase4/etc/collector.conf <br/>
+     		colHost=127.0.0.1 #修改此为内网对应的公网IP<br/>
+     		rpcHost=182.254.133.106 #修改为运维通配置服务器IP(182.254.133.106)<br/>
+     		colUid 修改为收集器的UID <br/>
+     		<br/>
+     		
+     		tcpPort=12368,bootPort=12305,请把这两端口在路由上做映射，使得运维通的服务器(公网IP)，能访问到收集器的这两个端口
+     	</p>
+    	<h2>4. 运行及停止收集器</h2>
+    	<p class="content2">
+    		1. cd /opt/netbase4/bin <br/>
+    		2. ./coll/manager start   <br/>
+    		<br/>
+    		<br/>
+    		#./coll/manager {start|stop|restart|status|list} <br/>
+    		收集器管理里程manager，提供 启动|停止|重启|状态|列出所有进程 功能
+    	</p>
+    	
+    	
+		<h1>内网收集器证书申请</h1>
+		<p class="content">
+			内网收集器安装完毕后，您需要申请运行证书，请致电运维通客服 <font style="color: #cf0202;">4006-3525-00</font>,
+			向客服人员提供您的登陆帐号，公司\单位名称及收集器MAC地址，确认无误后，将发运行证书到您的邮箱中。<br/>
+		</p>
+		<p class="content">
+			收到运行证书后，请把运行证书(.license.dat文件)上传至收集器设备/opt/netbase4/目录中
+		</p>
+                             
+
+   </div>
+</div>
+
+
+
+</body>
+</html>

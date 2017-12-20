@@ -1,0 +1,30 @@
+<li>
+    <label>Snmp超时:</label> <input data-role="numerictextbox" min="0" max="30" data-format="# 秒" data-bind="value: netSnmpTimeout" />
+    <label>最大OID请求数:</label> <input data-role="numerictextbox" min="0" max="200" data-format="#" data-bind="value: netMaxOIDPerRequest" />
+</li>
+
+<li>
+    <label>Snmp私有密码:</label> <input class="common" name="netSnmpPrivPassword" data-bind="value:netSnmpPrivPassword" type="password" />
+    <label>Snmp尝试次数:</label> <input data-role="numerictextbox" min="1" max="10" data-format="#" data-bind="value: netSnmpTries" />
+</li>
+
+<li>
+    <label>是否启用SNMP:</label> <select class="common" data-bind="source:booleans, value:netSnmpMonitorIgnore" 
+    data-value-field="val" data-text-field="text"> </select>
+    <label>Snmp认证类型:</label> <input class="common" name="netSnmpAuthType" data-bind="value:netSnmpAuthType" />
+</li>
+
+<li>
+    <label>Snmp私有类型:</label> <input class="common"  name="netSnmpPrivType" data-bind="value:netSnmpPrivType" />
+    <label>Snmp团体名:</label> <input class="common" data-bind="value:netSnmpCommunity" />
+</li>
+
+<li>
+    <label>Snmp验证密码:</label>  <input class="common" name="netSnmpAuthPassword" data-bind="value:netSnmpAuthPassword" type="password" />
+    <label>Snmp版本:</label> <select class="common" name="netSnmpVer" data-bind="source:snmpVers, value:netSnmpVer"> </select>
+</li>
+
+<li>
+    <label>Snmp端口:</label> <input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value: netSnmpPort" />
+    <label>Snmp安全名:</label> <input class="common" name="netSnmpSecurityName" data-bind="value:netSnmpSecurityName" />
+</li>

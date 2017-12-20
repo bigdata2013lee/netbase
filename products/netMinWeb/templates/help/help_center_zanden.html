@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心---站点专家使用说明</title>
+{%include "help/keywords.html"%}
+<link href="/media/help/ywt_style.css" rel="stylesheet" type="text/css" />
+<link href="/media/help/help_content.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+{%include "help/header.html"%}
+<div id="Featues_main" style="min-height:560px; padding-bottom:50px;">
+    {%include "help/help_left.html"%}
+    <div class="help_right" style="min-height:580px; line-height:24px;">
+         <h1>站点专家使用说明</h1>
+         <h2>一、站点专家介绍</h2>
+         <p class="content">
+            站点专家部分负责站点运行状态的监控，运维通每5分钟对站点进行一次HTTP请求，根据HTTP返回状态码判断网站当前运行状态。当站点出现异常时，向管理员发送报警邮件。站点专家界面如下图 3.1所示:
+         </p>
+         <p class="image"><img src="/media/help/h_zd01.jpg" style="width:auto;" /></p>
+         <p class="image_note">图 3.1 站点专家界面</p><br />
+         
+         <h2>二、操作步骤</h2>
+         <p class="content">
+            1.在站点专家界面右上角"配置"找到 ，并点击左下角“添加站点”链接
+         </p>
+         <p class="content">
+            2.在弹出界面，填写站点相关信息，点击"保存"即可，如下图示。
+         </p>
+         <p class="image"><img src="/media/help/h_zd02.jpg" style="width:auto;"/></p>
+         <p class="image_note">图3.2 添加监控站点</p><br />
+         
+         <p class="content">
+           3.在站点专家即可观察到刚才添加站点状态。<br />
+         </p>
+         <p class="image"><img src="/media/help/h_zd03.jpg" style="width:auto;" /></p>
+         <p class="image_note">图3.3 站点监控列表</p><br />
+         
+         
+    </div>    
+    
+</div>
+
+</body>
+</html>

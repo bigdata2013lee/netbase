@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    thead th{
+        text-align: left;
+        color: #06609C;
+    }
+    
+    #left-menus li{
+        height: 22px;
+        line-height: 22px;
+        padding-left:2em;
+    }
+
+
+
+.panelContent .box li{
+    height: 30px; line-height: 22px;
+}
+
+.panelContent .box li>label{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 0.5em;
+  color:#06609C;
+}
+
+.c2  {
+    
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    margin-right: 0.5em;
+   
+}
+#customer_query_conditions{
+    padding:1em;
+}
+
+#customer_query_conditions .inputx0{width:80px;}
+#customer_query_conditions .inputx1{width:120px;}
+
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/sale/customers.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+<div id="left-menus">
+    <li><a href="/sale/customers">客户列表</a></li>
+    <li><a href="/sale/rechargeRecord">充值记录</a></li>
+</div>
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="customersWidget" class="panel">
+    <div class="panelTitle">客户列表</div>
+    <div class="panelContent">
+        <div id="customer_query_conditions">
+            <li>
+                <label>公司名称:</label><input type="text"   name="ownCompany"  class="inputx0"  />
+                <button style="float: right;"  name="selectQueryBt" >搜索</button>
+            </li>
+        </div>
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+     
+{% endblock %}
+
+{% block other_extend_block %}
+<div id="rechargeWidget" class="dialog_win">
+    <div class="box">
+		<li>
+			<label>用户名:</label><span data-bind="text:username"></span>
+		</li>
+		<li>
+			<label>公司:</label> <span data-bind="text:ownCompany"></span>
+		</li>
+		
+		<li>
+			<label>充值金额:</label>
+			<input  type="text" name="rechargeMoney" />
+		</li>
+		<li>
+			<label>充值申请说明:</label>
+			<input name="rechargeInstructions" style="width:400px;" />
+		</li>
+		
+		<div class="validateErrorMsg"> </div>
+		 
+    </div>
+    <div class="win_opbar">
+        <button class="ok">提交充值申请</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
+<div id="setEngineerWidget" class="dialog_win">
+    <div class="box">
+		<li>
+			<label>用户名:</label><span data-bind="text:username"></span>
+		</li>
+		<li>
+			<label>公司:</label> <span data-bind="text:ownCompany"></span>
+		</li>
+		<li>
+			<label>原工程师:</label><span data-bind="text:engineer"></span>
+		</li>
+		<hr />
+		<div id="engineerListWidget">
+		    <div class="panelContent" style="max-height: 400px; overflow: auto;">
+	            <script name="template" type="text/x-kendo-template">
+	                <tr>
+	                    <td><input type="radio" value="#=_id#" name="engineerUid"/> #= username # [#=originalName#]</td>
+	                </tr>
+	            </script>
+		       <table style="width: 100%">
+		       		<tbody> </tbody>
+		       </table>
+		    </div>
+		</div>
+		 
+    </div>
+    <div class="win_opbar">
+        <button class="ok">修改工程师</button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+     
+{% endblock %}
+

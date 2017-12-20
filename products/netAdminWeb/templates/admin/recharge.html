@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_style %}
+<style>
+    thead th{
+        text-align: left;
+        color: #06609C;
+    }
+    
+    #left-menus li{
+        height: 22px;
+        line-height: 22px;
+        padding-left:2em;
+    }
+
+
+
+.panelContent .box li{
+    height: 30px; line-height: 22px;
+}
+
+.panelContent .box li>label{
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 0.5em;
+  color:#06609C;
+}
+
+.c2  {
+    
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    margin-right: 0.5em;
+   
+}
+
+.opForm {
+    padding:1em;
+}
+
+.opForm li button{
+    float: right;
+    margin-right: 20px;
+}
+
+</style>
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="/media/js/admin/adminUser/recharge.js"></script>
+{% endblock %}
+
+{% block sec-menu-panel %}
+
+{% endblock %}
+
+{% block  mleft-panel %}
+{% include "admin/left_menus_charge.html" %}
+{% endblock %}
+
+
+{% block mright-panel  %}
+<div id="rechargeWidget" class="panel">
+    <div class="panelTitle">充值审批</div>
+    <div class="panelContent">
+        <div class="opForm">
+            <li >
+            
+            <button  name="uncheckedForm">回退审核</button>
+            <button name="checkedForm">审核通过</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+        </div>
+        <div id="data-grid"> </div>   
+    </div>
+</div>  
+
+
+<div id="rechargeDetailWidget" class="panel">
+    <div class="panelTitle">充值详细信息</div>
+    <div class="panelContent">
+            <div class="box" style="float:left;">
+               <li>
+                    <label>用户名:</label><span data-bind="text: customer"></span>
+                    <label>公司名称:</label> <span data-bind="text: ownCompany" ></span>
+                    <label>当前账户余额:￥</label> <span data-bind="text:userMoney" ></span>
+                    <label>申请充值金额:￥</label> <span data-bind="text: money" ></span>
+               </li>
+               <li>
+                <label>销售人员:</label> <span data-bind="text: saleUser" ></span>
+                <label>申请时间:</label> <span data-bind="text: formatsubmitTime" ></span>
+               </li>
+               <li>
+               <label>充值申请说明:</label> <span data-bind="text: rechargeInstructions" ></span>
+               </li>
+            </div>
+            <br clear="both"/>
+    </div>
+</div>    
+     
+
+{% endblock %}
+
+{% block other_extend_block %}
+     
+{% endblock %}
+

@@ -1,0 +1,258 @@
+span.icon{
+	background: url(/media/images/top_xiaobg.png) no-repeat;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+span.icon.x16{
+    width: 16px; height: 16px;
+}
+span.icon.host{
+	background-position: 0 -76px;
+}
+
+span.icon.website{
+	background-position: 0 -96px;
+}
+
+span.icon.addDevice{
+    background-position: 0 -132px;
+}
+
+span.icon.addWebsite{
+    background-position: 0 -114px;
+}
+
+span.icon.addDir{
+    background-position: 0 -148px;
+}
+
+span.icon.delete{
+    background-position: 0 -180px;
+}
+
+span.icon.edit{
+    background-position: 0 -164px;
+}
+
+
+span.icon.createServiceNote{
+    background-position: -3px -196px;
+}
+
+span.icon.power_up{
+    background-position: -2px -228px;
+}
+span.icon.power_down{
+    background-position: -2px -244px;
+}
+span.icon.power_unknown{
+    background-position: -2px -260px;
+}
+
+
+/**--------------------------------------------------------**/
+span.severity-icon-small{
+	display: inline-block;
+	background: url("/media/images/severity-sprite.png") no-repeat scroll transparent;
+    height: 14px;
+    margin: 0 auto;
+    width: 16px;
+}
+
+span.severity-icon-small.Critical{
+	background-position: 0 0;
+}
+span.severity-icon-small.Error{
+    background-position: 0 -20px;
+}
+span.severity-icon-small.Warning{
+    background-position: 0 -40px;
+}
+span.severity-icon-small.Info{
+    background-position: 0 -60px;
+}
+span.severity-icon-small.Debug{
+    background-position: 0 -80px;
+}
+span.severity-icon-small.Clear{
+    background-position: 0 -100px;
+}
+
+/**-----------------状态图标------------------------------------------**/
+span.status-icon-small{
+    display: inline-block;
+    background: url("/media/images/status_icons.png") no-repeat scroll transparent;
+    height: 16px;
+    width: 16px;
+    margin: 0 auto;
+}
+
+span.status-icon-small.x0, span.status-icon-small.xfalse, span.status-icon-small.down{
+    background-position: 0 0;
+}
+span.status-icon-small.x1, span.status-icon-small.xtrue,span.status-icon-small.up{
+    background-position: 0 -16px;
+}
+span.status-icon-small.unknown, span.status-icon-small.x-1{
+    background-position: 0 -32px;
+}
+
+/**-------------------------二级导航菜单图标-----------------------------*/
+
+#sec_menus_bar li span.icon{
+    background: url("/media/images/sec_menu_bar_icons.png") no-repeat scroll transparent;
+}
+
+
+#sec_menus_bar li span.icon.host{
+    background-position: -16px 0px;
+}
+
+#sec_menus_bar li:hover span.icon.host, #sec_menus_bar li.active span.icon.host{
+    background-position: 0px 0px;
+}
+
+#sec_menus_bar li span.icon.settings{
+    background-position: -16px -16px;
+}
+#sec_menus_bar li:hover span.icon.settings, #sec_menus_bar li.active span.icon.settings{
+    background-position: 0px -16px;
+}
+
+#sec_menus_bar li span.icon.website{
+    background-position: -16px -32px;
+}
+#sec_menus_bar li:hover span.icon.website, #sec_menus_bar li.active span.icon.website{
+    background-position: 0px -32px;
+}
+
+#sec_menus_bar li span.icon.default{
+    background-position: -16px -48px;
+}
+#sec_menus_bar li:hover span.icon.default, #sec_menus_bar li.active span.icon.default{
+    background-position: 0px -48px;
+}
+
+#sec_menus_bar li span.icon.history{
+    background-position: -16px -64px;
+}
+#sec_menus_bar li:hover span.icon.history, #sec_menus_bar li.active span.icon.history{
+    background-position: 0px -64px;
+}
+
+#sec_menus_bar li span.icon.userEdit{
+    background-position: -16px -96px;
+}
+#sec_menus_bar li:hover span.icon.userEdit, #sec_menus_bar li.active span.icon.userEdit{
+    background-position: 0px -96px;
+}
+
+#sec_menus_bar li span.icon.alarm{
+    background-position: -16px -112px;
+}
+#sec_menus_bar li:hover span.icon.alarm, #sec_menus_bar li.active span.icon.alarm{
+    background-position: 0px -112px;
+}
+
+#sec_menus_bar li span.icon.service{
+    background-position: -16px -128px;
+}
+#sec_menus_bar li:hover span.icon.service, #sec_menus_bar li.active span.icon.service{
+    background-position: 0px -128px;
+}
+
+/**-----------------------------------------tree view 图标------------------------------------------------*/
+    
+span.k-sprite{
+    background: url("/media/images/treeviewicons.png") no-repeat scroll transparent;
+}
+
+span.k-sprite.DeviceClass{
+    background-position: 0px 0px;
+}
+
+span.k-sprite.Device{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.Network{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.WebSiteClass{
+    background-position: -0px 0px;
+}
+
+span.k-sprite.Website{
+    background-position: -0px -64px;
+}
+
+
+span.k-sprite.Middleware{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.MwApache{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.MwTomcat{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.MwNginx{
+    background-position: -0px -32px;
+}
+
+span.k-sprite.MwIis{
+    background-position: -0px -32px;
+}
+span.k-sprite.MiddlewareClass{
+    background-position: 0px 0px;
+}
+/*
+span.k-sprite.NetworkClass{
+    background-position: -0px -32px;
+}*/
+
+
+
+em.icon{
+	display: inline-block;
+	width:16px; height: 16px;
+}
+
+em.icon.cog_edit{
+	background: url(./icons/cog_edit.png)
+}
+em.icon.arrow_green{
+	background: url(./icons/arrow_green.png) no-repeat 50% 50%;
+}
+em.icon.monitor_link{
+	background: url(./icons/monitor_link.png) no-repeat 50% 50%;
+}
+
+em.icon.folder_edit{
+	background: url(./icons/folder_edit.png) no-repeat 50% 50%;
+}
+
+em.icon.note_delete{
+	background: url(./icons/note_delete.png) no-repeat 50% 50%;
+}
+
+
+em.icon.cross{
+	background: url(./icons/cross.png) no-repeat 50% 50%;
+}
+
+
+
+
+
+
+
+

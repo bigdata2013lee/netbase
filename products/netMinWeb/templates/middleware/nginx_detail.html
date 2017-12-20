@@ -1,0 +1,61 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link href="/media/ui/kendo/kendo.common.min.css" rel="stylesheet" />
+		<link href="/media/ui/kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+		
+		<script type="text/javascript" src="/media/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery.json-2.2.min.js"></script>
+        <script type="text/javascript" src="/media/js/nbUtils.js"></script>
+        <script type="text/javascript" src="/media/js/netbaseRemoteUrls.js"></script>
+        <script type="text/javascript" src="/media/js/nbRemote.js"></script>
+        <script src="/media/js/baseWidget.js"></script>
+         <script src="/media/js/nbUiTools.js"></script>
+         <script src="/media/ui/highstock/highstock.js"></script>
+         <script type="text/javascript" src="/media/ui/highstock/setOptions.js"></script>
+         <script>var moUid='{{moUid}}';</script>
+         <script src="/media/js/middleware/nginx_detail.js"></script>
+         
+		<style>
+			html, body{font-family: "微软雅黑",arial,sans-serif;font-size:12px; padding:0; margin:0;height: auto;min-width: 200px;} 
+			div.wrap{border:1px solid #CCCCCC; padding:0.5em; min-height: 100px; margin: 0.5em 0.5em;}
+			dl{}
+			dl dt, dl dd{float: left; margin:0;}
+			dl dt{width:80px; text-align: right; padding-right:0.5em;color:#1881c5;}
+			
+			#connPerfsWidget div.box{height:240px;}
+		</style>
+	</head>
+	
+	<body>
+		<div class="baseinfo wrap">
+			<dl>
+				<dt>nginx服务器:</dt><dd>{{mw.title}}</dd>
+				<dt>状态:</dt><dd>{{mw.getStatus}}</dd>
+				<br clear="both"/>
+			</dl>
+			<dl>
+				<dt>域名/IP:</dt><dd>{{mw.host}}</dd>
+				<dt>端口:</dt><dd>{{mw.port}}</dd>
+				<dt>状态Url:</dt><dd>{{mw.url}}</dd>
+				<br clear="both"/>
+			</dl>
+			
+			<dl>
+				<dt>版本:</dt><dd>{{mw.getCurrentPerfs.mwVersion}}</dd>
+				<dt>活动连接数:</dt><dd>{{mw.getCurrentPerfs.connection}}</dd>
+				<dt>ReqPerSec:</dt><dd>{{mw.getCurrentPerfs.reqPerSec}}</dd>
+				<dt>ErrorPerSec:</dt><dd>{{mw.getCurrentPerfs.errorPerSec}}</dd>
+				<br clear="both"/>
+			</dl>
+		</div>
+		
+		<div id="connPerfsWidget" class="wrap" style="position: relative;">
+			<div class="box"> </div>
+		</div>
+
+
+		
+	</body>
+</html>

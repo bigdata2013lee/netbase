@@ -1,0 +1,152 @@
+<div class="panel swich" id="editNetworkWidget">
+    <div class="panelTitle">编辑网络设备</div>
+    <div class="panelContent">
+        <div class="op_bar">
+            <a name="save" href="javascript:">保存</a>
+            <a href="javascript:" name="configThreshold">阀值配置</a>
+        </div>
+        <div class="box">
+            <div class="validateErrorMsg"> </div>
+            <fieldset class="baseInfoConfig" id="network_panel_001">
+                <legend>基本配置</legend>
+                <li class="filed first"> <label>管理IP:</label> <input name="manageIp" data-bind="value:manageIp" /> </li>
+                <li class="filed"> <label>名称:</label> <input name="title" data-bind="value:title"/> </li>
+                <li class="filed">
+                    <label>收集器：</label><span data-bind="text:collector"></span>
+                 </li>
+                <li class="filed first"> <label>说明描述:</label> <input name="description" data-bind="value:description" style="width:470px;"/> </li>
+                <li class="filed first"> <label>产品型号:</label> 
+                    <span data-bind="text:productId"> </span> 
+                </li>
+            </fieldset>
+            
+            <fieldset class="snmpConfig"  id="network_panel_002">
+                <legend>SNMP配置</legend>
+
+                    <li class="filed first">
+                        <label>Snmp超时:</label> <input data-role="numerictextbox" min="0" min="120" data-format="# 秒" data-bind="value: netSnmpTimeout" />
+                    </li>
+                        
+                    <li class="filed">    
+                        <label>最大OID请求数:</label> <input data-role="numerictextbox" min="0" data-format="#" data-bind="value: netMaxOIDPerRequest" />
+                    </li>
+                    
+                    <li class="filed first">
+                        <label>Snmp私有密码:</label> <input class="common" data-bind="value:netSnmpPrivPassword" type="password"/>
+                    </li>
+                    
+                    <li class="filed">    
+                        <label>Snmp尝试次数:</label> <input data-role="numerictextbox" min="0" data-format="#" data-bind="value: netSnmpTries" />
+                    </li>
+                    
+                    <li class="filed first">
+                        <label>是否启用SNMP:</label> <select class="common" data-bind="source:booleans, value:netSnmpMonitorIgnore" 
+                        data-value-field="val" data-text-field="text"> </select>
+                    </li>
+                    
+                    <li class="filed">
+                        <label>Snmp认证类型:</label> <input class="common" data-bind="value:netSnmpAuthType" />
+                    </li>
+                    
+                    <li class="filed first">
+                        <label>Snmp私有类型:</label> <input class="common" data-bind="value:netSnmpPrivType" />
+                    </li>
+                    
+                    <li class="filed">
+                        <label>Snmp团体名:</label> <input class="common" data-bind="value:netSnmpCommunity" />
+                    </li>
+                    
+                    <li class="filed first">
+                        <label>Snmp验证密码:</label>  <input class="common" data-bind="value:netSnmpAuthPassword" type="password" />
+                    </li>
+                    
+                    <li class="filed">
+                        <label>Snmp版本:</label> <select class="common" data-bind="source:snmpVers, value:netSnmpVer"> </select>
+                    </li>
+                    
+                    <li class="filed first">
+                        <label>Snmp端口:</label> <input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value: netSnmpPort" />
+                    </li>
+                    
+                    <li class="filed">
+                        <label>Snmp安全名:</label> <input class="common" data-bind="value:netSnmpSecurityName" />
+                    </li>
+            </fieldset>
+            
+            <fieldset class="commConfig"  id="network_panel_003">
+                <legend>通用配置</legend>
+
+                <li class="filed first">
+                    <label>SSH密钥路径:</label> <input class="common" data-bind="value:netKeyPath"  type="password" />
+                </li>
+                
+                <li class="filed">    
+                    <label>SSH当前会话数:</label> <input data-role="numerictextbox" min="0" max="10000" data-format="#" data-bind="value: netSshConcurrentSessions" />
+                </li>
+                
+                <li class="filed first">
+                    <label>用户名:</label> <input class="common" data-bind="value:netCommandUsername" />
+                </li>
+                
+                <li class="filed">
+                    <label>密码:</label> <input class="common" data-bind="value:netCommandPassword" type="password"/>
+                </li>
+                
+                <li class="filed first">
+                    <label>命令超时:</label> <input data-role="numerictextbox" min="0" max="120" data-format="# 秒" data-bind="value: netCommandCommandTimeout" />
+                </li>
+                
+                <li class="filed">
+                    <label>登陆超时:</label> <input data-role="numerictextbox" min="0" max="120" data-format="# 秒" data-bind="value: netCommandLoginTimeout" />
+                </li>
+                
+                <li class="filed first">
+                    <label>命令端口:</label> <input data-role="numerictextbox" min="1" max="65535" data-format="#" data-bind="value: netCommandPort" />
+                </li>
+                <li class="filed first">
+                    <label>健康检测方式:</label><select class="common" data-text-field="text" data-value-field="val"  
+                    data-bind="source:hcTypes, value:hcType, events:{change: changehcType}"></select>
+                </li>
+                <li class="filed first hcPorts">
+                    <label>端口选择:</label><input  data-bind="value: hcPorts" /><span style="color: #FF0000; font-weight: bold;">多个端口，请用,号分开</span>
+                </li>
+            </fieldset>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="panel componentConfig"  id="panel_interfaces">
+		<div class="panelTitle">网络设备组件配置</div>
+        <div class="panelContent">
+            <div class="op_bar">
+                <a href="javascript:" name="addInterfaces">添加接口</a> | 
+                <a href="javascript:" name="del">删除</a> | 
+                <a href="javascript:" name="setCustomSpeed">自定义带宽</a>
+            </div>
+            <script name="template" type="text/x-kendo-template">
+                <tr data-uid="#=uid#">
+                    <td><input name="ids" type="checkbox" value="#=_id#"/></td>
+                    <td>#= uname #</td>
+                    <td>#= ipAddress #</td>
+                    <td>#= macAddress #</td>
+                    <td>#= nb.Render.toNum2(customSpeed, 'M') #</td>
+                    <td>#= type #</td>
+                    <td><a href="javascript:" name="configThreshold" moUid="#=_id#" moType="IpInterface">阀值配置</a></td>
+                </tr>
+            </script>
+           <table style="width: 100%">
+                <thead>
+                    <tr>
+                        <td style="width: 50px;">选择</td><td style="width: 200px">名称</td>
+                        <td style="width: 100px">IP地址</td><td>物理地址</td>
+                        <td>自定义带宽</td>
+                        <td>类型</td>
+                    </tr>
+                </thead>
+                <tbody> </tbody>
+           </table>
+        </div>
+</div>
